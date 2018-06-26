@@ -1,4 +1,13 @@
-module ISDCElmUI.Dropdown exposing (..)
+module ISDCElmUI.Dropdown exposing (multiCheckDropdown, DropDownProperties)
+
+{-| Dropdown contains dropdown functions which return HTML
+
+
+# Multi Check Dropdown
+
+@docs multiCheckDropdown, DropDownProperties
+
+-}
 
 import Css exposing (..)
 import Html.Styled exposing (..)
@@ -11,6 +20,31 @@ import ISDCElmUI.Colors.Css exposing (..)
 import ISDCElmUI.Colors.Hex as Hex exposing (grayC)
 
 
+{-| DropDownProperties contains all needed data and msg types for the multiCheckDropdown
+
+    dropdownModel =
+        { labelText = "Hello world"
+        , dropDownValue = "Some value you determine"
+        , options =
+            [ { label = "Foo"
+              , value = "foo"
+              , checked = False
+              }
+            , { label = "Bar"
+              , value = "bar"
+              , checked = False
+              }
+            ]
+        , open = False
+        , openMessage = Open
+        , toggleMessage = Toggle
+        , searchMessage = Search
+        , saveMessage = Save
+        , cancelMessage = Cancel
+        , search = ""
+        }
+
+-}
 type alias DropDownProperties msg =
     { labelText : String
     , dropDownValue : String
@@ -25,6 +59,33 @@ type alias DropDownProperties msg =
     }
 
 
+{-| multiCheckDropdown is a dropdown with checkboxes and confirmation buttons.
+
+    -- Example usage
+    dropdownModel =
+        { labelText = "Hello world"
+        , dropDownValue = "Some value you determine"
+        , options =
+        [ { label = "Foo"
+        , value = "foo"
+        , checked = False
+        }
+        , { label = "Bar"
+        , value = "bar"
+        , checked = False
+        }
+        ]
+        , open = False
+        , openMessage = Open
+        , toggleMessage = Toggle
+        , searchMessage = Search
+        , saveMessage = Save
+        , cancelMessage = Cancel
+        , search = ""
+        }
+    multiCheckDropdown dropdownModel
+
+-}
 multiCheckDropdown : DropDownProperties msg -> Html msg
 multiCheckDropdown dropDownArgs =
     let
@@ -32,7 +93,7 @@ multiCheckDropdown dropDownArgs =
             dropDownArgs
     in
         div [ css [ position relative ] ]
-            [ label [ css [ isdcSmallLabel ] ] [ text labelText ]
+            [ label [ css [ ISDCElmUI.Typography.caption ] ] [ text labelText ]
             , button
                 [ css
                     [ color black60
@@ -109,7 +170,7 @@ multiCheckDropdown dropDownArgs =
                             , input
                                 [ css
                                     [ border zero
-                                    , isdcBody1
+                                    , body1
                                     , outline zero
                                     , height (px 36)
                                     , color black40

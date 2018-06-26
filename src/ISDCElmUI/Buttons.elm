@@ -1,16 +1,27 @@
 module ISDCElmUI.Buttons exposing (..)
 
+{-| Button Styles
+
+
+# Button Styles
+
+@docs baseButtonStyles, greenButtonStyles, whiteButtonStyles
+
+-}
+
 import Css exposing (..)
 import ISDCElmUI.Colors.Css exposing (..)
 import ISDCElmUI.Typography exposing (..)
 import Css.Transitions exposing (easeInOut, transition)
 
 
+{-| baseButtonStyles is the base for all other button styles.
+-}
 baseButtonStyles : Css.Style
 baseButtonStyles =
     Css.batch
         [ borderRadius (px 3)
-        , isdcBlock
+        , body1
         , padding2 (px 10) (px 19)
         , margin (px 5)
         , border zero
@@ -19,6 +30,8 @@ baseButtonStyles =
         ]
 
 
+{-| greenButtonStyles is a green button style.
+-}
 greenButtonStyles : Css.Style
 greenButtonStyles =
     Css.batch
@@ -45,6 +58,8 @@ greenButtonStyles =
         ]
 
 
+{-| whiteButtonStyles is a white button style.
+-}
 whiteButtonStyles : Css.Style
 whiteButtonStyles =
     Css.batch

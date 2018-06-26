@@ -4,7 +4,7 @@
     "repository": "https://github.com/InsideSalesOfficial/isdc-elm-ui.git",
     "license": "BSD3",
     "source-directories": [
-        "./src/ISDCElmUI"
+        "./src"
     ],
     "exposed-modules": [
         "ISDCElmUI.Colors.Css",

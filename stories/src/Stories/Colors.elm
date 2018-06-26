@@ -1,4 +1,4 @@
-module Colors exposing (..)
+module Stories.Colors exposing (..)
 
 import ISDCElmUI.Colors.Css exposing (..)
 import Html
