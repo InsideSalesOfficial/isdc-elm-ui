@@ -1,5 +1,5 @@
 # InsideSales.com Elm UI
-This are functions, color palettes and typography for our UI
+These are functions, color palettes and typography for our UI
 
 ## Clone Repo 
 ```
