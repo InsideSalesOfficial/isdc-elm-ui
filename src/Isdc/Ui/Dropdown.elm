@@ -1,11 +1,11 @@
-module ISDCElmUI.Dropdown exposing (multiCheckDropdown, DropDownProperties)
+module Isdc.Ui.Dropdown exposing (multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem)
 
 {-| Dropdown contains dropdown functions which return HTML
 
 
 # Multi Check Dropdown
 
-@docs multiCheckDropdown, DropDownProperties
+@docs multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem
 
 -}
 
@@ -13,11 +13,11 @@ import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, src, placeholder, value)
 import Html.Styled.Events exposing (onClick, onInput)
-import ISDCElmUI.Typography exposing (..)
-import ISDCElmUI.Icons exposing (..)
-import ISDCElmUI.Buttons exposing (..)
-import ISDCElmUI.Colors.Css exposing (..)
-import ISDCElmUI.Colors.Hex as Hex exposing (grayC)
+import Isdc.Ui.Typography exposing (..)
+import Isdc.Ui.Icons exposing (..)
+import Isdc.Ui.Buttons exposing (..)
+import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.Colors.Hex as Hex exposing (grayC)
 
 
 {-| DropDownProperties contains all needed data and msg types for the multiCheckDropdown
@@ -93,7 +93,7 @@ multiCheckDropdown dropDownArgs =
             dropDownArgs
     in
         div [ css [ position relative ] ]
-            [ label [ css [ ISDCElmUI.Typography.caption ] ] [ text labelText ]
+            [ label [ css [ Isdc.Ui.Typography.caption ] ] [ text labelText ]
             , button
                 [ css
                     [ color black60
@@ -212,6 +212,9 @@ multiCheckDropdown dropDownArgs =
             ]
 
 
+{-| baseCheckboxStyles for an unchecked checkbox.
+-}
+baseCheckboxStyles : Css.Style
 baseCheckboxStyles =
     Css.batch
         [ width (px 18)
@@ -233,6 +236,8 @@ type alias Option =
     }
 
 
+{-| multiCheckDropdownItem is a single checkbox and label which can send a message to toggle the checkbox
+-}
 multiCheckDropdownItem : Option -> (String -> msg) -> Html msg
 multiCheckDropdownItem option toggleMessage =
     div

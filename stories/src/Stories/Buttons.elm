@@ -3,7 +3,7 @@ module Stories.Buttons exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
-import ISDCElmUI.Buttons exposing (..)
+import Isdc.Ui.Buttons exposing (..)
 import Base exposing (..)
 
 
@@ -14,7 +14,7 @@ model =
 view : msg -> Html.Styled.Html msg
 view model =
     story
-        { title = "ISDCElmUI.Buttons exposing (..)"
+        { title = "Isdc.Ui.Buttons exposing (..)"
         , chapters =
             [ { heading = "greenButtonStyles : Css.Style"
               , example = button [ css [ greenButtonStyles ] ] [ text "Hello world" ]

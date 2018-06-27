@@ -2,7 +2,7 @@ module Stories.Dropdown exposing (..)
 
 import Html
 import Html.Styled exposing (..)
-import ISDCElmUI.Dropdown exposing (..)
+import Isdc.Ui.Dropdown exposing (..)
 import Base exposing (..)
 import Css exposing (..)
 import Html.Styled.Attributes exposing (..)
@@ -72,7 +72,7 @@ model =
 
 view model =
     story
-        { title = "ISDCElmUI.Dropdown exposing (..)"
+        { title = "Isdc.Ui.Dropdown exposing (..)"
         , chapters =
             [ { heading = "multiCheckDropdown : DropDownProperties msg -> Html msg"
               , example = div [ css [ marginBottom (px 200) ] ] [ multiCheckDropdown model ]

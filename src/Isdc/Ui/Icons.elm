@@ -1,4 +1,4 @@
-module ISDCElmUI.Icons exposing (searchIcon)
+module Isdc.Ui.Icons exposing (searchIcon)
 
 {-| SVG Icons
 

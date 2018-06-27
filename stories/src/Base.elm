@@ -3,7 +3,7 @@ module Base exposing (..)
 import Html.Styled exposing (..)
 import Css exposing (..)
 import Html.Styled.Attributes exposing (..)
-import ISDCElmUI.Colors.Css exposing (..)
+import Isdc.Ui.Colors.Css exposing (..)
 
 
 type alias Base msg =

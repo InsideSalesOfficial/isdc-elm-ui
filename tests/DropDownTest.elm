@@ -5,8 +5,8 @@ import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, src, placeholder, value)
 import Html.Styled.Events exposing (onClick, onInput)
-import StyledElements.Dropdown exposing (..)
-import StyledElements.Colors.Css exposing (..)
+import Isdc.Ui.Dropdown exposing (..)
+import Isdc.Ui.Colors.Css exposing (..)
 import Expect exposing (..)
 
 
@@ -18,7 +18,7 @@ type Msg
 suite : Test
 suite =
     describe "Dropwdown"
-        [ describe "isdcDropDownItem"
+        [ describe "IsdcDropDownItem"
             [ test "it should display as checked if checked " <|
                 \_ ->
                     let

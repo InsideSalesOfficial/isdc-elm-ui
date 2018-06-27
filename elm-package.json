@@ -2,17 +2,18 @@
     "version": "0.0.1",
     "summary": "",
     "repository": "https://github.com/InsideSalesOfficial/isdc-elm-ui.git",
-    "license": "BSD3",
+    "license": "MIT",
     "source-directories": [
         "./src"
     ],
     "exposed-modules": [
-        "ISDCElmUI.Colors.Css",
-        "ISDCElmUI.Colors.Hex",
-        "ISDCElmUI.Buttons",
-        "ISDCElmUI.Dropdown",
-        "ISDCElmUI.Icons",
-        "ISDCElmUI.Typography"
+        "Isdc.Ui.Colors.Css",
+        "Isdc.Ui.Colors.Hex",
+        "Isdc.Ui.Buttons",
+        "Isdc.Ui.Dropdown",
+        "Isdc.Ui.Icons",
+        "Isdc.Ui.Typography",
+        "Isdc.Ui.Loader"
     ],
     "dependencies": {
         "elm-lang/core": "5.1.1 <= v < 6.0.0",

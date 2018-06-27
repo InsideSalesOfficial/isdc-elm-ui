@@ -1,10 +1,9 @@
 module Stories.Colors exposing (..)
 
-import ISDCElmUI.Colors.Css exposing (..)
+import Isdc.Ui.Colors.Css exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
-import ISDCElmUI.Buttons exposing (..)
 import Base exposing (..)
 import Css exposing (..)
 
@@ -67,7 +66,7 @@ model =
 view : msg -> Html.Styled.Html msg
 view model =
     story
-        { title = "ISDCElmUI.Colors.Css exposing (..)"
+        { title = "Isdc.Ui.Colors.Css exposing (..)"
         , chapters =
             (List.map
                 (\color ->

@@ -1,4 +1,5 @@
-# Sorts Sharing
+# InsideSales.com Elm UI
+This are functions, color palettes and typography for our UI
 
 ## Clone Repo 
 ```
@@ -6,9 +7,16 @@ git clone https://github.com/InsideSalesOfficial/isdc-elm-ui
 cd isdc-elm-ui
 ```
 
-## Develop in elm reactor
+## Examples
+This repo contains examples for it's exported modules. To view these examples navigate to the stories directory and run elm reactor
 ```
 cd stories
 elm reactor
 ```
 navigate to http://localhost:8000
+
+## Test
+In the root director run elm test
+```
+elm test
+```

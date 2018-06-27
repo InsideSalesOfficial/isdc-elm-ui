@@ -1,4 +1,4 @@
-module ISDCElmUI.Typography exposing (..)
+module Isdc.Ui.Typography exposing (..)
 
 {-|
 

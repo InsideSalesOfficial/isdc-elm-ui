@@ -1,10 +1,9 @@
 module Typography exposing (..)
 
-import ISDCElmUI.Typography exposing (..)
+import Isdc.Ui.Typography exposing (..)
 import Html
 import Html.Styled exposing (p, text, toUnstyled)
 import Html.Styled.Attributes exposing (css)
-import ISDCElmUI.Buttons exposing (..)
 import Base exposing (..)
 
 
@@ -29,7 +28,7 @@ model =
 view : msg -> Html.Styled.Html msg
 view model =
     story
-        { title = "ISDCElmUI.Typography exposing (..)"
+        { title = "Isdc.Ui.Typography exposing (..)"
         , chapters =
             List.map
                 (\font ->

@@ -1,4 +1,4 @@
-module ISDCElmUI.Buttons exposing (..)
+module Isdc.Ui.Buttons exposing (..)
 
 {-| Button Styles
 
@@ -10,8 +10,8 @@ module ISDCElmUI.Buttons exposing (..)
 -}
 
 import Css exposing (..)
-import ISDCElmUI.Colors.Css exposing (..)
-import ISDCElmUI.Typography exposing (..)
+import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.Typography exposing (..)
 import Css.Transitions exposing (easeInOut, transition)
 
 
@@ -27,6 +27,7 @@ baseButtonStyles =
         , border zero
         , outline zero
         , cursor pointer
+        , textTransform uppercase
         ]
 
 

@@ -1,4 +1,4 @@
-module ISDCElmUI.Colors.Css exposing (..)
+module Isdc.Ui.Colors.Css exposing (..)
 
 {-| Contains all of the company colors as a Css Color
 
@@ -50,7 +50,7 @@ module ISDCElmUI.Colors.Css exposing (..)
 -}
 
 import Css exposing (..)
-import ISDCElmUI.Colors.Hex as Hex
+import Isdc.Ui.Colors.Hex as Hex
 
 
 {-| green #3AB676

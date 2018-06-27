@@ -1,4 +1,4 @@
-module ISDCElmUI.Colors.Hex exposing (..)
+module Isdc.Ui.Colors.Hex exposing (..)
 
 {-| Contains all of the company colors hex codes
 
