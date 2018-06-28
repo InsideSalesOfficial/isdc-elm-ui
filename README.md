@@ -1,4 +1,4 @@
-# InsideSales.com Elm UI
+# InsideSales.com Elm UI &middot; [![Build Status](https://travis-ci.com/InsideSalesOfficial/isdc-elm-ui.svg?branch=master)](https://travis-ci.com/InsideSalesOfficial/isdc-elm-ui)
 These are functions, color palettes and typography for our UI
 
 ## Clone Repo 
