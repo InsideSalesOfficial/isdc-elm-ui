@@ -1,11 +1,11 @@
-module Isdc.Ui.Dropdown exposing (multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem)
+module Isdc.Ui.Dropdown exposing (multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem, Option)
 
 {-| Dropdown contains dropdown functions which return HTML
 
 
 # Multi Check Dropdown
 
-@docs multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem
+@docs multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem, Option
 
 -}
 
@@ -105,6 +105,7 @@ multiCheckDropdown dropDownArgs =
                     , outline zero
                     , cursor pointer
                     , padding2 (px 10) zero
+                    , backgroundColor transparent
                     ]
                 , onClick openMessage
                 ]
@@ -229,6 +230,8 @@ baseCheckboxStyles =
         ]
 
 
+{-| Option is a data type to store a label value and whether or not a checkbox is checked
+-}
 type alias Option =
     { label : String
     , value : String
