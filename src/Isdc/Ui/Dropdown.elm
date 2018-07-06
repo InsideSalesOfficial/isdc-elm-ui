@@ -230,7 +230,7 @@ baseCheckboxStyles =
         ]
 
 
-{-| Option is a data type to store a label value and whether or not a checkbox is checked
+{-| Option is a data type to store a label, value and whether or not a checkbox is checked
 -}
 type alias Option =
     { label : String
