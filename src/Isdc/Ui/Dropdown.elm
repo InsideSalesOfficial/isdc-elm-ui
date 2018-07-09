@@ -175,6 +175,7 @@ multiCheckDropdown dropDownArgs =
                                     , outline zero
                                     , height (px 36)
                                     , color black40
+                                    , flexGrow (num 1)
                                     ]
                                 , onInput searchMessage
                                 , value search
