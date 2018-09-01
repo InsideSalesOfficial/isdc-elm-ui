@@ -1,18 +1,13 @@
-module Stories.Buttons exposing (..)
+module Buttons exposing (..)
 
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Buttons exposing (..)
-import Base exposing (..)
+import DocsLayout exposing (..)
 
 
-model =
-    {}
-
-
-view : msg -> Html.Styled.Html msg
-view model =
+view _ =
     story
         { title = "Isdc.Ui.Buttons exposing (..)"
         , chapters =
@@ -25,16 +20,4 @@ view model =
               , codeUsage = "button [ css [ whiteButtonStyles ] ] [ text \"Hello world\" ]"
               }
             ]
-        }
-
-
-update msg model =
-    model
-
-
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view >> toUnstyled
-        , update = update
         }

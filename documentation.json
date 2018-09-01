@@ -1,0 +1,509 @@
+[
+  {
+    "name": "Isdc.Ui.Dropdown",
+    "comment": " Dropdown contains dropdown functions which return HTML\n\n\n# Multi Check Dropdown\n\n@docs multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem\n\n",
+    "aliases": [
+      {
+        "name": "DropDownProperties",
+        "comment": " DropDownProperties contains all needed data and msg types for the multiCheckDropdown\n\n    dropdownModel =\n        { labelText = \"Hello world\"\n        , dropDownValue = \"Some value you determine\"\n        , options =\n            [ { label = \"Foo\"\n              , value = \"foo\"\n              , checked = False\n              }\n            , { label = \"Bar\"\n              , value = \"bar\"\n              , checked = False\n              }\n            ]\n        , open = False\n        , openMessage = Open\n        , toggleMessage = Toggle\n        , searchMessage = Search\n        , saveMessage = Save\n        , cancelMessage = Cancel\n        , search = \"\"\n        }\n\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ labelText : String , dropDownValue : String , options : List Isdc.Ui.Dropdown.Option , open : Bool , openMessage : msg , toggleMessage : String -> msg , searchMessage : String -> msg , saveMessage : msg , cancelMessage : msg , search : String }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "baseCheckboxStyles",
+        "comment": " baseCheckboxStyles for an unchecked checkbox.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "multiCheckDropdown",
+        "comment": " multiCheckDropdown is a dropdown with checkboxes and confirmation buttons.\n\n    -- Example usage\n    dropdownModel =\n        { labelText = \"Hello world\"\n        , dropDownValue = \"Some value you determine\"\n        , options =\n        [ { label = \"Foo\"\n        , value = \"foo\"\n        , checked = False\n        }\n        , { label = \"Bar\"\n        , value = \"bar\"\n        , checked = False\n        }\n        ]\n        , open = False\n        , openMessage = Open\n        , toggleMessage = Toggle\n        , searchMessage = Search\n        , saveMessage = Save\n        , cancelMessage = Cancel\n        , search = \"\"\n        }\n    multiCheckDropdown dropdownModel\n\n",
+        "type": "Isdc.Ui.Dropdown.DropDownProperties msg -> Html.Styled.Html msg"
+      },
+      {
+        "name": "multiCheckDropdownItem",
+        "comment": " multiCheckDropdownItem is a single checkbox and label which can send a message to toggle the checkbox\n",
+        "type": "Isdc.Ui.Dropdown.Option -> (String -> msg) -> Html.Styled.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Isdc.Ui.Buttons",
+    "comment": " Button Styles\n\n\n# Button Styles\n\n@docs baseButtonStyles, greenButtonStyles, whiteButtonStyles\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "baseButtonStyles",
+        "comment": " baseButtonStyles is the base for all other button styles.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "greenButtonStyles",
+        "comment": " greenButtonStyles is a green button style.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "whiteButtonStyles",
+        "comment": " whiteButtonStyles is a white button style.\n",
+        "type": "Css.Style"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Isdc.Ui.Colors.Css",
+    "comment": " Contains all of the company colors as a Css Color\n\n\n# Greens\n\n@docs green, greenB, greenC, green40, green10\n\n\n# Gray\n\n@docs grayA, grayB, grayC, grayD, grayE, grayF\n\n\n# Blues\n\n@docs blue, blue40, blue10\n\n\n# Oranges\n\n@docs orange, orange40, orange10\n\n\n# Reds\n\n@docs red, red40, red10\n\n\n# Trons\n\n@docs tron, tronB, tronC, tron40, tron10\n\n\n# Dark Blues\n\n@docs darkBlue, darkBlue40, darkBlueB, darkBlueB40, darkBlueC, darkBlueC40, darkBlueD, darkBlueD40, darkBlueE, darkBlueE40\n\n\n# Blacks\n\n@docs black, black60, black90, black40, black10, black4\n\n\n# White\n\n@docs white, white60, white90, white40, white10, white4\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "black",
+        "comment": " black #000000\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "black10",
+        "comment": " black10 rgba(0, 0, 0 0.1)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "black4",
+        "comment": " black4 rgba(0, 0, 0 0.04)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "black40",
+        "comment": " black40 rgba(0, 0, 0 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "black60",
+        "comment": " black60 rgba(0, 0, 0 0.6)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "black90",
+        "comment": " black90 rgba(0, 0, 0 0.9)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "blue",
+        "comment": " blue #0075B8\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "blue10",
+        "comment": " blue10 rgba(0, 117, 184, 0.1)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "blue40",
+        "comment": " blue40 rgba(0, 117, 184, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlue",
+        "comment": " darkBlue #2A434A\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlue40",
+        "comment": " darkBlue40 rgba(42, 67, 74, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueB",
+        "comment": " darkBlueB #435960\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueB40",
+        "comment": " darkBlueB40 rgba(67, 89, 96, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueC",
+        "comment": " darkBlueC #21353B\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueC40",
+        "comment": " darkBlueC40 rgba(33, 53, 59, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueD",
+        "comment": " darkBlueD #1D2E33\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueD40",
+        "comment": " darkBlueD40 rgba(29, 46, 51, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueE",
+        "comment": " darkBlueE #080D0E\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "darkBlueE40",
+        "comment": " darkBlueE40 rgba(8, 13, 14, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "grayA",
+        "comment": " grayA #F5F5F5\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "grayB",
+        "comment": " grayB #E5E5E5\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "grayC",
+        "comment": " grayC #999999\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "grayD",
+        "comment": " grayD #666666\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "grayE",
+        "comment": " grayE #191919\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "grayF",
+        "comment": " grayF #0A0A0\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "green",
+        "comment": " green #3AB676\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "green10",
+        "comment": " green10 rgba(58, 182, 118, 0.1)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "green40",
+        "comment": " green40 rgba(58, 182, 118, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "greenB",
+        "comment": " greenB #34A369\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "greenC",
+        "comment": " greenC #2A915E\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "orange",
+        "comment": " orange #F18B14\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "orange10",
+        "comment": " orange10 rgba(241, 139, 20, 0.1)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "orange40",
+        "comment": " orange40 rgba(241, 139, 20, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "red",
+        "comment": " red #EA5959\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "red10",
+        "comment": " red10 rgba(234, 89, 89, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "red40",
+        "comment": " red40 rgba(234, 89, 89, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "tron",
+        "comment": " tron #00C9FF\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "tron10",
+        "comment": " tron10 rgba(0, 201, 255, 0.1)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "tron40",
+        "comment": " tron40 rgba(0, 201, 255, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "tronB",
+        "comment": " tronB #006580\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "tronC",
+        "comment": " tronC #004A5E\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "white",
+        "comment": " white #FFFFFF\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "white10",
+        "comment": " white10 rgba(255, 255, 255, 0.1)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "white4",
+        "comment": " white4 rgba(255, 255, 255, 0.04)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "white40",
+        "comment": " white40 rgba(255, 255, 255, 0.4)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "white60",
+        "comment": " white60 rgba(255, 255, 255, 0.6)\n",
+        "type": "Css.Color"
+      },
+      {
+        "name": "white90",
+        "comment": " white90 rgba(255, 255, 255, 0.9)\n",
+        "type": "Css.Color"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Isdc.Ui.Colors.Hex",
+    "comment": " Contains all of the company colors hex codes\n\n\n# Hex Color Strings\n\n@docs black, blue, darkBlue, darkBlueB, darkBlueC, darkBlueD, darkBlueE, grayA, grayB, grayC, grayD, grayE, grayF, green, greenB, greenC, orange, red, tron, tronB, tronC, white, grayF\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "black",
+        "comment": " black #000000\n",
+        "type": "String"
+      },
+      {
+        "name": "blue",
+        "comment": " blue #0075B8\n",
+        "type": "String"
+      },
+      {
+        "name": "darkBlue",
+        "comment": " darkBlue #2A434A\n",
+        "type": "String"
+      },
+      {
+        "name": "darkBlueB",
+        "comment": " darkBlueB #435960\n",
+        "type": "String"
+      },
+      {
+        "name": "darkBlueC",
+        "comment": " darkBlueC #21353B\n",
+        "type": "String"
+      },
+      {
+        "name": "darkBlueD",
+        "comment": " darkBlueD #1D2E33\n",
+        "type": "String"
+      },
+      {
+        "name": "darkBlueE",
+        "comment": " darkBlueE #080D0E\n",
+        "type": "String"
+      },
+      {
+        "name": "grayA",
+        "comment": " grayA #F5F5F5\n",
+        "type": "String"
+      },
+      {
+        "name": "grayB",
+        "comment": " grayB #E5E5E5\n",
+        "type": "String"
+      },
+      {
+        "name": "grayC",
+        "comment": " grayC #999999\n",
+        "type": "String"
+      },
+      {
+        "name": "grayD",
+        "comment": " grayD #666666\n",
+        "type": "String"
+      },
+      {
+        "name": "grayE",
+        "comment": " grayE #191919\n",
+        "type": "String"
+      },
+      {
+        "name": "grayF",
+        "comment": " grayF #0A0A0\n",
+        "type": "String"
+      },
+      {
+        "name": "green",
+        "comment": " green #3AB676\n",
+        "type": "String"
+      },
+      {
+        "name": "greenB",
+        "comment": " greenB #34A369\n",
+        "type": "String"
+      },
+      {
+        "name": "greenC",
+        "comment": " greenC #2A915E\n",
+        "type": "String"
+      },
+      {
+        "name": "orange",
+        "comment": " orange #F18B14\n",
+        "type": "String"
+      },
+      {
+        "name": "red",
+        "comment": " red #EA5959\n",
+        "type": "String"
+      },
+      {
+        "name": "tron",
+        "comment": " tron #00C9FF\n",
+        "type": "String"
+      },
+      {
+        "name": "tronB",
+        "comment": " tronB #006580\n",
+        "type": "String"
+      },
+      {
+        "name": "tronC",
+        "comment": " tronC #004A5E\n",
+        "type": "String"
+      },
+      {
+        "name": "white",
+        "comment": " white #FFFFFF\n",
+        "type": "String"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Isdc.Ui.Typography",
+    "comment": "\n\n\n# Typography\n\n@docs display2, display1, headline, title, subhead1, subhead2, body2, body1, bodyCompact, caption\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "body1",
+        "comment": " body1 is a medium-small sized font which has a medium weight.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "body2",
+        "comment": " body2 is a medium-small sized font which has a semi-bold weight.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "bodyCompact",
+        "comment": " body2 is a medium-small sized font which has a medium weight and small line height.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "caption",
+        "comment": " caption is a small sized font which has a medium font weight and small line height.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "display1",
+        "comment": " display2 is a style with a large font size and line height with a medium font weight. It is smaller than display.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "display2",
+        "comment": " display2 is a style with a very large font size and line height with a medium font\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "headline",
+        "comment": " headline is a style with a large font size and line height with a medium font weight. It is smaller than display1.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "subhead1",
+        "comment": " subhead1 is a medium sized font which has a medium weight.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "subhead2",
+        "comment": " subhead2 is a bold medium sized font which.\n",
+        "type": "Css.Style"
+      },
+      {
+        "name": "title",
+        "comment": " title is a style with a large font size and line height with a semi-bold weight. It is smaller than headline.\n",
+        "type": "Css.Style"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Isdc.Ui.Icons",
+    "comment": " SVG Icons\n\n\n# Icons\n\n@docs searchIcon\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "searchIcon",
+        "comment": " searchIcon is an icon with an outline of a magnifying glass\n",
+        "type": "String -> String -> String -> Html.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Isdc.Ui.Loader",
+    "comment": " Loading Element\n\n\n# Loader\n\n@docs loader\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "loader",
+        "comment": " loader for use in conjuction with external css\n",
+        "type": "Html.Styled.Html msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

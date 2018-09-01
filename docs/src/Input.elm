@@ -1,16 +1,22 @@
-module Stories.Input exposing (..)
+module Input exposing (..)
 
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Input exposing (..)
-import Base exposing (..)
+import DocsLayout exposing (..)
 import Css exposing (..)
 
 
-model =
+inputModel =
     { value = ""
     , focused = False
+    }
+
+
+type alias Model =
+    { value : String
+    , focused : Bool
     }
 
 
@@ -68,11 +74,3 @@ update msg model =
 
         Blur ->
             { model | focused = False }
-
-
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view >> toUnstyled
-        , update = update
-        }

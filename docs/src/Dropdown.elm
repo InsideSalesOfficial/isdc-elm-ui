@@ -1,11 +1,13 @@
-module Stories.Dropdown exposing (..)
+module Dropdown exposing (..)
 
 import Html
 import Html.Styled exposing (..)
 import Isdc.Ui.Dropdown exposing (..)
-import Base exposing (..)
+import DocsLayout exposing (..)
 import Css exposing (..)
 import Html.Styled.Attributes exposing (..)
+import Dict as Dict exposing (Dict)
+import Maybe as Maybe
 
 
 type Msg
@@ -16,7 +18,22 @@ type Msg
     | Search String
 
 
-update : Msg -> DropDownProperties Msg -> DropDownProperties Msg
+type alias Model =
+    { optionsChecked : Dict String Bool
+    , open : Bool
+    , search : String
+    }
+
+
+dropdownModel : Model
+dropdownModel =
+    { optionsChecked = Dict.empty
+    , open = False
+    , search = ""
+    }
+
+
+update : Msg -> Model -> Model
 update msg model =
     case msg of
         Open ->
@@ -30,53 +47,53 @@ update msg model =
 
         Toggle value ->
             let
-                options =
-                    List.map
-                        (\option ->
-                            if option.value == value then
-                                { option | checked = option.checked == False }
-                            else
-                                option
-                        )
-                        model.options
+                updated =
+                    Dict.update
+                        value
+                        (\val -> Just <| (==) False <| Maybe.withDefault False val)
+                        model.optionsChecked
             in
-                { model | options = options }
+                { model | optionsChecked = updated }
 
         Search search ->
             { model | search = search }
 
 
-model : DropDownProperties Msg
-model =
+dropdownProps : Model -> DropDownProperties Msg
+dropdownProps model =
     { labelText = "Hello world"
     , dropDownValue = "Some value you determine"
     , options =
         [ { label = "Foo"
           , value = "foo"
-          , checked = False
+          , checked = Maybe.withDefault False <| Dict.get "foo" model.optionsChecked
           }
         , { label = "Bar"
           , value = "bar"
-          , checked = False
+          , checked = Maybe.withDefault False <| Dict.get "bar" model.optionsChecked
           }
         ]
-    , open = False
+    , open = model.open
     , openMessage = Open
     , toggleMessage = Toggle
     , searchMessage = Search
     , saveMessage = Save
     , cancelMessage = Cancel
-    , search = ""
+    , search = model.search
     }
 
 
 view model =
-    story
-        { title = "Isdc.Ui.Dropdown exposing (..)"
-        , chapters =
-            [ { heading = "multiCheckDropdown : DropDownProperties msg -> Html msg"
-              , example = div [ css [ marginBottom (px 200) ] ] [ multiCheckDropdown model ]
-              , codeUsage = """
+    let
+        props =
+            dropdownProps model
+    in
+        story
+            { title = "Isdc.Ui.Dropdown exposing (..)"
+            , chapters =
+                [ { heading = "multiCheckDropdown : DropDownProperties msg -> Html msg"
+                  , example = div [ css [ marginBottom (px 200) ] ] [ multiCheckDropdown props ]
+                  , codeUsage = """
 let model =
     { labelText = "Hello world"
     , dropDownValue = "Some value you determine"
@@ -100,14 +117,6 @@ let model =
     }
 
 in multiCheckDropdown model"""
-              }
-            ]
-        }
-
-
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view >> toUnstyled
-        , update = update
-        }
+                  }
+                ]
+            }

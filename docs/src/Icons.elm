@@ -1,18 +1,13 @@
-module Stories.Buttons exposing (..)
+module Icons exposing (..)
 
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Isdc.Ui.Icons exposing (..)
-import Base exposing (..)
+import DocsLayout exposing (..)
 
 
-model =
-    {}
-
-
-view : msg -> Html.Styled.Html msg
-view model =
+view _ =
     story
         { title = "Isdc.Ui.Icons exposing (..)"
         , chapters =
@@ -21,16 +16,4 @@ view model =
               , codeUsage = "searchIcon \"100px\" \"100px\" \"#000000\""
               }
             ]
-        }
-
-
-update msg model =
-    model
-
-
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view >> toUnstyled
-        , update = update
         }
