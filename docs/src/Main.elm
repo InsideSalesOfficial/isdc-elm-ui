@@ -102,8 +102,11 @@ type Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        LinkClicked urlRequest ->
+    case ( msg, model.page ) of
+        ( UrlChanged url, _ ) ->
+            ( { model | url = url, page = urlToPage url }, Cmd.none )
+
+        ( LinkClicked urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
                     ( model, Nav.pushUrl model.navKey (Url.toString url) )
@@ -111,45 +114,23 @@ update msg model =
                 Browser.External href ->
                     ( model, Nav.load href )
 
-        UrlChanged url ->
+        ( InputUpdate inputMsg, Input inputModel ) ->
             ( { model
-                | url = url
-                , page = urlToPage url
+                | page = Input (Input.update inputMsg inputModel)
               }
             , Cmd.none
             )
 
-        InputUpdate inputMsg ->
-            let
-                pageModel =
-                    case model.page of
-                        Input inputModel ->
-                            inputModel
+        ( DropdownUpdate dropdownMsg, Dropdown dropdownModel ) ->
+            ( { model
+                | page = Dropdown (Dropdown.update dropdownMsg dropdownModel)
+              }
+            , Cmd.none
+            )
 
-                        _ ->
-                            Input.inputModel
-            in
-                ( { model
-                    | page = Input (Input.update inputMsg pageModel)
-                  }
-                , Cmd.none
-                )
-
-        DropdownUpdate dropdownMsg ->
-            let
-                pageModel =
-                    case model.page of
-                        Dropdown dropdownModel ->
-                            dropdownModel
-
-                        _ ->
-                            Dropdown.dropdownModel
-            in
-                ( { model
-                    | page = Dropdown (Dropdown.update dropdownMsg pageModel)
-                  }
-                , Cmd.none
-                )
+        ( _, _ ) ->
+            -- Disregard messages that arrived for the wrong page.
+            ( model, Cmd.none )
 
 
 
