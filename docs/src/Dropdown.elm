@@ -50,7 +50,7 @@ update msg model =
                 updated =
                     Dict.update
                         value
-                        (\val -> Just <| (==) False <| Maybe.withDefault False val)
+                        (\val -> Maybe.withDefault False val |> not |> Just)
                         model.optionsChecked
             in
                 { model | optionsChecked = updated }
