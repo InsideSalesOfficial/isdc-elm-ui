@@ -1,11 +1,11 @@
-module Input exposing (..)
+module Input exposing (Model, Msg(..), inputModel, update, view)
 
+import Css exposing (..)
+import DocsLayout exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Input exposing (..)
-import DocsLayout exposing (..)
-import Css exposing (..)
 
 
 inputModel =
@@ -42,7 +42,18 @@ view model =
                         , onInputBlur = Blur
                         , focused = model.focused
                         }
-              , codeUsage = ""
+              , codeUsage = """
+inputBox
+    { theme = Dark
+    , disabled = False
+    , inputValue = model.value
+    , labelText = "Hello world"
+    , onValueChange = ValueChange
+    , onInputFocus = Focus
+    , onInputBlur = Blur
+    , focused = model.focused
+    }
+"""
               }
             , { heading = "Light Theme"
               , example =
@@ -58,7 +69,18 @@ view model =
                             , focused = model.focused
                             }
                         ]
-              , codeUsage = ""
+              , codeUsage = """
+inputBox
+    { theme = Light
+    , disabled = False
+    , inputValue = model.value
+    , labelText = "Hello world"
+    , onValueChange = ValueChange
+    , onInputFocus = Focus
+    , onInputBlur = Blur
+    , focused = model.focused
+    }
+"""
               }
             ]
         }

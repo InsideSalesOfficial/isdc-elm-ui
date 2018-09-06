@@ -1,7 +1,7 @@
-module DocsLayout exposing (..)
+module DocsLayout exposing (DocLayout, story)
 
-import Html.Styled exposing (..)
 import Css exposing (..)
+import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
 
@@ -25,7 +25,7 @@ story doc =
             , padding (px 20)
             ]
         ]
-        [ h1 [] [ text doc.title ]
+        [ h1 [ css [ marginTop zero ] ] [ text doc.title ]
         , div []
             (List.map
                 (\chapter ->

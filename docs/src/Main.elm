@@ -1,18 +1,20 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), Page(..), body, init, main, subscriptions, update, urlToPage, view, viewLink)
 
 import Browser
 import Browser.Navigation as Nav
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Url
-import Route exposing (Route)
 import Buttons as Buttons
-import Icons as Icons
 import Colors as Colors
-import Typography as Typography
-import Input as Input
-import Html.Styled as Styled
+import Css exposing (..)
 import Dropdown as Dropdown
+import Html.Styled as Styled exposing (..)
+import Html.Styled.Attributes exposing (css, href)
+import Icons as Icons
+import Input as Input
+import Isdc.Ui.Colors.Css as IsdcColors
+import Route exposing (Route)
+import Typography as Typography
+import Url
+
 
 
 -- MAIN
@@ -150,47 +152,86 @@ view : Model -> Browser.Document Msg
 view model =
     { title = "URL Interceptor"
     , body =
-        [ text "The current URL is: "
-        , b [] [ text (Url.toString model.url) ]
-        , ul []
-            [ viewLink "/home"
-            , viewLink "/icons"
-            , viewLink "/buttons"
-            , viewLink "/colors"
-            , viewLink "/input"
-            , viewLink "/dropdown"
+        [ (body >> Styled.toUnstyled) model ]
+    }
+
+
+body model =
+    div
+        [ css
+            [ position relative
+            , height (pct 100)
+            , displayFlex
+            , alignItems stretch
+            , justifyContent stretch
+            , fontFamily sansSerif
             ]
-        , div []
-            [ (case model.page of
+        ]
+        [ ul
+            [ css
+                [ width <| px 230
+                , backgroundColor IsdcColors.grayA
+                , margin zero
+                , padding <| px 20
+                , boxSizing borderBox
+                ]
+            ]
+            [ viewLink "/home" "Home"
+            , viewLink "/icons" "Icons"
+            , viewLink "/buttons" "Buttons"
+            , viewLink "/colors" "Colors"
+            , viewLink "/input" "Input"
+            , viewLink "/dropdown" "Dropdown"
+            ]
+        , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
+            [ case model.page of
                 Home ->
-                    text "home"
+                    h1 [ css [ padding <| px 20, marginTop zero ] ]
+                        [ text "Isdc Elm Ui Docs"
+                        ]
 
                 Buttons ->
-                    (Buttons.view >> Styled.toUnstyled) Nothing
+                    Buttons.view Nothing
 
                 Icons ->
-                    (Icons.view >> Styled.toUnstyled) Nothing
+                    Icons.view Nothing
 
                 Colors ->
-                    (Colors.view >> Styled.toUnstyled) Nothing
+                    Colors.view Nothing
 
                 NotFound ->
                     text "404"
 
                 Typography ->
-                    (Typography.view >> Styled.toUnstyled) Nothing
+                    Typography.view Nothing
 
                 Input inputModel ->
-                    Html.map (\msg -> InputUpdate msg) <| (Input.view >> Styled.toUnstyled) inputModel
+                    Styled.map (\msg -> InputUpdate msg) <| Input.view inputModel
 
                 Dropdown dropdownModel ->
-                    Html.map (\msg -> DropdownUpdate msg) <| (Dropdown.view >> Styled.toUnstyled) dropdownModel
-              )
+                    Styled.map (\msg -> DropdownUpdate msg) <| Dropdown.view dropdownModel
             ]
         ]
-    }
 
 
-viewLink : String -> Html msg
-viewLink path =
-    li [] [ a [ href path ] [ text path ] ]
+viewLink : String -> String -> Html msg
+viewLink path label =
+    li
+        [ css
+            [ display block
+            , padding2 (px 10) zero
+            , borderBottom3 (px 1) solid IsdcColors.grayC
+            , lastChild
+                [ borderBottom zero
+                ]
+            ]
+        ]
+        [ a
+            [ href path
+            , css
+                [ color IsdcColors.grayD
+                , textDecoration none
+                ]
+            ]
+            [ text label ]
+        ]
