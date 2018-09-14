@@ -14,6 +14,7 @@ import Isdc.Ui.Colors.Css as IsdcColors
 import Route exposing (Route)
 import Typography as Typography
 import Loader as Loader
+import DropdownDots as DropdownDots
 import Url
 
 
@@ -46,6 +47,7 @@ type Page
     | Loader
     | Input Input.Model
     | Dropdown Dropdown.Model
+    | DropdownDots DropdownDots.Model
 
 
 type alias Model =
@@ -81,6 +83,9 @@ urlToPage url =
         "/loader" ->
             Loader
 
+        "/dropdownDots" ->
+            DropdownDots False
+
         _ ->
             NotFound
 
@@ -104,6 +109,7 @@ type Msg
     | UrlChanged Url.Url
     | InputUpdate Input.Msg
     | DropdownUpdate Dropdown.Msg
+    | DropdownDotsUpdate DropdownDots.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -130,6 +136,13 @@ update msg model =
         ( DropdownUpdate dropdownMsg, Dropdown dropdownModel ) ->
             ( { model
                 | page = Dropdown (Dropdown.update dropdownMsg dropdownModel)
+              }
+            , Cmd.none
+            )
+
+        ( DropdownDotsUpdate dropdownDotsMsg, DropdownDots dropdownDotsModel ) ->
+            ( { model
+                | page = DropdownDots (DropdownDots.update dropdownDotsMsg dropdownDotsModel)
               }
             , Cmd.none
             )
@@ -187,6 +200,7 @@ body model =
             , viewLink "/input" "Input"
             , viewLink "/dropdown" "Dropdown"
             , viewLink "/loader" "Loader"
+            , viewLink "/dropdownDots" "DropdownDots"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -215,6 +229,9 @@ body model =
 
                 Dropdown dropdownModel ->
                     Styled.map (\msg -> DropdownUpdate msg) <| Dropdown.view dropdownModel
+
+                DropdownDots dropdownDotsModel ->
+                    Styled.map (\msg -> DropdownDotsUpdate msg) <| DropdownDots.view dropdownDotsModel
 
                 Loader ->
                     Loader.view Nothing

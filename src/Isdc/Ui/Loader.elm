@@ -1,11 +1,11 @@
-module Isdc.Ui.Loader exposing (loader)
+module Isdc.Ui.Loader exposing (..)
 
 {-| Loading Element
 
 
 # Loader
 
-@docs loader
+@docs loader, Size
 
 -}
 
@@ -19,13 +19,21 @@ import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Typography as Typography exposing (subhead1, caption)
 
 
+{-| LoaderSize is small medium or large
+-}
+type LoaderSize
+    = Small
+    | Medium
+    | Large
+
+
 transformTo val =
     Animations.transform [ scale val ]
 
 
-loaderBubbleCss delay =
-    [ width <| px 20
-    , height <| px 20
+loaderBubbleCss delay size =
+    [ width <| px size
+    , height <| px size
     , backgroundColor green
     , borderRadius <| pct 50
     , display inlineBlock
@@ -44,18 +52,30 @@ loaderBubbleCss delay =
     ]
 
 
-{-| animated loader with green dots
+{-| loader is an animated loader with green dots
 -}
-loader : Html msg
-loader =
-    div
-        [ css
-            [ margin2 zero auto
-            , width <| px 80
-            , textAlign center
+loader : LoaderSize -> Html msg
+loader size =
+    let
+        ( totalWidth, radius ) =
+            case size of
+                Small ->
+                    ( 40, 10 )
+
+                Medium ->
+                    ( 55, 18 )
+
+                Large ->
+                    ( 80, 20 )
+    in
+        div
+            [ css
+                [ margin2 zero auto
+                , width <| px totalWidth
+                , textAlign center
+                ]
             ]
-        ]
-        [ div [ css <| loaderBubbleCss -0.32 ] []
-        , div [ css <| loaderBubbleCss -0.16 ] []
-        , div [ css <| loaderBubbleCss 0 ] []
-        ]
+            [ div [ css <| loaderBubbleCss -0.32 radius ] []
+            , div [ css <| loaderBubbleCss -0.16 radius ] []
+            , div [ css <| loaderBubbleCss 0 radius ] []
+            ]

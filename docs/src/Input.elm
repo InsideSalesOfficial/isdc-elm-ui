@@ -8,6 +8,7 @@ import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Input exposing (..)
 
 
+inputModel : Model
 inputModel =
     { value = ""
     , focused = False

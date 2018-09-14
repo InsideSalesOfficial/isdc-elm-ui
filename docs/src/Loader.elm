@@ -11,9 +11,21 @@ view _ =
     story
         { title = "Isdc.Ui.Loader exposing (..)"
         , chapters =
-            [ { heading = "Loader :  Html.Html msg"
-              , example = div [] [ loader ]
-              , codeUsage = "loader"
+            [ { heading = "Loader : Size -> Html.Html msg"
+              , example =
+                    div []
+                        [ loader Large
+                        , loader Medium
+                        , loader Small
+                        ]
+              , codeUsage =
+                    """
+div []
+        [ loader Large
+        , loader Medium
+        , loader Small
+]
+"""
               }
             ]
         }
