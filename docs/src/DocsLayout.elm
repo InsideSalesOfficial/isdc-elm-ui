@@ -1,12 +1,12 @@
-module Base exposing (..)
+module DocsLayout exposing (DocLayout, story)
 
-import Html.Styled exposing (..)
 import Css exposing (..)
+import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
 
 
-type alias Base msg =
+type alias DocLayout msg =
     { title : String
     , chapters :
         List
@@ -17,15 +17,15 @@ type alias Base msg =
     }
 
 
-story : Base msg -> Html msg
-story base =
+story : DocLayout msg -> Html msg
+story doc =
     div
         [ css
             [ fontFamily sansSerif
             , padding (px 20)
             ]
         ]
-        [ h1 [] [ text base.title ]
+        [ h1 [ css [ marginTop zero ] ] [ text doc.title ]
         , div []
             (List.map
                 (\chapter ->
@@ -52,6 +52,6 @@ story base =
                         , chapter.example
                         ]
                 )
-                base.chapters
+                doc.chapters
             )
         ]

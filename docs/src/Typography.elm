@@ -4,7 +4,7 @@ import Isdc.Ui.Typography exposing (..)
 import Html
 import Html.Styled exposing (p, text, toUnstyled)
 import Html.Styled.Attributes exposing (css)
-import Base exposing (..)
+import DocsLayout exposing (..)
 
 
 fonts =
@@ -21,12 +21,7 @@ fonts =
     ]
 
 
-model =
-    {}
-
-
-view : msg -> Html.Styled.Html msg
-view model =
+view _ =
     story
         { title = "Isdc.Ui.Typography exposing (..)"
         , chapters =
@@ -38,16 +33,4 @@ view model =
                     }
                 )
                 fonts
-        }
-
-
-update msg model =
-    model
-
-
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view >> toUnstyled
-        , update = update
         }

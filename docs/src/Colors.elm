@@ -1,10 +1,10 @@
-module Stories.Colors exposing (..)
+module Colors exposing (..)
 
 import Isdc.Ui.Colors.Css exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
-import Base exposing (..)
+import DocsLayout exposing (..)
 import Css exposing (..)
 
 
@@ -59,12 +59,7 @@ colors =
     ]
 
 
-model =
-    {}
-
-
-view : msg -> Html.Styled.Html msg
-view model =
+view _ =
     story
         { title = "Isdc.Ui.Colors.Css exposing (..)"
         , chapters =
@@ -93,16 +88,4 @@ div
                 )
                 colors
             )
-        }
-
-
-update msg model =
-    model
-
-
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view >> toUnstyled
-        , update = update
         }
