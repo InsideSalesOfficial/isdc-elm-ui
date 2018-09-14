@@ -113,6 +113,7 @@ labelCss theme labelText focused =
         ]
 
 
+inputBox : InputOptions msg -> Html msg
 inputBox options =
     let
         { theme, disabled, inputValue, labelText, onValueChange, onInputFocus, onInputBlur, focused } =

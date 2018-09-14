@@ -30,18 +30,32 @@ view model =
     story
         { title = "Isdc.Ui.Input exposing (..)"
         , chapters =
-            [ { heading = "Dark Theme"
+            [ { heading = "inputBox : InputOptions msg -> Html msg"
               , example =
-                    inputBox
-                        { theme = Dark
-                        , disabled = False
-                        , inputValue = model.value
-                        , labelText = "Hello world"
-                        , onValueChange = ValueChange
-                        , onInputFocus = Focus
-                        , onInputBlur = Blur
-                        , focused = model.focused
-                        }
+                    div []
+                        [ inputBox
+                            { theme = Dark
+                            , disabled = False
+                            , inputValue = model.value
+                            , labelText = "Hello world"
+                            , onValueChange = ValueChange
+                            , onInputFocus = Focus
+                            , onInputBlur = Blur
+                            , focused = model.focused
+                            }
+                        , div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
+                            [ inputBox
+                                { theme = Light
+                                , disabled = False
+                                , inputValue = model.value
+                                , labelText = "Hello world"
+                                , onValueChange = ValueChange
+                                , onInputFocus = Focus
+                                , onInputBlur = Blur
+                                , focused = model.focused
+                                }
+                            ]
+                        ]
               , codeUsage = """
 inputBox
     { theme = Dark
@@ -53,23 +67,7 @@ inputBox
     , onInputBlur = Blur
     , focused = model.focused
     }
-"""
-              }
-            , { heading = "Light Theme"
-              , example =
-                    div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
-                        [ inputBox
-                            { theme = Light
-                            , disabled = False
-                            , inputValue = model.value
-                            , labelText = "Hello world"
-                            , onValueChange = ValueChange
-                            , onInputFocus = Focus
-                            , onInputBlur = Blur
-                            , focused = model.focused
-                            }
-                        ]
-              , codeUsage = """
+
 inputBox
     { theme = Light
     , disabled = False

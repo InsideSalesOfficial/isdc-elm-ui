@@ -13,8 +13,8 @@ import Input as Input
 import Isdc.Ui.Colors.Css as IsdcColors
 import Route exposing (Route)
 import Typography as Typography
+import Loader as Loader
 import Url
-
 
 
 -- MAIN
@@ -43,6 +43,7 @@ type Page
     | Icons
     | Colors
     | Typography
+    | Loader
     | Input Input.Model
     | Dropdown Dropdown.Model
 
@@ -76,6 +77,9 @@ urlToPage url =
 
         "/dropdown" ->
             Dropdown Dropdown.dropdownModel
+
+        "/loader" ->
+            Loader
 
         _ ->
             NotFound
@@ -182,6 +186,7 @@ body model =
             , viewLink "/colors" "Colors"
             , viewLink "/input" "Input"
             , viewLink "/dropdown" "Dropdown"
+            , viewLink "/loader" "Loader"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -210,6 +215,9 @@ body model =
 
                 Dropdown dropdownModel ->
                     Styled.map (\msg -> DropdownUpdate msg) <| Dropdown.view dropdownModel
+
+                Loader ->
+                    Loader.view Nothing
             ]
         ]
 
