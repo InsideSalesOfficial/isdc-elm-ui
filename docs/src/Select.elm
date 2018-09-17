@@ -27,8 +27,9 @@ type Msg
     = ValueChange String
     | Focus
     | Blur
-    | Open
+    | Toggle
     | Close
+    | Noop
 
 
 view model =
@@ -42,23 +43,23 @@ view model =
                             [ { label = String "hello world"
                               , value = "HI"
                               }
-                            , { label = String "hello world"
-                              , value = "HI"
+                            , { label = String "hello world 2"
+                              , value = "HI 2"
                               }
-                            , { label = String "hello world"
-                              , value = "HI"
+                            , { label = String "hello world 3"
+                              , value = "HI 3"
                               }
-                            , { label = String "hello world"
-                              , value = "HI"
+                            , { label = String "hello world 4"
+                              , value = "HI 4"
                               }
-                            , { label = String "hello world"
-                              , value = "HI"
+                            , { label = String "hello world 5"
+                              , value = "HI 5"
                               }
-                            , { label = String "hello world"
-                              , value = "HI"
+                            , { label = String "hello world 6"
+                              , value = "HI 6"
                               }
-                            , { label = String "hello world"
-                              , value = "HI"
+                            , { label = String "hello world 7 really really really really really really really really really really really really really long string"
+                              , value = "hello world 7 really really really really really really really really really really really really really long string"
                               }
                             ]
                     in
@@ -81,7 +82,7 @@ view model =
                                 , focused = model.focused
                                 , isOpen = model.isOpen
                                 , options = options
-                                , onOpen = Open
+                                , onToggle = Toggle
                                 , onClose = Close
                                 }
                             , div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
@@ -96,7 +97,7 @@ view model =
                                     , focused = model.focused
                                     , isOpen = model.isOpen
                                     , options = options
-                                    , onOpen = Open
+                                    , onToggle = Toggle
                                     , onClose = Close
                                     }
                                 ]
@@ -140,8 +141,11 @@ update msg model =
         Blur ->
             { model | focused = False }
 
-        Open ->
-            { model | isOpen = True }
+        Toggle ->
+            { model | isOpen = not model.isOpen }
 
         Close ->
             { model | isOpen = False }
+
+        Noop ->
+            model

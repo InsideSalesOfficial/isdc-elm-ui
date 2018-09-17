@@ -25,7 +25,7 @@ type alias SelectOptions msg val =
     , focused : Bool
     , isOpen : Bool
     , options : List (SelectOption msg val)
-    , onOpen : msg
+    , onToggle : msg
     , onClose : msg
     }
 
@@ -66,7 +66,7 @@ selectCss theme =
         [ color primaryColor
         , subhead1
         , height (px 54)
-        , padding3 (px 24) (px 16) (px 4)
+        , padding4 (px 24) (px 40) (px 4) (px 16)
         , position relative
         , zIndex (int 1)
         , backgroundColor transparent
@@ -76,6 +76,8 @@ selectCss theme =
         , width (pct 100)
         , outline zero
         , textAlign left
+        , cutOffText
+        , cursor pointer
         ]
 
 
@@ -89,6 +91,49 @@ type alias SelectOption msg val =
     { label : LabelTypes msg
     , value : val
     }
+
+
+cutOffText =
+    Css.batch
+        [ whiteSpace noWrap
+        , textOverflow ellipsis
+        , overflow hidden
+        ]
+
+
+selectOption onValueChange option =
+    let
+        label =
+            case option.label of
+                String str ->
+                    text str
+
+                Int int ->
+                    text <| String.fromInt int
+
+                Html html ->
+                    html
+    in
+        button
+            [ onClick <| onValueChange option.value
+            , css
+                [ subhead1
+                , padding2 zero <| px 24
+                , display block
+                , backgroundColor white
+                , border zero
+                , outline zero
+                , width <| pct 100
+                , textAlign left
+                , lineHeight <| px 36
+                , cutOffText
+                , cursor pointer
+                , hover
+                    [ backgroundColor grayB
+                    ]
+                ]
+            ]
+            [ label ]
 
 
 selectOptions : List (SelectOption msg val) -> (val -> msg) -> msg -> Html msg
@@ -119,42 +164,7 @@ selectOptions options onValueChange onClose =
                 ]
             ]
           <|
-            List.map
-                (\option ->
-                    let
-                        label =
-                            case option.label of
-                                String str ->
-                                    text str
-
-                                Int int ->
-                                    text <| String.fromInt int
-
-                                Html html ->
-                                    html
-                    in
-                        button
-                            [ onClick <| onValueChange option.value
-                            , css
-                                [ subhead1
-                                , padding2 zero <| px 24
-                                , display block
-                                , backgroundColor white
-                                , border zero
-                                , outline zero
-                                , width <| pct 100
-                                , textAlign left
-                                , lineHeight <| px 36
-                                , whiteSpace noWrap
-                                , textOverflow ellipsis
-                                , hover
-                                    [ backgroundColor grayB
-                                    ]
-                                ]
-                            ]
-                            [ label ]
-                )
-                options
+            List.map (selectOption onValueChange) options
         ]
 
 
@@ -198,10 +208,49 @@ labelCss theme labelText focused =
         ]
 
 
+caret isOpen theme =
+    let
+        ( borderVert, caretColor ) =
+            if isOpen then
+                ( borderBottom3
+                , (case theme of
+                    Light ->
+                        black60
+
+                    Dark ->
+                        white60
+                  )
+                )
+            else
+                ( borderTop3
+                , (case theme of
+                    Light ->
+                        black40
+
+                    Dark ->
+                        white40
+                  )
+                )
+    in
+        div
+            [ css
+                [ borderVert (px 5) solid caretColor
+                , borderLeft3 (px 5) solid transparent
+                , borderRight3 (px 5) solid transparent
+                , right <| px 24
+                , top <| pct 50
+                , width zero
+                , height zero
+                , position absolute
+                ]
+            ]
+            []
+
+
 selectBox : SelectOptions msg val -> Html msg
 selectBox selectBoxOptions =
     let
-        { theme, disabled, inputValue, labelText, onValueChange, onSelectFocus, onSelectBlur, focused, isOpen, options, onOpen, onClose } =
+        { theme, disabled, inputValue, labelText, onValueChange, onSelectFocus, onSelectBlur, focused, isOpen, options, onToggle, onClose } =
             selectBoxOptions
     in
         div [ css <| inputContainerCss theme focused ]
@@ -212,9 +261,10 @@ selectBox selectBoxOptions =
                 [ onFocus onSelectFocus
                 , onBlur onSelectBlur
                 , css <| selectCss theme
-                , onClick onOpen
+                , onClick onToggle
                 ]
                 [ text inputValue
+                , caret isOpen theme
                 ]
             , if isOpen then
                 selectOptions options onValueChange onClose
