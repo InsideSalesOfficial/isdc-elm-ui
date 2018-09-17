@@ -8,12 +8,16 @@ cd isdc-elm-ui
 ```
 
 ## Examples
-This repo contains examples for it's exported modules. To view these examples navigate to the stories directory and run elm reactor
+This repo contains examples for it's exported modules. To view these examples install create-elm-app. 
 ```
-cd stories
-elm reactor
+npm install -g create-elm-app
 ```
-navigate to http://localhost:8000
+then run the following
+```
+cd ./docs
+elm-app start
+```
+navigate to http://localhost:3000
 
 ## Test
 In the root director run elm test
