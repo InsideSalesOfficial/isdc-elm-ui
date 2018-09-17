@@ -1,0 +1,23 @@
+{
+  "name": "isdc-elm-ui",
+  "version": "1.0.0",
+  "description": "These are functions, color palettes and typography for our UI",
+  "main": "./src/docs/elm.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InsideSalesOfficial/isdc-elm-ui.git"
+  },
+  "author": "aaron.wilson@insidesales.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/InsideSalesOfficial/isdc-elm-ui/issues"
+  },
+  "homepage": "https://github.com/InsideSalesOfficial/isdc-elm-ui#readme"
+}
