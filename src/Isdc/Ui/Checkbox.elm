@@ -29,9 +29,6 @@ type alias CheckboxOptions msg =
     , checked : Bool
     , disabled : Bool
     , onValueChange : msg
-    , onFocus : msg
-    , onBlur : msg
-    , focused : Bool
     , label: String
     }
 
