@@ -10,6 +10,7 @@ import Html.Styled as Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href)
 import Icons as Icons
 import Input as Input
+import Select as Select
 import Isdc.Ui.Colors.Css as IsdcColors
 import Route exposing (Route)
 import Typography as Typography
@@ -48,6 +49,7 @@ type Page
     | Input Input.Model
     | Dropdown Dropdown.Model
     | DropdownDots DropdownDots.Model
+    | Select Select.Model
 
 
 type alias Model =
@@ -86,6 +88,9 @@ urlToPage url =
         "/dropdownDots" ->
             DropdownDots False
 
+        "/select" ->
+            Select Select.selectModel
+
         _ ->
             NotFound
 
@@ -110,6 +115,7 @@ type Msg
     | InputUpdate Input.Msg
     | DropdownUpdate Dropdown.Msg
     | DropdownDotsUpdate DropdownDots.Msg
+    | SelectModelUpdate Select.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -143,6 +149,13 @@ update msg model =
         ( DropdownDotsUpdate dropdownDotsMsg, DropdownDots dropdownDotsModel ) ->
             ( { model
                 | page = DropdownDots (DropdownDots.update dropdownDotsMsg dropdownDotsModel)
+              }
+            , Cmd.none
+            )
+
+        ( SelectModelUpdate selectMsg, Select selectModel ) ->
+            ( { model
+                | page = Select (Select.update selectMsg selectModel)
               }
             , Cmd.none
             )
@@ -201,6 +214,7 @@ body model =
             , viewLink "/dropdown" "Dropdown"
             , viewLink "/loader" "Loader"
             , viewLink "/dropdownDots" "DropdownDots"
+            , viewLink "/select" "Select"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -235,6 +249,9 @@ body model =
 
                 Loader ->
                     Loader.view Nothing
+
+                Select selectModel ->
+                    Styled.map (\msg -> SelectModelUpdate msg) <| Select.view selectModel
             ]
         ]
 
