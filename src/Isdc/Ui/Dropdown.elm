@@ -1,4 +1,4 @@
-module Isdc.Ui.Dropdown exposing (multiCheckDropdown, DropDownProperties, baseCheckboxStyles, multiCheckDropdownItem)
+module Isdc.Ui.Dropdown exposing (multiCheckDropdown, DropDownProperties, multiCheckDropdownItem)
 
 {-| Dropdown contains dropdown functions which return HTML
 
@@ -16,6 +16,7 @@ import Html.Styled.Events exposing (onClick, onInput)
 import Isdc.Ui.Typography exposing (..)
 import Isdc.Ui.Icons exposing (..)
 import Isdc.Ui.Buttons exposing (..)
+import Isdc.Ui.Checkbox exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Colors.Hex as Hex exposing (grayC)
 
@@ -212,23 +213,6 @@ multiCheckDropdown dropDownArgs =
             ]
 
 
-{-| baseCheckboxStyles for an unchecked checkbox.
--}
-baseCheckboxStyles : Css.Style
-baseCheckboxStyles =
-    Css.batch
-        [ width (px 18)
-        , height (px 18)
-        , border2 (px 2) solid
-        , borderRadius (px 2)
-        , outline zero
-        , position relative
-        , marginRight (px 11)
-        , cursor pointer
-        , borderRadius (px 2)
-        ]
-
-
 type alias Option =
     { label : String
     , value : String
@@ -243,37 +227,10 @@ multiCheckDropdownItem option toggleMessage =
     div
         [ css [ margin2 (px 10) (px 0) ]
         ]
-        [ button
-            [ css
-                (if option.checked then
-                    [ backgroundColor green
-                    , baseCheckboxStyles
-                    , borderColor green
-                    ]
-                 else
-                    [ baseCheckboxStyles
-                    , borderColor black40
-                    ]
-                )
-            , onClick (toggleMessage option.value)
-            ]
-            (if option.checked then
-                [ span
-                    [ css
-                        [ borderBottom3 (px 2) solid white
-                        , borderLeft3 (px 2) solid white
-                        , width (px 10)
-                        , height (px 5)
-                        , transforms [ (translate2 (pct -50) (pct -65)), (rotate (deg -45)) ]
-                        , position absolute
-                        , top (pct 50)
-                        , left (pct 50)
-                        ]
-                    ]
-                    []
-                ]
-             else
-                []
-            )
-        , text option.label
-        ]
+        [ checkBox
+          { checked = option.checked
+          , disabled = False
+          , onValueChange = toggleMessage(option.value)
+          , label = option.label
+          }
+      ]

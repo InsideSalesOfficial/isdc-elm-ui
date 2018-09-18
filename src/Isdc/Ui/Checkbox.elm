@@ -25,8 +25,7 @@ baseCheckboxStyles =
         ]
 
 type alias CheckboxOptions msg =
-    { defaultChecked : Bool
-    , checked : Bool
+    { checked : Bool
     , disabled : Bool
     , onValueChange : msg
     , label: String
@@ -34,9 +33,7 @@ type alias CheckboxOptions msg =
 
 checkBox : CheckboxOptions msg -> Html msg
 checkBox options =
-    div
-        [ css [ margin2 (px 10) (px 0) ]
-        ]
+    div []
         [ button
             [ css
                 (if options.checked then
