@@ -17,6 +17,7 @@ import Typography as Typography
 import Loader as Loader
 import DropdownDots as DropdownDots
 import Url
+import Modal
 
 
 -- MAIN
@@ -50,6 +51,7 @@ type Page
     | Dropdown Dropdown.Model
     | DropdownDots DropdownDots.Model
     | Select Select.Model
+    | Modal Modal.Model
 
 
 type alias Model =
@@ -91,6 +93,9 @@ urlToPage url =
         "/select" ->
             Select Select.selectModel
 
+        "/modal" ->
+            Modal False
+
         _ ->
             NotFound
 
@@ -116,6 +121,7 @@ type Msg
     | DropdownUpdate Dropdown.Msg
     | DropdownDotsUpdate DropdownDots.Msg
     | SelectModelUpdate Select.Msg
+    | ModalUpdate Modal.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -156,6 +162,13 @@ update msg model =
         ( SelectModelUpdate selectMsg, Select selectModel ) ->
             ( { model
                 | page = Select (Select.update selectMsg selectModel)
+              }
+            , Cmd.none
+            )
+
+        ( ModalUpdate modalMsg, Modal open ) ->
+            ( { model
+                | page = Modal (Modal.update modalMsg open)
               }
             , Cmd.none
             )
@@ -215,6 +228,8 @@ body model =
             , viewLink "/loader" "Loader"
             , viewLink "/dropdownDots" "DropdownDots"
             , viewLink "/select" "Select"
+            , viewLink "/typography" "Typography"
+            , viewLink "/modal" "Modal"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -252,6 +267,9 @@ body model =
 
                 Select selectModel ->
                     Styled.map (\msg -> SelectModelUpdate msg) <| Select.view selectModel
+
+                Modal open ->
+                    Styled.map (\msg -> ModalUpdate msg) <| Modal.view open
             ]
         ]
 
