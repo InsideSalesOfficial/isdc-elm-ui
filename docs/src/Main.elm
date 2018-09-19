@@ -14,11 +14,11 @@ import Icons as Icons
 import Input as Input
 import Isdc.Ui.Colors.Css as IsdcColors
 import Loader as Loader
+import Modal
 import Route exposing (Route)
 import Select as Select
 import Typography as Typography
 import Url
-import Modal
 
 
 
@@ -94,7 +94,7 @@ urlToPage url =
             Loader
 
         "/dropdownDots" ->
-            DropdownDots False
+            DropdownDots DropdownDots.initModel
 
         "/select" ->
             Select Select.selectModel
