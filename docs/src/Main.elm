@@ -3,19 +3,22 @@ module Main exposing (Model, Msg(..), Page(..), body, init, main, subscriptions,
 import Browser
 import Browser.Navigation as Nav
 import Buttons as Buttons
+import Checkbox as Checkbox
 import Colors as Colors
 import Css exposing (..)
 import Dropdown as Dropdown
+import DropdownDots as DropdownDots
 import Html.Styled as Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href)
 import Icons as Icons
 import Input as Input
 import Isdc.Ui.Colors.Css as IsdcColors
-import Route exposing (Route)
-import Typography as Typography
 import Loader as Loader
-import DropdownDots as DropdownDots
+import Route exposing (Route)
+import Select as Select
+import Typography as Typography
 import Url
+
 
 
 -- MAIN
@@ -42,12 +45,14 @@ type Page
     | Home
     | Buttons
     | Icons
+    | Checkbox Checkbox.Model
     | Colors
     | Typography
     | Loader
     | Input Input.Model
     | Dropdown Dropdown.Model
     | DropdownDots DropdownDots.Model
+    | Select Select.Model
 
 
 type alias Model =
@@ -68,6 +73,9 @@ urlToPage url =
         "/icons" ->
             Icons
 
+        "/checkbox" ->
+            Checkbox Checkbox.checkboxModel
+
         "/colors" ->
             Colors
 
@@ -85,6 +93,9 @@ urlToPage url =
 
         "/dropdownDots" ->
             DropdownDots False
+
+        "/select" ->
+            Select Select.selectModel
 
         _ ->
             NotFound
@@ -107,9 +118,11 @@ init flags url navKey =
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
+    | CheckboxUpdate Checkbox.Msg
     | InputUpdate Input.Msg
     | DropdownUpdate Dropdown.Msg
     | DropdownDotsUpdate DropdownDots.Msg
+    | SelectModelUpdate Select.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -125,6 +138,13 @@ update msg model =
 
                 Browser.External href ->
                     ( model, Nav.load href )
+
+        ( CheckboxUpdate checkboxMsg, Checkbox checkboxModel ) ->
+            ( { model
+                | page = Checkbox (Checkbox.update checkboxMsg checkboxModel)
+              }
+            , Cmd.none
+            )
 
         ( InputUpdate inputMsg, Input inputModel ) ->
             ( { model
@@ -143,6 +163,13 @@ update msg model =
         ( DropdownDotsUpdate dropdownDotsMsg, DropdownDots dropdownDotsModel ) ->
             ( { model
                 | page = DropdownDots (DropdownDots.update dropdownDotsMsg dropdownDotsModel)
+              }
+            , Cmd.none
+            )
+
+        ( SelectModelUpdate selectMsg, Select selectModel ) ->
+            ( { model
+                | page = Select (Select.update selectMsg selectModel)
               }
             , Cmd.none
             )
@@ -196,11 +223,13 @@ body model =
             [ viewLink "/home" "Home"
             , viewLink "/icons" "Icons"
             , viewLink "/buttons" "Buttons"
+            , viewLink "/checkbox" "Checkbox"
             , viewLink "/colors" "Colors"
             , viewLink "/input" "Input"
             , viewLink "/dropdown" "Dropdown"
             , viewLink "/loader" "Loader"
             , viewLink "/dropdownDots" "DropdownDots"
+            , viewLink "/select" "Select"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -214,6 +243,9 @@ body model =
 
                 Icons ->
                     Icons.view Nothing
+
+                Checkbox checkboxModel ->
+                    Styled.map (\msg -> CheckboxUpdate msg) <| Checkbox.view checkboxModel
 
                 Colors ->
                     Colors.view Nothing
@@ -235,6 +267,9 @@ body model =
 
                 Loader ->
                     Loader.view Nothing
+
+                Select selectModel ->
+                    Styled.map (\msg -> SelectModelUpdate msg) <| Select.view selectModel
             ]
         ]
 
