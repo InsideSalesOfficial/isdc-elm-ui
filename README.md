@@ -7,8 +7,10 @@ git clone https://github.com/InsideSalesOfficial/isdc-elm-ui
 cd isdc-elm-ui
 ```
 
-## Examples
-This repo contains examples for it's exported modules. To view these examples install create-elm-app. 
+## Docs
+[https://insidesalesofficial.github.io/isdc-elm-ui/](https://insidesalesofficial.github.io/isdc-elm-ui/)
+
+This repo contains examples for it's exported modules. To view these examples locally install create-elm-app. 
 ```
 npm install -g create-elm-app
 ```
