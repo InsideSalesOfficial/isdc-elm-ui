@@ -1,4 +1,4 @@
-module DropDownTest exposing (Msg(..), suite)
+module DropdownTest exposing (Msg(..), suite)
 
 import Css exposing (..)
 import Expect exposing (..)
