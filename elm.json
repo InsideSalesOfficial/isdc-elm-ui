@@ -20,5 +20,7 @@
         "elm/svg": "1.0.0 <= v < 2.0.0",
         "rtfeldman/elm-css": "15.1.0 <= v < 16.0.0"
     },
-    "test-dependencies": {}
+    "test-dependencies": {
+        "elm-explorations/test": "1.0.0 <= v < 2.0.0"
+    }
 }
