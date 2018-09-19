@@ -22,7 +22,11 @@ elm-app start
 navigate to http://localhost:3000
 
 ## Test
-In the root director run elm test
+Install the latest version of elm-test for elm 0.19
 ```
-elm test
+sudo npm install -g elm-test@0.19.0-beta4
+```
+In the root director run elm-test
+```
+elm-test
 ```
