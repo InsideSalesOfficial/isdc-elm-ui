@@ -3,21 +3,23 @@ module Main exposing (Model, Msg(..), Page(..), body, init, main, subscriptions,
 import Browser
 import Browser.Navigation as Nav
 import Buttons as Buttons
+import Checkbox as Checkbox
 import Colors as Colors
 import Css exposing (..)
 import Dropdown as Dropdown
+import DropdownDots as DropdownDots
 import Html.Styled as Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href)
 import Icons as Icons
 import Input as Input
-import Select as Select
 import Isdc.Ui.Colors.Css as IsdcColors
-import Route exposing (Route)
-import Typography as Typography
 import Loader as Loader
-import DropdownDots as DropdownDots
+import Route exposing (Route)
+import Select as Select
+import Typography as Typography
 import Url
 import Modal
+
 
 
 -- MAIN
@@ -44,6 +46,7 @@ type Page
     | Home
     | Buttons
     | Icons
+    | Checkbox Checkbox.Model
     | Colors
     | Typography
     | Loader
@@ -71,6 +74,9 @@ urlToPage url =
 
         "/icons" ->
             Icons
+
+        "/checkbox" ->
+            Checkbox Checkbox.checkboxModel
 
         "/colors" ->
             Colors
@@ -117,6 +123,7 @@ init flags url navKey =
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
+    | CheckboxUpdate Checkbox.Msg
     | InputUpdate Input.Msg
     | DropdownUpdate Dropdown.Msg
     | DropdownDotsUpdate DropdownDots.Msg
@@ -137,6 +144,13 @@ update msg model =
 
                 Browser.External href ->
                     ( model, Nav.load href )
+
+        ( CheckboxUpdate checkboxMsg, Checkbox checkboxModel ) ->
+            ( { model
+                | page = Checkbox (Checkbox.update checkboxMsg checkboxModel)
+              }
+            , Cmd.none
+            )
 
         ( InputUpdate inputMsg, Input inputModel ) ->
             ( { model
@@ -222,6 +236,7 @@ body model =
             [ viewLink "/home" "Home"
             , viewLink "/icons" "Icons"
             , viewLink "/buttons" "Buttons"
+            , viewLink "/checkbox" "Checkbox"
             , viewLink "/colors" "Colors"
             , viewLink "/input" "Input"
             , viewLink "/dropdown" "Dropdown"
@@ -243,6 +258,9 @@ body model =
 
                 Icons ->
                     Icons.view Nothing
+
+                Checkbox checkboxModel ->
+                    Styled.map (\msg -> CheckboxUpdate msg) <| Checkbox.view checkboxModel
 
                 Colors ->
                     Colors.view Nothing
