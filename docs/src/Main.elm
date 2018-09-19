@@ -14,11 +14,12 @@ import Icons as Icons
 import Input as Input
 import Isdc.Ui.Colors.Css as IsdcColors
 import Loader as Loader
+import Modal
 import Route exposing (Route)
+import Scrollbars
 import Select as Select
 import Typography as Typography
 import Url
-import Modal
 
 
 
@@ -55,6 +56,7 @@ type Page
     | DropdownDots DropdownDots.Model
     | Select Select.Model
     | Modal Modal.Model
+    | Scrollbars
 
 
 type alias Model =
@@ -101,6 +103,9 @@ urlToPage url =
 
         "/modal" ->
             Modal False
+
+        "/scrollbars" ->
+            Scrollbars
 
         _ ->
             NotFound
@@ -245,6 +250,7 @@ body model =
             , viewLink "/select" "Select"
             , viewLink "/typography" "Typography"
             , viewLink "/modal" "Modal"
+            , viewLink "/scrollbars" "Scrollbars"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -288,6 +294,9 @@ body model =
 
                 Modal open ->
                     Styled.map (\msg -> ModalUpdate msg) <| Modal.view open
+
+                Scrollbars ->
+                    Scrollbars.view Nothing
             ]
         ]
 
