@@ -33,29 +33,12 @@ suite =
                         (div
                             [ css [ margin2 (px 10) (px 0) ]
                             ]
-                            [ button
-                                [ css
-                                    [ backgroundColor green
-                                    , baseCheckboxStyles
-                                    , borderColor green
-                                    ]
-                                , onClick (toggleMessage option.value)
-                                ]
-                                [ span
-                                    [ css
-                                        [ borderBottom3 (px 2) solid white
-                                        , borderLeft3 (px 2) solid white
-                                        , width (px 10)
-                                        , height (px 5)
-                                        , transforms [ translate2 (pct -50) (pct -65), rotate (deg -45) ]
-                                        , position absolute
-                                        , top (pct 50)
-                                        , left (pct 50)
-                                        ]
-                                    ]
-                                    []
-                                ]
-                            , text option.label
+                            [ checkBox
+                                { checked = option.checked
+                                , disabled = False
+                                , onValueChange = toggleMessage option.value
+                                , label = option.label
+                                }
                             ]
                         )
             ]
