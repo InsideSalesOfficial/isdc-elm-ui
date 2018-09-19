@@ -22,7 +22,11 @@ elm-app start
 navigate to http://localhost:3000
 
 ## Test
-In the root director run elm test
+Install the dependencies needed to run the tests
 ```
-elm test
+npm install
+```
+In the root director run the following
+```
+make test
 ```

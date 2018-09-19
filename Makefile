@@ -4,3 +4,6 @@ createDocs:
 
 start:
 	cd ./docs && elm-app start
+
+test:
+	./node_modules/.bin/elm-test
