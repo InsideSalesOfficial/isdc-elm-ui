@@ -1,4 +1,4 @@
-module Isdc.Ui.Modal exposing (modal, ModalOptions)
+module Isdc.Ui.Modal exposing (modal)
 
 import Html.Styled as Styled exposing (div, Html)
 import Css exposing (..)
@@ -7,28 +7,17 @@ import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
 
 
-type alias ModalOptions compatible units =
-    { modalWidth : LengthOrAuto compatible
-    , modalPadding : Length compatible units
-    }
-
-
-defaultOptions =
-    { modalWidth = px 360
-    , modalPadding = px 24
-    }
-
-
-modal : Maybe (ModalOptions compatible units) -> msg -> List (Html msg) -> Html msg
 modal options close body =
     let
         { modalWidth, modalPadding } =
             case options of
                 Nothing ->
-                    defaultOptions
+                    { modalWidth = px 360
+                    , modalPadding = px 24
+                    }
 
                 Just justOptions ->
-                    defaultOptions
+                    justOptions
     in
         div
             [ css

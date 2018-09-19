@@ -23,7 +23,7 @@ view open =
     story
         { title = "Isdc.Ui.Modal exposing (..)"
         , chapters =
-            [ { heading = "modal : Maybe (ModalOptions compatible units) -> msg -> List (Html msg) -> Html msg"
+            [ { heading = "modal : Maybe a -> msg -> List (Html msg) -> Html msg"
               , example =
                     div []
                         [ button [ css [ greenButtonStyles ], onClick Open ] [ text "Open" ]
