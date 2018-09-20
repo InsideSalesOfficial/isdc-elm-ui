@@ -17,6 +17,7 @@ import Loader as Loader
 import Modal
 import Route exposing (Route)
 import Scrollbars
+import SearchBox as SearchBox
 import Select as Select
 import Typography as Typography
 import Url
@@ -57,6 +58,7 @@ type Page
     | Select Select.Model
     | Modal Modal.Model
     | Scrollbars
+    | SearchBox SearchBox.Model
 
 
 type alias Model =
@@ -96,7 +98,7 @@ urlToPage url =
             Loader
 
         "/dropdownDots" ->
-            DropdownDots False
+            DropdownDots DropdownDots.initModel
 
         "/select" ->
             Select Select.selectModel
@@ -106,6 +108,9 @@ urlToPage url =
 
         "/scrollbars" ->
             Scrollbars
+
+        "/searchBox" ->
+            SearchBox SearchBox.searchBoxModel
 
         _ ->
             NotFound
@@ -134,6 +139,7 @@ type Msg
     | DropdownDotsUpdate DropdownDots.Msg
     | SelectModelUpdate Select.Msg
     | ModalUpdate Modal.Msg
+    | SearchBoxUpdate SearchBox.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -188,6 +194,13 @@ update msg model =
         ( ModalUpdate modalMsg, Modal open ) ->
             ( { model
                 | page = Modal (Modal.update modalMsg open)
+              }
+            , Cmd.none
+            )
+
+        ( SearchBoxUpdate searchBoxMsg, SearchBox searchBoxModel ) ->
+            ( { model
+                | page = SearchBox (SearchBox.update searchBoxMsg searchBoxModel)
               }
             , Cmd.none
             )
@@ -251,6 +264,7 @@ body model =
             , viewLink "/typography" "Typography"
             , viewLink "/modal" "Modal"
             , viewLink "/scrollbars" "Scrollbars"
+            , viewLink "/searchBox" "SearchBox"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -297,6 +311,9 @@ body model =
 
                 Scrollbars ->
                     Scrollbars.view Nothing
+
+                SearchBox searchBoxModel ->
+                    Styled.map (\msg -> SearchBoxUpdate msg) <| SearchBox.view searchBoxModel
             ]
         ]
 

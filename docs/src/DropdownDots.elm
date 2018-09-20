@@ -1,28 +1,34 @@
-module DropdownDots exposing (Model, Msg(..), inputModel, update, view)
+module DropdownDots exposing (Model, Msg(..), initModel, update, view)
 
 import Css exposing (..)
 import DocsLayout exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
-import Isdc.Ui.DropdownDots exposing (..)
+import Html.Styled.Events exposing (onClick)
+import Isdc.Ui.Buttons exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.DropdownDots exposing (..)
 
 
-inputModel =
-    { value = ""
-    , focused = False
+initModel : Model
+initModel =
+    { open = False
+    , direction = Down
     }
 
 
 type alias Model =
-    Bool
+    { open : Bool
+    , direction : Direction
+    }
 
 
 type Msg
     = Choose String
     | Open
     | Close
+    | ToggleDirection
 
 
 view model =
@@ -33,11 +39,11 @@ view model =
               , example =
                     div
                         [ css
-                            [ backgroundColor black
-                            , height <| px 200
+                            [ backgroundColor darkBlueC
+                            , height <| px 300
                             , displayFlex
                             , justifyContent flexEnd
-                            , alignItems flexStart
+                            , alignItems center
                             ]
                         ]
                         [ dropdownDots
@@ -49,8 +55,10 @@ view model =
                             , choose = Choose
                             , close = Close
                             , open = Open
-                            , isOpen = model
+                            , isOpen = model.open
+                            , direction = model.direction
                             }
+                        , button [ css [ greenButtonStyles ], onClick ToggleDirection ] [ text "Toggle Direction" ]
                         ]
               , codeUsage = """
 dropdownDots
@@ -62,7 +70,8 @@ dropdownDots
             , choose = Choose
             , close = Close
             , open = Open
-            , isOpen = model
+            , isOpen = model.open
+            , direction = model.direction
             }
 """
               }
@@ -73,10 +82,18 @@ dropdownDots
 update msg model =
     case msg of
         Choose newVal ->
-            False
+            { model | open = False }
 
         Open ->
-            True
+            { model | open = True }
 
         Close ->
-            False
+            { model | open = False }
+
+        ToggleDirection ->
+            case model.direction of
+                Up ->
+                    { model | direction = Down }
+
+                Down ->
+                    { model | direction = Up }
