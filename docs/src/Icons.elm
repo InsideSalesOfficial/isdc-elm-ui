@@ -5,6 +5,7 @@ import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Isdc.Ui.Icons exposing (..)
+import Isdc.Ui.Colors.Hex exposing (grayD)
 
 
 view _ =
@@ -19,9 +20,9 @@ view _ =
               , example = fromUnstyled <| addCircleIcon "100px" "100px" "#000000"
               , codeUsage = "addCircleIcon \"100px\" \"100px\" \"#000000\""
               }
-            , { heading = "chevronRightIcon : String -> String -> String -> Html.Html msg"
-              , example = fromUnstyled <| chevronRightIcon "100px" "100px" "#000000"
-              , codeUsage = "chevronRightIcon \"100px\" \"100px\" \"#000000\""
+            , { heading = "chevronRightIcon : String -> String -> String -> String -> Html.Html msg"
+              , example = fromUnstyled <| chevronRightIcon "100px" "100px" "#000000" grayD
+              , codeUsage = "chevronRightIcon \"100px\" \"100px\" \"#000000\" grayD"
               }
             ]
         }
