@@ -3,7 +3,7 @@ module Isdc.Ui.DropdownDots exposing (Direction(..), dropdownDots)
 import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
-import Html.Styled.Events exposing (onClick, onInput)
+import Html.Styled.Events exposing (onBlur, onClick)
 import Isdc.Ui.Buttons exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Icons exposing (..)
@@ -63,6 +63,7 @@ dropdownBoxCss direction =
         , right zero
         , width <| px 240
         , padding2 (px 12) zero
+        , zIndex <| int 10
         , after
             [ width zero
             , height zero
@@ -90,46 +91,32 @@ dropdownBoxCss direction =
 dropDown : List (Field valType) -> (valType -> msg) -> Direction -> msg -> Html msg
 dropDown fields choose direction close =
     div
-        []
-        [ div
-            [ css
-                [ position fixed
-                , top zero
-                , bottom zero
-                , left zero
-                , right zero
-                ]
-            , onClick close
-            ]
-            []
-        , div
-            [ css
-                [ dropdownBoxCss direction ]
-            ]
-          <|
-            List.map
-                (\field ->
-                    button
-                        [ onClick <| choose field.value
-                        , css
-                            [ subhead1
-                            , border zero
-                            , cursor pointer
-                            , width <| pct 100
-                            , padding4 (px 6) (px 16) (px 6) (px 24)
-                            , textAlign left
-                            , outline zero
-                            , color black90
-                            , hover
-                                [ backgroundColor grayB
-                                ]
+        [ css
+            [ dropdownBoxCss direction ]
+        ]
+    <|
+        List.map
+            (\field ->
+                div
+                    [ onClick <| choose field.value
+                    , css
+                        [ subhead1
+                        , border zero
+                        , cursor pointer
+                        , width <| pct 100
+                        , padding4 (px 6) (px 16) (px 6) (px 24)
+                        , textAlign left
+                        , color black90
+                        , boxSizing borderBox
+                        , hover
+                            [ backgroundColor grayB
                             ]
                         ]
-                        [ text field.label
-                        ]
-                )
-                fields
-        ]
+                    ]
+                    [ text field.label
+                    ]
+            )
+            fields
 
 
 dropdownDots : DropdownOptions a msg -> Html msg
@@ -143,12 +130,16 @@ dropdownDots dropdownOptions =
             [ position relative
             ]
         ]
-        [ div
+        [ button
             [ css
                 [ padding2 (px 5) (px 15)
                 , display inlineBlock
                 , cursor pointer
+                , outline zero
+                , border zero
+                , backgroundColor transparent
                 ]
+            , onBlur close
             , onClick <|
                 if isOpen then
                     close
@@ -159,10 +150,10 @@ dropdownDots dropdownOptions =
             [ dot
             , dot
             , dot
-            ]
-        , if isOpen then
-            dropDown fields choose direction close
+            , if isOpen then
+                dropDown fields choose direction close
 
-          else
-            text ""
+              else
+                text ""
+            ]
         ]
