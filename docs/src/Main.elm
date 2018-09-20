@@ -14,11 +14,12 @@ import Icons as Icons
 import Input as Input
 import Isdc.Ui.Colors.Css as IsdcColors
 import Loader as Loader
+import Modal
 import Route exposing (Route)
+import SearchBox as SearchBox
 import Select as Select
 import Typography as Typography
 import Url
-import Modal
 
 
 
@@ -55,6 +56,7 @@ type Page
     | DropdownDots DropdownDots.Model
     | Select Select.Model
     | Modal Modal.Model
+    | SearchBox SearchBox.Model
 
 
 type alias Model =
@@ -102,6 +104,9 @@ urlToPage url =
         "/modal" ->
             Modal False
 
+        "/searchBox" ->
+            SearchBox SearchBox.searchBoxModel
+
         _ ->
             NotFound
 
@@ -129,6 +134,7 @@ type Msg
     | DropdownDotsUpdate DropdownDots.Msg
     | SelectModelUpdate Select.Msg
     | ModalUpdate Modal.Msg
+    | SearchBoxUpdate SearchBox.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -183,6 +189,13 @@ update msg model =
         ( ModalUpdate modalMsg, Modal open ) ->
             ( { model
                 | page = Modal (Modal.update modalMsg open)
+              }
+            , Cmd.none
+            )
+
+        ( SearchBoxUpdate searchBoxMsg, SearchBox searchBoxModel ) ->
+            ( { model
+                | page = SearchBox (SearchBox.update searchBoxMsg searchBoxModel)
               }
             , Cmd.none
             )
@@ -245,6 +258,7 @@ body model =
             , viewLink "/select" "Select"
             , viewLink "/typography" "Typography"
             , viewLink "/modal" "Modal"
+            , viewLink "/searchBox" "SearchBox"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -288,6 +302,9 @@ body model =
 
                 Modal open ->
                     Styled.map (\msg -> ModalUpdate msg) <| Modal.view open
+
+                SearchBox searchBoxModel ->
+                    Styled.map (\msg -> SearchBoxUpdate msg) <| SearchBox.view searchBoxModel
             ]
         ]
 
