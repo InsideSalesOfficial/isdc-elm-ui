@@ -45,7 +45,7 @@ module Isdc.Ui.Colors.Css exposing (..)
 
 # White
 
-@docs white, white60, white90, white40, white10, white4
+@docs white, white60, white90, white40, white10, white4, white80
 
 -}
 
@@ -349,6 +349,12 @@ black4 =
 white : Color
 white =
     hex Hex.white
+
+{-| white80 #D8D8D8
+-}
+white80 : Color
+white80 =
+    hex Hex.white80
 
 
 {-| white90 rgba(255, 255, 255, 0.9)

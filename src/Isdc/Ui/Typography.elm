@@ -1,11 +1,11 @@
-module Isdc.Ui.Typography exposing (..)
+module Isdc.Ui.Typography exposing (display2, display1, headline, title, subhead1, subhead2, subhead3, body2, body1, bodyCompact, caption)
 
 {-|
 
 
 # Typography
 
-@docs display2, display1, headline, title, subhead1, subhead2, body2, body1, bodyCompact, caption
+@docs display2, display1, headline, title, subhead1, subhead2, subhead3, body2, body1, bodyCompact, caption
 
 -}
 
@@ -77,6 +77,18 @@ subhead1 =
         [ fontSize (px 16)
         , lineHeight (px 24)
         , fontWeight (int 400)
+        , letterSpacing (px 0.5)
+        ]
+
+
+{-| subhead3 is a medium sized font which has a semi-bold weight.
+-}
+subhead3 : Css.Style
+subhead3 =
+    Css.batch
+        [ fontSize (px 16)
+        , lineHeight (px 20)
+        , fontWeight (int 500)
         , letterSpacing (px 0.5)
         ]
 
