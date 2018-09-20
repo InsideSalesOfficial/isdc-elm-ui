@@ -1,14 +1,11 @@
-module Isdc.Ui.Icons exposing
-    ( searchIcon
-    , addCircleIcon
-    )
+module Isdc.Ui.Icons exposing (searchIcon, addCircleIcon, chevronRightIcon)
 
 {-| SVG Icons
 
 
 # Icons
 
-@docs searchIcon
+@docs searchIcon, addCircleIcon, chevronRightIcon
 
 -}
 

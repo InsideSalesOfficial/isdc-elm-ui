@@ -1,11 +1,11 @@
-module Isdc.Ui.Colors.Hex exposing (..)
+module Isdc.Ui.Colors.Hex exposing (black, blue, darkBlue, darkBlueB, darkBlueC, darkBlueD, darkBlueE, grayA, grayB, grayC, grayD, grayE, grayF, green, greenB, greenC, orange, red, tron, tronB, tronC, white, white80)
 
 {-| Contains all of the company colors hex codes
 
 
 # Hex Color Strings
 
-@docs black, blue, darkBlue, darkBlueB, darkBlueC, darkBlueD, darkBlueE, grayA, grayB, grayC, grayD, grayE, grayF, green, greenB, greenC, orange, red, tron, tronB, tronC, white, grayF
+@docs black, blue, darkBlue, darkBlueB, darkBlueC, darkBlueD, darkBlueE, grayA, grayB, grayC, grayD, grayE, grayF, green, greenB, greenC, orange, red, tron, tronB, tronC, white, white80
 
 -}
 
@@ -162,3 +162,10 @@ black =
 white : String
 white =
     "#FFFFFF"
+
+
+{-| white #FFFFFF
+-}
+white80 : String
+white80 =
+    "#D8D8D8"
