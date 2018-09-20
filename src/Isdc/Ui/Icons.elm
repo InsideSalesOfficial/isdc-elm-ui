@@ -1,6 +1,6 @@
 module Isdc.Ui.Icons exposing
     ( searchIcon
-    , addCircleIcon
+    , addCircleIcon, chevronRightIcon
     )
 
 {-| SVG Icons
@@ -13,6 +13,7 @@ module Isdc.Ui.Icons exposing
 -}
 
 import Html
+import Isdc.Ui.Colors.Hex exposing (grayD)
 import Svg exposing (..)
 import Svg.Attributes as Attr
 
@@ -23,6 +24,10 @@ searchIconPath =
 
 addCircleIconPath =
     "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+
+
+chevronRightIconPath =
+    "M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
 
 
 iconBackgroundPath =
@@ -68,6 +73,28 @@ addCircleIcon w h f =
             []
         , path
             [ Attr.d addCircleIconPath
+            ]
+            []
+        ]
+
+
+chevronRightIcon : String -> String -> String -> Html.Html msg
+chevronRightIcon w h f =
+    Svg.svg
+        [ Attr.height h
+        , Attr.width w
+        , Attr.fill f
+        , Attr.viewBox "0 0 24 24"
+        ]
+        [ title [] [ text "Chevron Right Icon" ]
+        , path
+            [ Attr.d iconBackgroundPath
+            , Attr.fill "none"
+            ]
+            []
+        , path
+            [ Attr.d chevronRightIconPath
+            , Attr.fill grayD
             ]
             []
         ]

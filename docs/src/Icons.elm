@@ -19,5 +19,9 @@ view _ =
               , example = fromUnstyled <| addCircleIcon "100px" "100px" "#000000"
               , codeUsage = "addCircleIcon \"100px\" \"100px\" \"#000000\""
               }
+            , { heading = "chevronRightIcon : String -> String -> String -> Html.Html msg"
+              , example = fromUnstyled <| chevronRightIcon "100px" "100px" "#000000"
+              , codeUsage = "chevronRightIcon \"100px\" \"100px\" \"#000000\""
+              }
             ]
         }
