@@ -1,12 +1,13 @@
-module Isdc.Ui.Select exposing (..)
+module Isdc.Ui.Select exposing (LabelTypes(..), SelectOption, SelectOptions, SelectTheme(..), selectBox)
 
 import Css exposing (..)
 import Css.Transitions as Transitions
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, src, placeholder, value)
-import Html.Styled.Events exposing (onFocus, onBlur, onClick)
+import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
+import Html.Styled.Events exposing (onBlur, onClick, onFocus)
 import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Typography as Typography exposing (subhead1, caption)
+import Isdc.Ui.Scrollbars as Scrollbars
+import Isdc.Ui.Typography as Typography exposing (caption, subhead1)
 
 
 type SelectTheme
@@ -40,17 +41,18 @@ inputContainerCss theme focused =
                 Light ->
                     ( grayA, black40 )
     in
-        [ backgroundColor bgColor
-        , borderRadius (px 3)
-        , borderBottom3 (px 2)
-            solid
-            (if focused then
-                green
-             else
-                inputBorderColor
-            )
-        , position relative
-        ]
+    [ backgroundColor bgColor
+    , borderRadius (px 3)
+    , borderBottom3 (px 2)
+        solid
+        (if focused then
+            green
+
+         else
+            inputBorderColor
+        )
+    , position relative
+    ]
 
 
 selectCss theme =
@@ -63,22 +65,22 @@ selectCss theme =
                 Light ->
                     black90
     in
-        [ color primaryColor
-        , subhead1
-        , height (px 54)
-        , padding4 (px 24) (px 40) (px 4) (px 16)
-        , position relative
-        , zIndex (int 1)
-        , backgroundColor transparent
-        , outline zero
-        , border zero
-        , boxSizing borderBox
-        , width (pct 100)
-        , outline zero
-        , textAlign left
-        , cutOffText
-        , cursor pointer
-        ]
+    [ color primaryColor
+    , subhead1
+    , height (px 54)
+    , padding4 (px 24) (px 40) (px 4) (px 16)
+    , position relative
+    , zIndex (int 1)
+    , backgroundColor transparent
+    , outline zero
+    , border zero
+    , boxSizing borderBox
+    , width (pct 100)
+    , outline zero
+    , textAlign left
+    , cutOffText
+    , cursor pointer
+    ]
 
 
 type LabelTypes msg
@@ -114,26 +116,26 @@ selectOption onValueChange option =
                 Html html ->
                     html
     in
-        button
-            [ onClick <| onValueChange option.value
-            , css
-                [ subhead1
-                , padding2 zero <| px 24
-                , display block
-                , backgroundColor white
-                , border zero
-                , outline zero
-                , width <| pct 100
-                , textAlign left
-                , lineHeight <| px 36
-                , cutOffText
-                , cursor pointer
-                , hover
-                    [ backgroundColor grayB
-                    ]
+    button
+        [ onClick <| onValueChange option.value
+        , css
+            [ subhead1
+            , padding2 zero <| px 24
+            , display block
+            , backgroundColor white
+            , border zero
+            , outline zero
+            , width <| pct 100
+            , textAlign left
+            , lineHeight <| px 36
+            , cutOffText
+            , cursor pointer
+            , hover
+                [ backgroundColor grayB
                 ]
             ]
-            [ label ]
+        ]
+        [ label ]
 
 
 selectOptions : List (SelectOption msg val) -> (val -> msg) -> msg -> Html msg
@@ -161,6 +163,7 @@ selectOptions options onValueChange onClose =
                 , zIndex <| int 10
                 , boxShadow4 (px 2) (px 4) (px 10) black40
                 , backgroundColor white
+                , Scrollbars.darkScrollBarStyles
                 ]
             ]
           <|
@@ -175,13 +178,15 @@ labelCss theme labelText focused =
 
         ( topOffset, labelSize ) =
             if hasText then
-                ( (px 10), Typography.caption )
+                ( px 10, Typography.caption )
+
             else
-                ( (px 15), subhead1 )
+                ( px 15, subhead1 )
 
         labelColor =
             if focused then
                 green
+
             else
                 case theme of
                     Dark ->
@@ -190,22 +195,22 @@ labelCss theme labelText focused =
                     Light ->
                         black60
     in
-        [ position absolute
-        , top topOffset
-        , left (px 16)
-        , labelSize
-        , color labelColor
-        , Transitions.transition
-            [ Transitions.top 140
-            , Transitions.fontSize 140
-            , Transitions.lineHeight 140
-            , Transitions.letterSpacing 140
-            ]
-        , focus
-            [ top (px 10)
-            , Typography.caption
-            ]
+    [ position absolute
+    , top topOffset
+    , left (px 16)
+    , labelSize
+    , color labelColor
+    , Transitions.transition
+        [ Transitions.top 140
+        , Transitions.fontSize 140
+        , Transitions.lineHeight 140
+        , Transitions.letterSpacing 140
         ]
+    , focus
+        [ top (px 10)
+        , Typography.caption
+        ]
+    ]
 
 
 caret isOpen theme =
@@ -213,38 +218,37 @@ caret isOpen theme =
         ( borderVert, caretColor ) =
             if isOpen then
                 ( borderBottom3
-                , (case theme of
+                , case theme of
                     Light ->
                         black60
 
                     Dark ->
                         white60
-                  )
                 )
+
             else
                 ( borderTop3
-                , (case theme of
+                , case theme of
                     Light ->
                         black40
 
                     Dark ->
                         white40
-                  )
                 )
     in
-        div
-            [ css
-                [ borderVert (px 5) solid caretColor
-                , borderLeft3 (px 5) solid transparent
-                , borderRight3 (px 5) solid transparent
-                , right <| px 24
-                , top <| pct 50
-                , width zero
-                , height zero
-                , position absolute
-                ]
+    div
+        [ css
+            [ borderVert (px 5) solid caretColor
+            , borderLeft3 (px 5) solid transparent
+            , borderRight3 (px 5) solid transparent
+            , right <| px 24
+            , top <| pct 50
+            , width zero
+            , height zero
+            , position absolute
             ]
-            []
+        ]
+        []
 
 
 selectBox : SelectOptions msg val -> Html msg
@@ -253,21 +257,22 @@ selectBox selectBoxOptions =
         { theme, disabled, inputValue, labelText, onValueChange, onSelectFocus, onSelectBlur, focused, isOpen, options, onToggle, onClose } =
             selectBoxOptions
     in
-        div [ css <| inputContainerCss theme focused ]
-            [ label [ css <| labelCss theme inputValue focused ]
-                [ text labelText
-                ]
-            , button
-                [ onFocus onSelectFocus
-                , onBlur onSelectBlur
-                , css <| selectCss theme
-                , onClick onToggle
-                ]
-                [ text inputValue
-                , caret isOpen theme
-                ]
-            , if isOpen then
-                selectOptions options onValueChange onClose
-              else
-                text ""
+    div [ css <| inputContainerCss theme focused ]
+        [ label [ css <| labelCss theme inputValue focused ]
+            [ text labelText
             ]
+        , button
+            [ onFocus onSelectFocus
+            , onBlur onSelectBlur
+            , css <| selectCss theme
+            , onClick onToggle
+            ]
+            [ text inputValue
+            , caret isOpen theme
+            ]
+        , if isOpen then
+            selectOptions options onValueChange onClose
+
+          else
+            text ""
+        ]

@@ -16,6 +16,7 @@ import Isdc.Ui.Colors.Css as IsdcColors
 import Loader as Loader
 import Modal
 import Route exposing (Route)
+import Scrollbars
 import SearchBox as SearchBox
 import Select as Select
 import Typography as Typography
@@ -56,6 +57,7 @@ type Page
     | DropdownDots DropdownDots.Model
     | Select Select.Model
     | Modal Modal.Model
+    | Scrollbars
     | SearchBox SearchBox.Model
 
 
@@ -103,6 +105,9 @@ urlToPage url =
 
         "/modal" ->
             Modal False
+
+        "/scrollbars" ->
+            Scrollbars
 
         "/searchBox" ->
             SearchBox SearchBox.searchBoxModel
@@ -258,6 +263,7 @@ body model =
             , viewLink "/select" "Select"
             , viewLink "/typography" "Typography"
             , viewLink "/modal" "Modal"
+            , viewLink "/scrollbars" "Scrollbars"
             , viewLink "/searchBox" "SearchBox"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
@@ -302,6 +308,9 @@ body model =
 
                 Modal open ->
                     Styled.map (\msg -> ModalUpdate msg) <| Modal.view open
+
+                Scrollbars ->
+                    Scrollbars.view Nothing
 
                 SearchBox searchBoxModel ->
                     Styled.map (\msg -> SearchBoxUpdate msg) <| SearchBox.view searchBoxModel
