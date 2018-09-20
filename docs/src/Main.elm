@@ -96,7 +96,7 @@ urlToPage url =
             Loader
 
         "/dropdownDots" ->
-            DropdownDots False
+            DropdownDots DropdownDots.initModel
 
         "/select" ->
             Select Select.selectModel
