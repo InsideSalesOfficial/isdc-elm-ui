@@ -10996,6 +10996,7 @@ var author$project$Isdc$Ui$Radio$radio = F3(
 							rtfeldman$elm_css$Css$px(10),
 							rtfeldman$elm_css$Css$zero),
 							rtfeldman$elm_css$Css$border(rtfeldman$elm_css$Css$zero),
+							rtfeldman$elm_css$Css$alignItems(rtfeldman$elm_css$Css$center),
 							rtfeldman$elm_css$Css$cursor(rtfeldman$elm_css$Css$pointer),
 							rtfeldman$elm_css$Css$focus(
 							_List_fromArray(
@@ -11065,7 +11066,8 @@ var author$project$Isdc$Ui$Radio$radio = F3(
 										]))
 								]),
 							_List_Nil)
-						]) : _List_Nil)
+						]) : _List_Nil),
+					label
 				]));
 	});
 var author$project$Isdc$Ui$Radio$radioList = F3(

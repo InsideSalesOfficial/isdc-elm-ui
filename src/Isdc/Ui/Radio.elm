@@ -34,6 +34,7 @@ radio radioContent currentValue select =
             , Typography.body2
             , margin2 (px 10) zero
             , border zero
+            , alignItems center
             , cursor pointer
             , focus
                 [ if selected then
@@ -85,6 +86,7 @@ radio radioContent currentValue select =
 
             else
                 []
+        , label
         ]
 
 
