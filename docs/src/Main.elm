@@ -15,6 +15,7 @@ import Input as Input
 import Isdc.Ui.Colors.Css as IsdcColors
 import Loader as Loader
 import Modal
+import Radio
 import Route exposing (Route)
 import Scrollbars
 import SearchBox as SearchBox
@@ -59,6 +60,7 @@ type Page
     | Modal Modal.Model
     | Scrollbars
     | SearchBox SearchBox.Model
+    | Radio Int
 
 
 type alias Model =
@@ -112,6 +114,9 @@ urlToPage url =
         "/searchBox" ->
             SearchBox SearchBox.searchBoxModel
 
+        "/radio" ->
+            Radio 0
+
         _ ->
             NotFound
 
@@ -140,6 +145,7 @@ type Msg
     | SelectModelUpdate Select.Msg
     | ModalUpdate Modal.Msg
     | SearchBoxUpdate SearchBox.Msg
+    | RadioUpdate Radio.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -205,6 +211,13 @@ update msg model =
             , Cmd.none
             )
 
+        ( RadioUpdate radioMsg, Radio radioModel ) ->
+            ( { model
+                | page = Radio (Radio.update radioMsg radioModel)
+              }
+            , Cmd.none
+            )
+
         ( _, _ ) ->
             -- Disregard messages that arrived for the wrong page.
             ( model, Cmd.none )
@@ -265,6 +278,7 @@ body model =
             , viewLink "/modal" "Modal"
             , viewLink "/scrollbars" "Scrollbars"
             , viewLink "/searchBox" "SearchBox"
+            , viewLink "/radio" "Radio"
             ]
         , div [ css [ flexGrow <| num 1, maxHeight <| pct 100, overflow auto ] ]
             [ case model.page of
@@ -314,6 +328,9 @@ body model =
 
                 SearchBox searchBoxModel ->
                     Styled.map (\msg -> SearchBoxUpdate msg) <| SearchBox.view searchBoxModel
+
+                Radio currentValue ->
+                    Styled.map (\msg -> RadioUpdate msg) <| Radio.view currentValue
             ]
         ]
 

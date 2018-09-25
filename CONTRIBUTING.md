@@ -7,6 +7,8 @@ In the ./stories/src/Stories folder you can create a new app to be able to view 
 Document your module [in line with the Elm documentation format](http://package.elm-lang.org/help/documentation-format) and preview your documentation using [elm docs preview](http://package.elm-lang.org/help/docs-preview)
 ### Expose your module
 Add your module to the "exposed-modules" array in elm-package.json
+### Create a build for GitHub pages
+In the root directory of the project run ```make createDocs``` and commit ./docs/elm.min.js.
 
 ## Style Guide
 * Use elm format to keep consistent formatting

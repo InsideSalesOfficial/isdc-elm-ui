@@ -10,14 +10,13 @@ cd isdc-elm-ui
 ## Docs
 [https://insidesalesofficial.github.io/isdc-elm-ui/](https://insidesalesofficial.github.io/isdc-elm-ui/)
 
-This repo contains examples for it's exported modules. To view these examples locally install create-elm-app. 
+This repo contains examples for it's exported modules. To view these examples locally install the dev dependencies
 ```
-npm install -g create-elm-app
+npm install
 ```
 then run the following
 ```
-cd ./docs
-elm-app start
+make start
 ```
 navigate to http://localhost:3000
 
