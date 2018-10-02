@@ -1,9 +1,11 @@
 module DocsLayout exposing (DocLayout, story)
 
 import Css exposing (..)
-import Html.Styled exposing (..)
+import Html as Html
+import Html.Styled as Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
+import SyntaxHighlight as Syntax
 
 
 type alias DocLayout msg =
@@ -17,6 +19,16 @@ type alias DocLayout msg =
     }
 
 
+highLighted code num =
+    Html.div []
+        [ Syntax.useTheme Syntax.gitHub
+        , Syntax.elm code
+            |> Result.map (Syntax.toBlockHtml num)
+            |> Result.withDefault
+                (Html.text code)
+        ]
+
+
 story : DocLayout msg -> Html msg
 story doc =
     div
@@ -25,30 +37,47 @@ story doc =
             , padding (px 20)
             ]
         ]
-        [ h1 [ css [ marginTop zero ] ] [ text doc.title ]
+        [ node "style" [] [ text """
+.elmsh-line:before {
+    content: attr(data-elmsh-lc);
+    display: inline-block;
+    text-align: right;
+    width: 30px;
+    padding: 0 20px 0 0;
+    opacity: 0.3;
+}
+
+pre {
+    margin: 0
+}
+""" ]
+        , h1 [ css [ marginTop zero ] ] [ text doc.title ]
         , div []
             (List.map
                 (\chapter ->
                     div
                         [ css
-                            [ backgroundColor grayA
-                            , border3 (px 1) solid grayC
-                            , margin2 (px 10) zero
-                            , padding (px 15)
+                            [ padding2 (px 30) zero
+                            , borderTop3 (px 1) solid grayB
                             ]
                         ]
-                        [ h3 [] [ text chapter.heading ]
+                        [ h3
+                            [ css
+                                [ marginTop zero ]
+                            ]
+                            [ Styled.fromUnstyled <| highLighted chapter.heading Nothing ]
                         , div
                             [ css
-                                [ border3 (px 1) solid grayC
-                                , backgroundColor grayB
-                                , padding (px 10)
+                                [ margin2 (px 10) zero
+                                , border3 (px 1) solid grayB
+                                , borderRadius <| px 3
                                 , color grayF
-                                , margin2 (px 10) zero
+                                , marginBottom <| px 10
                                 , whiteSpace preWrap
+                                , overflow auto
                                 ]
                             ]
-                            [ text chapter.codeUsage ]
+                            [ Styled.fromUnstyled <| highLighted chapter.codeUsage (Just 1) ]
                         , chapter.example
                         ]
                 )

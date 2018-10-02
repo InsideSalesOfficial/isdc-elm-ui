@@ -63,16 +63,31 @@ view model =
                               }
                             ]
                     in
-                        div
-                            [ css
-                                [ height <| px 400
-                                , displayFlex
-                                , flexDirection column
-                                , justifyContent spaceBetween
-                                ]
+                    div
+                        [ css
+                            [ height <| px 400
+                            , displayFlex
+                            , flexDirection column
+                            , justifyContent spaceBetween
                             ]
+                        ]
+                        [ selectBox
+                            { theme = Dark
+                            , disabled = False
+                            , inputValue = model.value
+                            , labelText = "Hello world"
+                            , onValueChange = ValueChange
+                            , onSelectFocus = Focus
+                            , onSelectBlur = Blur
+                            , focused = model.focused
+                            , isOpen = model.isOpen
+                            , options = options
+                            , onToggle = Toggle
+                            , onClose = Close
+                            }
+                        , div [ css [ paddingTop <| px 10 ] ]
                             [ selectBox
-                                { theme = Dark
+                                { theme = Light
                                 , disabled = False
                                 , inputValue = model.value
                                 , labelText = "Hello world"
@@ -85,23 +100,8 @@ view model =
                                 , onToggle = Toggle
                                 , onClose = Close
                                 }
-                            , div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
-                                [ selectBox
-                                    { theme = Light
-                                    , disabled = False
-                                    , inputValue = model.value
-                                    , labelText = "Hello world"
-                                    , onValueChange = ValueChange
-                                    , onSelectFocus = Focus
-                                    , onSelectBlur = Blur
-                                    , focused = model.focused
-                                    , isOpen = model.isOpen
-                                    , options = options
-                                    , onToggle = Toggle
-                                    , onClose = Close
-                                    }
-                                ]
                             ]
+                        ]
               , codeUsage = """
 selectBox
     { theme = Dark
