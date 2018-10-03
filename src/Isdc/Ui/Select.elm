@@ -1,6 +1,7 @@
 module Isdc.Ui.Select exposing (LabelTypes(..), SelectOption, SelectOptions, SelectTheme(..), selectBox)
 
 import Css exposing (..)
+import Css.Animations as Animations
 import Css.Transitions as Transitions
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
@@ -103,7 +104,7 @@ cutOffText =
         ]
 
 
-selectOption onValueChange option =
+selectOption onValueChange length index option =
     let
         label =
             case option.label of
@@ -133,6 +134,19 @@ selectOption onValueChange option =
             , hover
                 [ backgroundColor grayB
                 ]
+            , property "animation-duration" "0.3s"
+            , property "animation-timing-function" "ease-in-out"
+            , property "animation-fill-mode" "forwards"
+            , opacity zero
+            , property "animation-delay"
+                ((toFloat index |> (+) 1)
+                    / (length + 1 |> toFloat)
+                    |> (*) 0.284
+                    |> String.fromFloat
+                    |> (\f -> f ++ "s")
+                )
+            , animationName <|
+                Animations.keyframes [ ( 0, [ Animations.opacity zero ] ), ( 100, [ Animations.opacity (num 1) ] ) ]
             ]
         ]
         [ label ]
@@ -164,10 +178,30 @@ selectOptions options onValueChange onClose =
                 , boxShadow4 (px 2) (px 4) (px 10) black40
                 , backgroundColor white
                 , Scrollbars.darkScrollBarStyles
+                , property "animation-duration" "0.16s"
+                , property "animation-timing-function" "linear"
+                , property "animation-fill-mode" "forwards"
+                , property "transform-origin" "center 8px 0px"
+                , animationName <|
+                    Animations.keyframes
+                        [ ( 0
+                          , [ Animations.transform [ translateY (px -24), scaleY 0.4 ]
+                            , Animations.opacity zero
+                            ]
+                          )
+                        , ( 40
+                          , [ Animations.opacity <| num 1
+                            ]
+                          )
+                        , ( 100
+                          , [ Animations.transform [ translateY zero, scaleY 1 ]
+                            ]
+                          )
+                        ]
                 ]
             ]
           <|
-            List.map (selectOption onValueChange) options
+            List.indexedMap (selectOption onValueChange (List.length options)) options
         ]
 
 
