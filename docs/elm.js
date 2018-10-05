@@ -11614,8 +11614,12 @@ var author$project$Isdc$Ui$Select$selectCss = function (theme) {
 			rtfeldman$elm_css$Css$cursor(rtfeldman$elm_css$Css$pointer)
 		]);
 };
-var author$project$Isdc$Ui$Select$selectOption = F2(
-	function (onValueChange, option) {
+var rtfeldman$elm_css$Css$Animations$opacity = function (_n0) {
+	var value = _n0.b8;
+	return 'opacity:' + value;
+};
+var author$project$Isdc$Ui$Select$selectOption = F4(
+	function (onValueChange, length, index, option) {
 		var label = function () {
 			var _n0 = option.aU;
 			switch (_n0.$) {
@@ -11660,7 +11664,36 @@ var author$project$Isdc$Ui$Select$selectOption = F2(
 							_List_fromArray(
 								[
 									rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Colors$Css$grayB)
-								]))
+								])),
+							A2(rtfeldman$elm_css$Css$property, 'animation-duration', '0.3s'),
+							A2(rtfeldman$elm_css$Css$property, 'animation-timing-function', 'ease-in-out'),
+							A2(rtfeldman$elm_css$Css$property, 'animation-fill-mode', 'forwards'),
+							rtfeldman$elm_css$Css$opacity(rtfeldman$elm_css$Css$zero),
+							A2(
+							rtfeldman$elm_css$Css$property,
+							'animation-delay',
+							function (f) {
+								return f + 's';
+							}(
+								elm$core$String$fromFloat(0.284 * ((1 + index) / (length + 1))))),
+							rtfeldman$elm_css$Css$animationName(
+							rtfeldman$elm_css$Css$Animations$keyframes(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										0,
+										_List_fromArray(
+											[
+												rtfeldman$elm_css$Css$Animations$opacity(rtfeldman$elm_css$Css$zero)
+											])),
+										_Utils_Tuple2(
+										100,
+										_List_fromArray(
+											[
+												rtfeldman$elm_css$Css$Animations$opacity(
+												rtfeldman$elm_css$Css$num(1))
+											]))
+									])))
 						]))
 				]),
 			_List_fromArray(
@@ -11696,6 +11729,18 @@ var rtfeldman$elm_css$Css$calc = F3(
 	});
 var rtfeldman$elm_css$Css$Addition = 0;
 var rtfeldman$elm_css$Css$plus = 0;
+var rtfeldman$elm_css$Css$scaleY = function (y) {
+	return {
+		e: 0,
+		b8: A2(
+			rtfeldman$elm_css$Css$cssFunction,
+			'scaleY',
+			_List_fromArray(
+				[
+					elm$core$String$fromFloat(y)
+				]))
+	};
+};
 var author$project$Isdc$Ui$Select$selectOptions = F3(
 	function (options, onValueChange, onClose) {
 		return A2(
@@ -11751,12 +11796,55 @@ var author$project$Isdc$Ui$Select$selectOptions = F3(
 									rtfeldman$elm_css$Css$px(10),
 									author$project$Isdc$Ui$Colors$Css$black40),
 									rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Colors$Css$white),
-									author$project$Isdc$Ui$Scrollbars$darkScrollBarStyles
+									author$project$Isdc$Ui$Scrollbars$darkScrollBarStyles,
+									A2(rtfeldman$elm_css$Css$property, 'animation-duration', '0.16s'),
+									A2(rtfeldman$elm_css$Css$property, 'animation-timing-function', 'linear'),
+									A2(rtfeldman$elm_css$Css$property, 'animation-fill-mode', 'forwards'),
+									A2(rtfeldman$elm_css$Css$property, 'transform-origin', 'center 8px 0px'),
+									rtfeldman$elm_css$Css$animationName(
+									rtfeldman$elm_css$Css$Animations$keyframes(
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												0,
+												_List_fromArray(
+													[
+														rtfeldman$elm_css$Css$Animations$transform(
+														_List_fromArray(
+															[
+																rtfeldman$elm_css$Css$translateY(
+																rtfeldman$elm_css$Css$px(-24)),
+																rtfeldman$elm_css$Css$scaleY(0.4)
+															])),
+														rtfeldman$elm_css$Css$Animations$opacity(rtfeldman$elm_css$Css$zero)
+													])),
+												_Utils_Tuple2(
+												40,
+												_List_fromArray(
+													[
+														rtfeldman$elm_css$Css$Animations$opacity(
+														rtfeldman$elm_css$Css$num(1))
+													])),
+												_Utils_Tuple2(
+												100,
+												_List_fromArray(
+													[
+														rtfeldman$elm_css$Css$Animations$transform(
+														_List_fromArray(
+															[
+																rtfeldman$elm_css$Css$translateY(rtfeldman$elm_css$Css$zero),
+																rtfeldman$elm_css$Css$scaleY(1)
+															]))
+													]))
+											])))
 								]))
 						]),
 					A2(
-						elm$core$List$map,
-						author$project$Isdc$Ui$Select$selectOption(onValueChange),
+						elm$core$List$indexedMap,
+						A2(
+							author$project$Isdc$Ui$Select$selectOption,
+							onValueChange,
+							elm$core$List$length(options)),
 						options))
 				]));
 	});
