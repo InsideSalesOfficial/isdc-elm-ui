@@ -44,7 +44,7 @@ view model =
                             , onInputBlur = Blur
                             , focused = model.focused
                             }
-                        , div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
+                        , div [ css [ paddingTop <| px 10 ] ]
                             [ inputBox
                                 { theme = Light
                                 , disabled = False
