@@ -49,10 +49,10 @@ searchBoxContainerCss theme focused =
         )
     , boxSizing borderBox
     , height (px 36)
-    , padding2 (px 6) (px 8)
     , displayFlex
     , flexDirection row
     , alignItems center
+    , position relative
     ]
 
 
@@ -72,13 +72,13 @@ inputContainerCss theme =
 
 inputCss theme =
     let
-        primaryColor =
+        ( primaryColor, placeholderColor ) =
             case theme of
                 Dark ->
-                    white90
+                    ( white90, white40 )
 
                 Light ->
-                    black90
+                    ( black90, black60 )
     in
     [ color primaryColor
     , paddingLeft (px 8)
@@ -88,18 +88,35 @@ inputCss theme =
     , outline zero
     , border zero
     , boxSizing borderBox
-    , pseudoElement "placeholder" [ color black60 ]
+    , pseudoElement "placeholder" [ color placeholderColor ]
+    , padding4 zero zero zero (px 40)
+    , lineHeight (px 34)
+    , width <| pct 100
+    ]
+
+
+iconSize =
+    24
+
+
+iconSizeStr =
+    String.fromInt iconSize ++ "px"
+
+
+searchBoxCss =
+    [ position absolute
+    , left <| px 8
+    , top zero
+    , bottom zero
+    , margin auto
+    , height <| px iconSize
     ]
 
 
 searchBox : SearchBoxOptions msg -> Html msg
-searchBox options =
-    let
-        { theme, disabled, inputValue, onValueChange, placeholderText, onInputFocus, onInputBlur, focused } =
-            options
-    in
+searchBox { theme, disabled, inputValue, onValueChange, placeholderText, onInputFocus, onInputBlur, focused } =
     div [ css <| searchBoxContainerCss theme focused ]
-        [ fromUnstyled <| searchIcon "24px" "24px" grayC
+        [ span [ css searchBoxCss ] [ fromUnstyled <| searchIcon iconSizeStr iconSizeStr grayC ]
         , input
             [ onFocus onInputFocus
             , onBlur onInputBlur
