@@ -1,11 +1,21 @@
-module Isdc.Ui.Colors.Css exposing (..)
+module Isdc.Ui.Colors.Css exposing
+    ( green, greenB, greenC, greenC10, green40, green10
+    , grayA, grayB, grayC, grayD, grayE, grayF
+    , blue, blue40, blue10
+    , orange, orange40, orange10
+    , red, red40, red10
+    , tron, tronB, tronC, tron40, tron10
+    , darkBlue, darkBlue40, darkBlueB, darkBlueB40, darkBlueC, darkBlueC40, darkBlueD, darkBlueD40, darkBlueE, darkBlueE40
+    , black, black60, black90, black40, black10, black4
+    , white, white60, white90, white40, white10, white4
+    )
 
 {-| Contains all of the company colors as a Css Color
 
 
 # Greens
 
-@docs green, greenB, greenC, green40, green10
+@docs green, greenB, greenC, greenC10, green40, green10
 
 
 # Gray
@@ -72,6 +82,13 @@ greenB =
 greenC : Color
 greenC =
     hex Hex.greenC
+
+
+{-| greenC10 rgba(42, 145, 94, 0.1)
+-}
+greenC10 : Color
+greenC10 =
+    rgba 42 145 94 0.1
 
 
 {-| green40 rgba(58, 182, 118, 0.4)
