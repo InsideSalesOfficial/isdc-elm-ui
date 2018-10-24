@@ -1,4 +1,7 @@
-module Isdc.Ui.Buttons exposing (..)
+module Isdc.Ui.Buttons exposing
+    ( baseButtonStyles, greenButtonStyles, whiteButtonStyles
+    , greenButtonOverDarkStyles
+    )
 
 {-| Button Styles
 
@@ -10,9 +13,9 @@ module Isdc.Ui.Buttons exposing (..)
 -}
 
 import Css exposing (..)
+import Css.Transitions exposing (easeInOut, transition)
 import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Typography exposing (..)
-import Css.Transitions exposing (easeInOut, transition)
 
 
 {-| baseButtonStyles is the base for all other button styles.
@@ -44,17 +47,27 @@ greenButtonStyles =
             [ Css.Transitions.boxShadow 200
             , Css.Transitions.backgroundColor 200
             ]
-        , disabled
-            [ backgroundColor darkBlueD
-            , opacity (num 0.1)
-            , color white
-            ]
         , hover
             [ boxShadow5 zero (px 2) (px 6) (px -1) black40
             , backgroundColor greenB
             ]
+        , disabled
+            [ backgroundColor greenC10
+            , color white90
+            , boxShadow none
+            ]
         , active
             [ backgroundColor green
+            ]
+        ]
+
+
+greenButtonOverDarkStyles =
+    Css.batch
+        [ greenButtonStyles
+        , disabled
+            [ color white40
+            , backgroundColor green10
             ]
         ]
 

@@ -16,7 +16,6 @@ import Isdc.Ui.Colors.Css as IsdcColors
 import Loader as Loader
 import Modal
 import Radio
-import Route exposing (Route)
 import Scrollbars
 import SearchBox as SearchBox
 import Select as Select
@@ -71,7 +70,7 @@ type alias Model =
 
 
 urlToPage url =
-    case url.path of
+    case String.dropLeft 12 url.path of
         "/home" ->
             Home
 
@@ -238,7 +237,7 @@ subscriptions _ =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "URL Interceptor"
+    { title = "Isdc Elm UI"
     , body =
         [ (body >> Styled.toUnstyled) model ]
     }
@@ -348,7 +347,7 @@ viewLink path label =
             ]
         ]
         [ a
-            [ href path
+            [ href ("/isdc-elm-ui" ++ path)
             , css
                 [ color IsdcColors.grayD
                 , textDecoration none

@@ -1,17 +1,18 @@
-module Colors exposing (..)
+module Colors exposing (colors, view)
 
-import Isdc.Ui.Colors.Css exposing (..)
+import Css exposing (..)
+import DocsLayout exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
-import DocsLayout exposing (..)
-import Css exposing (..)
+import Isdc.Ui.Colors.Css exposing (..)
 
 
 colors =
     [ ( green, "green" )
     , ( greenB, "greenB" )
     , ( greenC, "greenC" )
+    , ( greenC10, "greenC10" )
     , ( green40, "green40" )
     , ( green10, "green10" )
     , ( blue, "blue" )
@@ -63,7 +64,7 @@ view _ =
     story
         { title = "Isdc.Ui.Colors.Css exposing (..)"
         , chapters =
-            (List.map
+            List.map
                 (\color ->
                     { example =
                         div
@@ -87,5 +88,4 @@ div
                     }
                 )
                 colors
-            )
         }
