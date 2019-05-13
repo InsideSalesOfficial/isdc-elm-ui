@@ -5,7 +5,7 @@ import DocsLayout exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
-import Isdc.Ui.Input exposing (..)
+import Isdc.Ui.V2.Input exposing (..)
 
 
 inputModel : Model
@@ -29,56 +29,60 @@ type Msg
 
 view model =
     story
-        { title = "Isdc.Ui.Input exposing (..)"
+        { title = "Isdc.Ui.V2.Input exposing (..)"
         , chapters =
             [ { heading = "inputBox : InputOptions msg -> Html msg"
               , example =
                     div []
                         [ inputBox
-                            { theme = Dark
-                            , disabled = False
-                            , inputValue = model.value
-                            , labelText = "Hello world"
-                            , onValueChange = ValueChange
-                            , onInputFocus = Focus
-                            , onInputBlur = Blur
-                            , focused = model.focused
-                            }
+                            [ inputTheme Dark
+                            , inputDisabled False
+                            , inputValue model.value
+                            , labelText "Hello world"
+                            , onValueChange ValueChange
+                            , onInputFocus Focus
+                            , onInputBlur Blur
+                            , focused model.focused
+                            , inputType "text"
+                            ]
                         , div [ css [ paddingTop <| px 10 ] ]
                             [ inputBox
-                                { theme = Light
-                                , disabled = False
-                                , inputValue = model.value
-                                , labelText = "Hello world"
-                                , onValueChange = ValueChange
-                                , onInputFocus = Focus
-                                , onInputBlur = Blur
-                                , focused = model.focused
-                                }
+                                [ inputTheme Light
+                                , inputDisabled False
+                                , inputValue model.value
+                                , labelText "Hello world"
+                                , onValueChange ValueChange
+                                , onInputFocus Focus
+                                , onInputBlur Blur
+                                , focused model.focused
+                                , inputType "text"
+                                ]
                             ]
                         ]
               , codeUsage = """
 inputBox
-    { theme = Dark
-    , disabled = False
-    , inputValue = model.value
-    , labelText = "Hello world"
-    , onValueChange = ValueChange
-    , onInputFocus = Focus
-    , onInputBlur = Blur
-    , focused = model.focused
-    }
+    [ inputTheme Dark
+    , inputDisabled False
+    , inputValue model.value
+    , labelText "Hello world"
+    , onValueChange ValueChange
+    , onInputFocus Focus
+    , onInputBlur Blur
+    , focused model.focused
+    , inputType "text"
+    ]
 
-inputBox
-    { theme = Light
-    , disabled = False
-    , inputValue = model.value
-    , labelText = "Hello world"
-    , onValueChange = ValueChange
-    , onInputFocus = Focus
-    , onInputBlur = Blur
-    , focused = model.focused
-    }
+ inputBox
+    [ inputTheme Light
+    , inputDisabled False
+    , inputValue model.value
+    , labelText "Hello world"
+    , onValueChange ValueChange
+    , onInputFocus Focus
+    , onInputBlur Blur
+    , focused model.focused
+    , inputType "text"
+    ]
 """
               }
             ]
