@@ -2,7 +2,7 @@ module Isdc.Ui.Radio exposing (radio, radioList)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onClick)
 import Isdc.Ui.Colors.Css as Colors
 import Isdc.Ui.Typography as Typography
@@ -56,6 +56,7 @@ radio radioContent currentValue select =
                 ]
             ]
         , onClick <| select value
+        , class "pb-test__radio"
         ]
         [ div
             [ css
