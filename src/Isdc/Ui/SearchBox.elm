@@ -2,7 +2,7 @@ module Isdc.Ui.SearchBox exposing (SearchBoxOptions, SearchBoxTheme(..), searchB
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, placeholder, value)
+import Html.Styled.Attributes exposing (class, css, placeholder, value)
 import Html.Styled.Events exposing (onBlur, onFocus, onInput)
 import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Colors.Hex exposing (grayC)
@@ -124,6 +124,7 @@ searchBox { theme, disabled, inputValue, onValueChange, placeholderText, onInput
             , placeholder placeholderText
             , value inputValue
             , css <| inputCss theme
+            , class "pb-test__search-box-input"
             ]
             []
         ]

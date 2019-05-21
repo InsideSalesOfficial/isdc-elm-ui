@@ -4,7 +4,7 @@ import Css exposing (..)
 import Css.Animations as Animations
 import Css.Transitions as Transitions
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
+import Html.Styled.Attributes exposing (class, css, href, placeholder, src, value)
 import Html.Styled.Events exposing (onBlur, onClick, onFocus)
 import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Scrollbars as Scrollbars
@@ -119,6 +119,7 @@ selectOption onValueChange length index option =
     in
     button
         [ onClick <| onValueChange option.value
+        , class "pb-test__select-input"
         , css
             [ subhead1
             , padding2 zero <| px 24
@@ -164,6 +165,7 @@ selectOptions options onValueChange onClose =
                 , right zero
                 ]
             , onClick onClose
+            , class "pb-test__select-input-option"
             ]
             []
         , div

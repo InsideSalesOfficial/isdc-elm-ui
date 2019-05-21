@@ -2,7 +2,7 @@ module Isdc.Ui.DropdownDots exposing (Direction(..), dropdownDots)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
+import Html.Styled.Attributes exposing (class, css, href, placeholder, src, value)
 import Html.Styled.Events exposing (onBlur, onClick)
 import Isdc.Ui.Buttons exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
@@ -99,6 +99,7 @@ dropDown fields choose direction close =
             (\field ->
                 div
                     [ onClick <| choose field.value
+                    , class "pb-test__select-option"
                     , css
                         [ subhead1
                         , border zero
@@ -139,6 +140,7 @@ dropdownDots dropdownOptions =
                 , border zero
                 , backgroundColor transparent
                 ]
+            , class "pb-test__toggle-menu"
             , onBlur close
             , onClick <|
                 if isOpen then

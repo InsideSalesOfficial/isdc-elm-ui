@@ -1,14 +1,15 @@
-module Isdc.Ui.Checkbox exposing (..)
+module Isdc.Ui.Checkbox exposing (CheckboxOptions, baseCheckboxStyles, checkBox)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, src, placeholder, value)
+import Html.Styled.Attributes exposing (class, css, href, placeholder, src, value)
 import Html.Styled.Events exposing (onClick, onInput)
-import Isdc.Ui.Typography exposing (..)
-import Isdc.Ui.Icons exposing (..)
 import Isdc.Ui.Buttons exposing (..)
 import Isdc.Ui.Colors.Css exposing (..)
 import Isdc.Ui.Colors.Hex as Hex exposing (grayC)
+import Isdc.Ui.Icons exposing (..)
+import Isdc.Ui.Typography exposing (..)
+
 
 baseCheckboxStyles : Css.Style
 baseCheckboxStyles =
@@ -24,12 +25,14 @@ baseCheckboxStyles =
         , borderRadius (px 2)
         ]
 
+
 type alias CheckboxOptions msg =
     { checked : Bool
     , disabled : Bool
     , onValueChange : msg
-    , label: String
+    , label : String
     }
+
 
 checkBox : CheckboxOptions msg -> Html msg
 checkBox options =
@@ -41,12 +44,14 @@ checkBox options =
                     , baseCheckboxStyles
                     , borderColor green
                     ]
+
                  else
                     [ baseCheckboxStyles
                     , borderColor black40
                     ]
                 )
-              , onClick options.onValueChange
+            , onClick options.onValueChange
+            , class "pb-test__checkbox"
             ]
             (if options.checked then
                 [ span
@@ -55,7 +60,7 @@ checkBox options =
                         , borderLeft3 (px 2) solid white
                         , width (px 10)
                         , height (px 5)
-                        , transforms [ (translate2 (pct -50) (pct -65)), (rotate (deg -45)) ]
+                        , transforms [ translate2 (pct -50) (pct -65), rotate (deg -45) ]
                         , position absolute
                         , top (pct 50)
                         , left (pct 50)
@@ -63,6 +68,7 @@ checkBox options =
                     ]
                     []
                 ]
+
              else
                 []
             )

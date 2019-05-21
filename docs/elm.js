@@ -11546,6 +11546,14 @@ var rtfeldman$elm_css$Css$translate2 = F2(
 		};
 	});
 var rtfeldman$elm_css$Html$Styled$span = rtfeldman$elm_css$Html$Styled$node('span');
+var rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			rtfeldman$elm_css$VirtualDom$Styled$property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var rtfeldman$elm_css$Html$Styled$Attributes$class = rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('className');
 var elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 0, a: a};
 };
@@ -11592,7 +11600,8 @@ var author$project$Isdc$Ui$Checkbox$checkBox = function (options) {
 								author$project$Isdc$Ui$Checkbox$baseCheckboxStyles,
 								rtfeldman$elm_css$Css$borderColor(author$project$Isdc$Ui$Colors$Css$black40)
 							])),
-						rtfeldman$elm_css$Html$Styled$Events$onClick(options.db)
+						rtfeldman$elm_css$Html$Styled$Events$onClick(options.db),
+						rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__checkbox')
 					]),
 				options._ ? _List_fromArray(
 					[
@@ -12055,13 +12064,6 @@ var rtfeldman$elm_css$Css$transparent = {x: 0, cz: 'transparent'};
 var rtfeldman$elm_css$Css$zIndex = rtfeldman$elm_css$Css$prop1('z-index');
 var rtfeldman$elm_css$Html$Styled$input = rtfeldman$elm_css$Html$Styled$node('input');
 var rtfeldman$elm_css$Html$Styled$label = rtfeldman$elm_css$Html$Styled$node('label');
-var rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			rtfeldman$elm_css$VirtualDom$Styled$property,
-			key,
-			elm$json$Json$Encode$string(string));
-	});
 var rtfeldman$elm_css$Html$Styled$Attributes$placeholder = rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('placeholder');
 var rtfeldman$elm_css$Html$Styled$Attributes$value = rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('value');
 var rtfeldman$elm_css$Html$Styled$Events$alwaysStop = function (x) {
@@ -12575,6 +12577,7 @@ var author$project$Isdc$Ui$DropdownDots$dropDown = F4(
 							[
 								rtfeldman$elm_css$Html$Styled$Events$onClick(
 								choose(field.cz)),
+								rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__select-option'),
 								rtfeldman$elm_css$Html$Styled$Attributes$css(
 								_List_fromArray(
 									[
@@ -12650,6 +12653,7 @@ var author$project$Isdc$Ui$DropdownDots$dropdownDots = function (dropdownOptions
 								rtfeldman$elm_css$Css$border(rtfeldman$elm_css$Css$zero),
 								rtfeldman$elm_css$Css$backgroundColor(rtfeldman$elm_css$Css$transparent)
 							])),
+						rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__toggle-menu'),
 						rtfeldman$elm_css$Html$Styled$Events$onBlur(close),
 						rtfeldman$elm_css$Html$Styled$Events$onClick(
 						isOpen ? close : open)
@@ -13631,7 +13635,8 @@ var author$project$Isdc$Ui$Radio$radio = F3(
 								]))
 						])),
 					rtfeldman$elm_css$Html$Styled$Events$onClick(
-					select(value))
+					select(value)),
+					rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__radio')
 				]),
 			_List_fromArray(
 				[
@@ -14019,7 +14024,8 @@ var author$project$Isdc$Ui$SearchBox$searchBox = function (_n0) {
 						rtfeldman$elm_css$Html$Styled$Attributes$placeholder(placeholderText),
 						rtfeldman$elm_css$Html$Styled$Attributes$value(inputValue),
 						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						author$project$Isdc$Ui$SearchBox$inputCss(theme))
+						author$project$Isdc$Ui$SearchBox$inputCss(theme)),
+						rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__search-box-input')
 					]),
 				_List_Nil)
 			]));
@@ -14299,6 +14305,7 @@ var author$project$Isdc$Ui$Select$selectOption = F4(
 				[
 					rtfeldman$elm_css$Html$Styled$Events$onClick(
 					onValueChange(option.cz)),
+					rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__select-input'),
 					rtfeldman$elm_css$Html$Styled$Attributes$css(
 					_List_fromArray(
 						[
@@ -14419,7 +14426,8 @@ var author$project$Isdc$Ui$Select$selectOptions = F3(
 									rtfeldman$elm_css$Css$left(rtfeldman$elm_css$Css$zero),
 									rtfeldman$elm_css$Css$right(rtfeldman$elm_css$Css$zero)
 								])),
-							rtfeldman$elm_css$Html$Styled$Events$onClick(onClose)
+							rtfeldman$elm_css$Html$Styled$Events$onClick(onClose),
+							rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__select-input-option')
 						]),
 					_List_Nil),
 					A2(
