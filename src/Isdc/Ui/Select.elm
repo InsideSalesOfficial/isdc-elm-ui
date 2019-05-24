@@ -1,4 +1,4 @@
-module Isdc.Ui.Select exposing (LabelTypes(..), SelectOption, SelectOptions, SelectTheme(..), selectBox)
+module Isdc.Ui.Select exposing (LabelTypes(..), SelectOption, SelectOptions, SelectTheme(..), selectBox, selectOptions)
 
 import Css exposing (..)
 import Css.Animations as Animations
@@ -43,7 +43,7 @@ inputContainerCss theme focused =
                     ( grayA, black40 )
     in
     [ backgroundColor bgColor
-    , borderRadius (px 3)
+    , borderRadius (px 2)
     , borderBottom3 (px 2)
         solid
         (if focused then
@@ -174,7 +174,8 @@ selectOptions options onValueChange onClose =
                 , maxHeight <| px 200
                 , overflow auto
                 , position absolute
-                , top <| calc (pct 100) plus (px 2)
+                , top (pct 100)
+                , left zero
                 , width <| pct 100
                 , zIndex <| int 10
                 , boxShadow4 (px 2) (px 4) (px 10) black40
@@ -293,18 +294,20 @@ selectBox selectBoxOptions =
         { theme, disabled, inputValue, labelText, onValueChange, onSelectFocus, onSelectBlur, focused, isOpen, options, onToggle, onClose } =
             selectBoxOptions
     in
-    div [ css <| inputContainerCss theme focused ]
-        [ label [ css <| labelCss theme inputValue focused ]
-            [ text labelText
-            ]
-        , button
-            [ onFocus onSelectFocus
-            , onBlur onSelectBlur
-            , css <| selectCss theme
-            , onClick onToggle
-            ]
-            [ text inputValue
-            , caret isOpen theme
+    div [ css [ position relative ] ]
+        [ div [ css <| inputContainerCss theme focused ]
+            [ label [ css <| labelCss theme inputValue focused ]
+                [ text labelText
+                ]
+            , button
+                [ onFocus onSelectFocus
+                , onBlur onSelectBlur
+                , css <| selectCss theme
+                , onClick onToggle
+                ]
+                [ text inputValue
+                , caret isOpen theme
+                ]
             ]
         , if isOpen then
             selectOptions options onValueChange onClose
