@@ -146,7 +146,7 @@ inputContainerCss theme isFocused =
                     ( grayA, black40 )
     in
     [ backgroundColor bgColor
-    , borderRadius (px 3)
+    , borderRadius (px 2)
     , borderBottom3 (px 2)
         solid
         (if isFocused then
