@@ -61,7 +61,7 @@ dropdownBoxCss direction =
           <|
             pct 100
         , right zero
-        , width <| px 240
+        , minWidth <| px 120
         , padding2 (px 12) zero
         , zIndex <| int 10
         , after
@@ -105,7 +105,8 @@ dropDown fields choose direction close =
                         , border zero
                         , cursor pointer
                         , width <| pct 100
-                        , padding4 (px 6) (px 16) (px 6) (px 24)
+                        , whiteSpace noWrap
+                        , padding4 (px 6) (px 24) (px 6) (px 10)
                         , textAlign left
                         , color black90
                         , boxSizing borderBox
