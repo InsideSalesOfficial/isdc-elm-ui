@@ -12486,8 +12486,8 @@ var author$project$Isdc$Ui$DropdownDots$dropdownBoxCss = function (direction) {
 			}()(
 				rtfeldman$elm_css$Css$pct(100)),
 				rtfeldman$elm_css$Css$right(rtfeldman$elm_css$Css$zero),
-				rtfeldman$elm_css$Css$width(
-				rtfeldman$elm_css$Css$px(240)),
+				rtfeldman$elm_css$Css$minWidth(
+				rtfeldman$elm_css$Css$px(120)),
 				A2(
 				rtfeldman$elm_css$Css$padding2,
 				rtfeldman$elm_css$Css$px(12),
@@ -12555,6 +12555,7 @@ var author$project$Isdc$Ui$Typography$subhead1 = rtfeldman$elm_css$Css$batch(
 			rtfeldman$elm_css$Css$letterSpacing(
 			rtfeldman$elm_css$Css$px(0.5))
 		]));
+var rtfeldman$elm_css$Css$noWrap = {aF: 0, a_: 0, cz: 'nowrap', L: 0};
 var rtfeldman$elm_css$Css$padding4 = rtfeldman$elm_css$Css$prop4('padding');
 var author$project$Isdc$Ui$DropdownDots$dropDown = F4(
 	function (fields, choose, direction, close) {
@@ -12586,12 +12587,13 @@ var author$project$Isdc$Ui$DropdownDots$dropDown = F4(
 										rtfeldman$elm_css$Css$cursor(rtfeldman$elm_css$Css$pointer),
 										rtfeldman$elm_css$Css$width(
 										rtfeldman$elm_css$Css$pct(100)),
+										rtfeldman$elm_css$Css$whiteSpace(rtfeldman$elm_css$Css$noWrap),
 										A4(
 										rtfeldman$elm_css$Css$padding4,
 										rtfeldman$elm_css$Css$px(6),
-										rtfeldman$elm_css$Css$px(16),
+										rtfeldman$elm_css$Css$px(24),
 										rtfeldman$elm_css$Css$px(6),
-										rtfeldman$elm_css$Css$px(24)),
+										rtfeldman$elm_css$Css$px(10)),
 										rtfeldman$elm_css$Css$textAlign(rtfeldman$elm_css$Css$left),
 										rtfeldman$elm_css$Css$color(author$project$Isdc$Ui$Colors$Css$black90),
 										rtfeldman$elm_css$Css$boxSizing(rtfeldman$elm_css$Css$borderBox),
@@ -12800,6 +12802,134 @@ var author$project$Isdc$Ui$Icons$chevronRightIcon = F4(
 					_List_Nil)
 				]));
 	});
+var author$project$Isdc$Ui$Icons$emailFilled = F3(
+	function (w, h, f) {
+		return A2(
+			elm$svg$Svg$svg,
+			_List_fromArray(
+				[
+					elm$svg$Svg$Attributes$height(h),
+					elm$svg$Svg$Attributes$width(w),
+					elm$svg$Svg$Attributes$fill(f),
+					elm$svg$Svg$Attributes$viewBox('0 0 24 24')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M0 0h24v24H0z'),
+							elm$svg$Svg$Attributes$fill('none')
+						]),
+					_List_Nil),
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z')
+						]),
+					_List_Nil)
+				]));
+	});
+var author$project$Isdc$Ui$Icons$microsoftIcon = F2(
+	function (w, h) {
+		return A2(
+			elm$svg$Svg$svg,
+			_List_fromArray(
+				[
+					elm$svg$Svg$Attributes$height(h),
+					elm$svg$Svg$Attributes$width(w),
+					elm$svg$Svg$Attributes$viewBox('0 0 49 49')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M0,0 L23.7179487,0 C23.7165242,7.92857143 23.7179487,15.8571429 23.7165242,23.7857143 L0,23.7857143 L0,0 Z'),
+							elm$svg$Svg$Attributes$fill('#F35325')
+						]),
+					_List_Nil),
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M26.1396011,0 L49.8575499,0 C49.8575499,7.92857143 49.8589744,15.8571429 49.8561254,23.7857143 C41.951567,23.7842857 34.045584,23.7857143 26.1410256,23.7857143 C26.1381766,15.8571429 26.1396011,7.92857143 26.1396011,0'),
+							elm$svg$Svg$Attributes$fill('#81BC06')
+						]),
+					_List_Nil),
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M0,26.2128571 C7.90598291,26.2157143 15.8119658,26.2114286 23.7179487,26.2157143 C23.7193732,34.1442857 23.7179487,42.0714286 23.7179487,50 L0,50 L0,26.2128571 Z'),
+							elm$svg$Svg$Attributes$fill('#05A6F0')
+						]),
+					_List_Nil),
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M26.1410256,26.2157143 C34.045584,26.2128571 41.951567,26.2142857 49.8575499,26.2142857 L49.8575499,50 L26.1396011,50 C26.1410256,42.0714286 26.1381766,34.1428571 26.1410256,26.2157143'),
+							elm$svg$Svg$Attributes$fill('#FFBA08')
+						]),
+					_List_Nil)
+				]));
+	});
+var author$project$Isdc$Ui$Icons$salesforceIconFilled = F3(
+	function (w, h, f) {
+		return A2(
+			elm$svg$Svg$svg,
+			_List_fromArray(
+				[
+					elm$svg$Svg$Attributes$height(h),
+					elm$svg$Svg$Attributes$width(w),
+					elm$svg$Svg$Attributes$viewBox('0 0 24 17')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$fill(f),
+							elm$svg$Svg$Attributes$d('M17.2537812,2.13648574 C16.5710413,2.13648574 15.9222386,2.28276274 15.335835,2.54556633 C14.6611354,1.33941221 13.394557,0.527042717 11.942409,0.527042717 C10.8500547,0.527042717 9.86247175,0.987060371 9.15319372,1.72869219 C8.37248969,0.704505677 7.14147623,0.0436603434 5.75621614,0.0436603434 C3.39698744,0.0436603434 1.4841713,1.96065633 1.4841713,4.32499758 C1.4841713,4.9303517 1.60956143,5.50585641 1.83553004,6.02784997 C0.73804574,6.67146878 9.86547002e-06,7.87440529 9.86547002e-06,9.25252769 C9.86547002e-06,11.3083755 1.64354798,12.9748937 3.67109955,12.9748937 C3.92972287,12.9748937 4.18218027,12.9476184 4.42561076,12.8960378 C4.98261525,14.412715 6.43412197,15.4939767 8.13714888,15.4939767 C9.77225202,15.4939767 11.1756152,14.4970656 11.777557,13.0754313 C12.2359561,13.2999702 12.750243,13.4258031 13.2940278,13.4258031 C14.593557,13.4258031 15.7256691,12.707239 16.3195211,11.6441443 C16.6217991,11.7051302 16.9340906,11.7375537 17.2537812,11.7375537 C19.8726691,11.7375537 21.9959157,9.58829652 21.9959157,6.93684644 C21.9959157,4.28574287 19.8726691,2.13648574 17.2537812,2.13648574 L17.2537812,2.13648574 Z')
+						]),
+					_List_Nil)
+				]));
+	});
+var author$project$Isdc$Ui$Icons$vpnKey = F3(
+	function (w, h, f) {
+		return A2(
+			elm$svg$Svg$svg,
+			_List_fromArray(
+				[
+					elm$svg$Svg$Attributes$height(h),
+					elm$svg$Svg$Attributes$width(w),
+					elm$svg$Svg$Attributes$fill(f),
+					elm$svg$Svg$Attributes$viewBox('0 0 24 24')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M0 0h24v24H0z'),
+							elm$svg$Svg$Attributes$fill('none')
+						]),
+					_List_Nil),
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z')
+						]),
+					_List_Nil)
+				]));
+	});
 var author$project$Icons$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
@@ -12822,6 +12952,30 @@ var author$project$Icons$view = function (_n0) {
 					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A4(author$project$Isdc$Ui$Icons$chevronRightIcon, '100px', '100px', '#000000', author$project$Isdc$Ui$Colors$Hex$grayD)),
 					bh: 'chevronRightIcon : String -> String -> String -> String -> Html.Html msg'
+				},
+					{
+					bd: 'emailFilled \"100px\" \"100px\" \"#000000\"',
+					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+						A3(author$project$Isdc$Ui$Icons$emailFilled, '100px', '100px', '#000000')),
+					bh: 'emailFilled : String -> String -> String -> Html.Html msg'
+				},
+					{
+					bd: 'salesforceIconFilled \"100px\" \"100px\" \"#000000\"',
+					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+						A3(author$project$Isdc$Ui$Icons$salesforceIconFilled, '100px', '100px', '#000000')),
+					bh: 'salesforceIconFilled : String -> String -> String -> Html.Html msg'
+				},
+					{
+					bd: 'vpnKey \"100px\" \"100px\" \"#000000\"',
+					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+						A3(author$project$Isdc$Ui$Icons$vpnKey, '100px', '100px', '#000000')),
+					bh: 'vpnKey : String -> String -> String -> Html.Html msg'
+				},
+					{
+					bd: 'microsoftIcon \"100px\" \"100px\" \"#000000\"',
+					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+						A2(author$project$Isdc$Ui$Icons$microsoftIcon, '100px', '100px')),
+					bh: 'microsoftIcon : String -> String -> Html.Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Icons exposing (..)'
@@ -12853,7 +13007,7 @@ var author$project$Isdc$Ui$V2$Input$inputContainerCss = F2(
 			[
 				rtfeldman$elm_css$Css$backgroundColor(bgColor),
 				rtfeldman$elm_css$Css$borderRadius(
-				rtfeldman$elm_css$Css$px(3)),
+				rtfeldman$elm_css$Css$px(2)),
 				A3(
 				rtfeldman$elm_css$Css$borderBottom3,
 				rtfeldman$elm_css$Css$px(2),
@@ -14164,7 +14318,7 @@ var author$project$Isdc$Ui$Select$inputContainerCss = F2(
 			[
 				rtfeldman$elm_css$Css$backgroundColor(bgColor),
 				rtfeldman$elm_css$Css$borderRadius(
-				rtfeldman$elm_css$Css$px(3)),
+				rtfeldman$elm_css$Css$px(2)),
 				A3(
 				rtfeldman$elm_css$Css$borderBottom3,
 				rtfeldman$elm_css$Css$px(2),
@@ -14221,7 +14375,6 @@ var author$project$Isdc$Ui$Select$labelCss = F3(
 	});
 var rtfeldman$elm_css$Css$ellipsis = {cu: 0, cz: 'ellipsis'};
 var rtfeldman$elm_css$Css$hidden = {r: 0, ao: 0, cz: 'hidden', aU: 0};
-var rtfeldman$elm_css$Css$noWrap = {aF: 0, a_: 0, cz: 'nowrap', L: 0};
 var rtfeldman$elm_css$Css$textOverflow = rtfeldman$elm_css$Css$prop1('text-overflow');
 var author$project$Isdc$Ui$Select$cutOffText = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
@@ -14364,36 +14517,6 @@ var author$project$Isdc$Ui$Select$selectOption = F4(
 			_List_fromArray(
 				[label]));
 	});
-var rtfeldman$elm_css$Css$calcExpressionToString = function (expression) {
-	if (!expression) {
-		return '+';
-	} else {
-		return '-';
-	}
-};
-var rtfeldman$elm_css$Css$calc = F3(
-	function (firstExpr, expression, secondExpr) {
-		var withoutCalcStr = function (l) {
-			return A2(elm$core$String$startsWith, 'calc(', l.cz) ? A2(elm$core$String$dropLeft, 4, l.cz) : l.cz;
-		};
-		var calcs = A2(
-			elm$core$String$join,
-			' ',
-			_List_fromArray(
-				[
-					withoutCalcStr(firstExpr),
-					rtfeldman$elm_css$Css$calcExpressionToString(expression),
-					withoutCalcStr(secondExpr)
-				]));
-		var value = A2(
-			rtfeldman$elm_css$Css$cssFunction,
-			'calc',
-			_List_fromArray(
-				[calcs]));
-		return {bD: 0, ac: 0, o: 0, aI: 0, ak: 0, F: 0, al: 0, am: 0, P: 0, Q: 0, y: 0, au: 0, cz: value};
-	});
-var rtfeldman$elm_css$Css$Addition = 0;
-var rtfeldman$elm_css$Css$plus = 0;
 var rtfeldman$elm_css$Css$scaleY = function (y) {
 	return {
 		i: 0,
@@ -14446,11 +14569,8 @@ var author$project$Isdc$Ui$Select$selectOptions = F3(
 									rtfeldman$elm_css$Css$overflow(rtfeldman$elm_css$Css$auto),
 									rtfeldman$elm_css$Css$position(rtfeldman$elm_css$Css$absolute),
 									rtfeldman$elm_css$Css$top(
-									A3(
-										rtfeldman$elm_css$Css$calc,
-										rtfeldman$elm_css$Css$pct(100),
-										rtfeldman$elm_css$Css$plus,
-										rtfeldman$elm_css$Css$px(2))),
+									rtfeldman$elm_css$Css$pct(100)),
+									rtfeldman$elm_css$Css$left(rtfeldman$elm_css$Css$zero),
 									rtfeldman$elm_css$Css$width(
 									rtfeldman$elm_css$Css$pct(100)),
 									rtfeldman$elm_css$Css$zIndex(
@@ -14533,35 +14653,48 @@ var author$project$Isdc$Ui$Select$selectBox = function (selectBoxOptions) {
 		_List_fromArray(
 			[
 				rtfeldman$elm_css$Html$Styled$Attributes$css(
-				A2(author$project$Isdc$Ui$Select$inputContainerCss, theme, focused))
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Css$position(rtfeldman$elm_css$Css$relative)
+					]))
 			]),
 		_List_fromArray(
 			[
 				A2(
-				rtfeldman$elm_css$Html$Styled$label,
+				rtfeldman$elm_css$Html$Styled$div,
 				_List_fromArray(
 					[
 						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						A3(author$project$Isdc$Ui$Select$labelCss, theme, inputValue, focused))
+						A2(author$project$Isdc$Ui$Select$inputContainerCss, theme, focused))
 					]),
 				_List_fromArray(
 					[
-						rtfeldman$elm_css$Html$Styled$text(labelText)
-					])),
-				A2(
-				rtfeldman$elm_css$Html$Styled$button,
-				_List_fromArray(
-					[
-						rtfeldman$elm_css$Html$Styled$Events$onFocus(onSelectFocus),
-						rtfeldman$elm_css$Html$Styled$Events$onBlur(onSelectBlur),
-						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						author$project$Isdc$Ui$Select$selectCss(theme)),
-						rtfeldman$elm_css$Html$Styled$Events$onClick(onToggle)
-					]),
-				_List_fromArray(
-					[
-						rtfeldman$elm_css$Html$Styled$text(inputValue),
-						A2(author$project$Isdc$Ui$Select$caret, isOpen, theme)
+						A2(
+						rtfeldman$elm_css$Html$Styled$label,
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$Attributes$css(
+								A3(author$project$Isdc$Ui$Select$labelCss, theme, inputValue, focused))
+							]),
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$text(labelText)
+							])),
+						A2(
+						rtfeldman$elm_css$Html$Styled$button,
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$Events$onFocus(onSelectFocus),
+								rtfeldman$elm_css$Html$Styled$Events$onBlur(onSelectBlur),
+								rtfeldman$elm_css$Html$Styled$Attributes$css(
+								author$project$Isdc$Ui$Select$selectCss(theme)),
+								rtfeldman$elm_css$Html$Styled$Events$onClick(onToggle)
+							]),
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$text(inputValue),
+								A2(author$project$Isdc$Ui$Select$caret, isOpen, theme)
+							]))
 					])),
 				isOpen ? A3(author$project$Isdc$Ui$Select$selectOptions, options, onValueChange, onClose) : rtfeldman$elm_css$Html$Styled$text('')
 			]));
