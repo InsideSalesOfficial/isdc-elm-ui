@@ -1,6 +1,6 @@
 module Isdc.Ui.Icons exposing
     ( searchIcon, addCircleIcon, chevronRightIcon
-    , arrowLeft, emailFilled, microsoftIcon, salesforceIconFilled, vpnKey
+    , arrowLeft, emailFilled, microsoftIcon, salesforceIconFilled, vpnKey, domain
     )
 
 {-| SVG Icons
@@ -199,6 +199,25 @@ vpnKey w h f =
             []
         , path
             [ Attr.d "M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+            ]
+            []
+        ]
+
+domain : String -> String -> String -> Html.Html msg
+domain w h f =
+    Svg.svg
+        [ Attr.height h
+        , Attr.width w
+        , Attr.fill f
+        , Attr.viewBox "0 0 48 48"
+        ]
+        [ path
+            [ Attr.d "M0 0h48v48H0z"
+            , Attr.fill "none"
+            ]
+            []
+        , path
+            [ Attr.d "M24 14V6H4v36h40V14H24zM12 38H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm8 24h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm20 24H24v-4h4v-4h-4v-4h4v-4h-4v-4h16v20zm-4-16h-4v4h4v-4zm0 8h-4v4h4v-4z"
             ]
             []
         ]

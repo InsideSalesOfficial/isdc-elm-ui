@@ -12802,6 +12802,36 @@ var author$project$Isdc$Ui$Icons$chevronRightIcon = F4(
 					_List_Nil)
 				]));
 	});
+var author$project$Isdc$Ui$Icons$domain = F3(
+	function (w, h, f) {
+		return A2(
+			elm$svg$Svg$svg,
+			_List_fromArray(
+				[
+					elm$svg$Svg$Attributes$height(h),
+					elm$svg$Svg$Attributes$width(w),
+					elm$svg$Svg$Attributes$fill(f),
+					elm$svg$Svg$Attributes$viewBox('0 0 48 48')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M0 0h48v48H0z'),
+							elm$svg$Svg$Attributes$fill('none')
+						]),
+					_List_Nil),
+					A2(
+					elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							elm$svg$Svg$Attributes$d('M24 14V6H4v36h40V14H24zM12 38H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm8 24h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm20 24H24v-4h4v-4h-4v-4h4v-4h-4v-4h16v20zm-4-16h-4v4h4v-4zm0 8h-4v4h4v-4z')
+						]),
+					_List_Nil)
+				]));
+	});
 var author$project$Isdc$Ui$Icons$emailFilled = F3(
 	function (w, h, f) {
 		return A2(
@@ -12976,6 +13006,12 @@ var author$project$Icons$view = function (_n0) {
 					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A2(author$project$Isdc$Ui$Icons$microsoftIcon, '100px', '100px')),
 					bh: 'microsoftIcon : String -> String -> Html.Html msg'
+				},
+					{
+					bd: 'domain \"100px\" \"100px\" \"#000000\"',
+					be: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+						A3(author$project$Isdc$Ui$Icons$domain, '100px', '100px', '#000000')),
+					bh: 'domain : String -> String -> Html.Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Icons exposing (..)'
