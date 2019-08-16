@@ -40,5 +40,9 @@ view _ =
               , example = fromUnstyled <| microsoftIcon "100px" "100px"
               , codeUsage = "microsoftIcon \"100px\" \"100px\" \"#000000\""
               }
+            , { heading = "domain : String -> String -> Html.Html msg"
+              , example = fromUnstyled <| domain "100px" "100px" "#000000"
+              , codeUsage = "domain \"100px\" \"100px\" \"#000000\""
+              }
             ]
         }
