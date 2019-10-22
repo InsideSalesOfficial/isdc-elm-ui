@@ -1,15 +1,12 @@
-module Isdc.Ui.Scrollbars exposing (darkScrollBarStyles, lightScrollBarStyles)
+module Isdc.Ui.Scrollbar exposing (styles)
 
 import Css exposing (..)
 import Isdc.Ui.Colors.Css as Colors
+import Isdc.Ui.Theme as Theme exposing (Theme)
 
 
-type Color
-    = Light
-    | Dark
-
-
-scrollbarStyles color =
+styles : Theme -> Style
+styles theme =
     Css.batch
         [ pseudoElement "-webkit-scrollbar"
             [ backgroundColor transparent
@@ -25,12 +22,15 @@ scrollbarStyles color =
         , pseudoElement "-webkit-scrollbar-thumb"
             [ backgroundClip contentBox
             , backgroundColor <|
-                case color of
-                    Dark ->
+                case theme of
+                    Theme.Dark ->
                         Colors.black40
 
-                    Light ->
+                    Theme.Light ->
                         Colors.white40
+
+                    Theme.New ->
+                        Colors.primary05
             , border3 (px 1) solid transparent
             , borderRadius <| px 5
             ]
@@ -38,11 +38,3 @@ scrollbarStyles color =
             [ backgroundColor transparent
             ]
         ]
-
-
-darkScrollBarStyles =
-    scrollbarStyles Dark
-
-
-lightScrollBarStyles =
-    scrollbarStyles Light
