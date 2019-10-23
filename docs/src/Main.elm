@@ -121,7 +121,7 @@ urlToPage url =
 
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
-init flags url navKey =
+init _ url navKey =
     ( { navKey = navKey
       , page = Home
       , url = url

@@ -9,6 +9,178 @@ module Isdc.Ui.Colors.Hex exposing (..)
 
 -}
 
+-- New Theme Colors
+
+
+{-| brand01 #ffdd00
+-}
+brand01 : String
+brand01 =
+    "#ffdd00"
+
+
+{-| brand02 #ebcb00
+-}
+brand02 : String
+brand02 =
+    "#ebcb00"
+
+
+{-| brand03 #737022
+-}
+brand03 : String
+brand03 =
+    "#737022"
+
+
+{-| primary01 #16283a
+-}
+primary01 : String
+primary01 =
+    "#16283a"
+
+
+{-| primary02 #0d1822
+-}
+primary02 : String
+primary02 =
+    "#0d1822"
+
+
+{-| primary03 #2d3d4e
+-}
+primary03 : String
+primary03 =
+    "#2d3d4e"
+
+
+{-| primary04 #737e88
+-}
+primary04 : String
+primary04 =
+    "#737e88"
+
+
+primary05 : String
+primary05 =
+    "#42505e"
+
+
+{-| tron01 #00c9ff
+-}
+tron01 : String
+tron01 =
+    "#00c9ff"
+
+
+{-| tron02 #00b9eb
+-}
+tron02 : String
+tron02 =
+    "#00b9eb"
+
+
+{-| tron03 #09688a
+-}
+tron03 : String
+tron03 =
+    "#09688a"
+
+
+{-| success01 #16c99d
+-}
+success01 : String
+success01 =
+    "#16c99d"
+
+
+{-| success02 #14b990
+-}
+success02 : String
+success02 =
+    "#14b990"
+
+
+{-| success03 #136861
+-}
+success03 : String
+success03 =
+    "#136861"
+
+
+{-| caution01 #ffa210
+-}
+caution01 : String
+caution01 =
+    "#ffa210"
+
+
+{-| caution02 #eb950e
+-}
+caution02 : String
+caution02 =
+    "#eb950e"
+
+
+{-| caution03 #735922
+-}
+caution03 : String
+caution03 =
+    "#735922"
+
+
+{-| warning01 #ff1743
+-}
+warning01 : String
+warning01 =
+    "#ff1743"
+
+
+{-| warning02 #eb153d
+-}
+warning02 : String
+warning02 =
+    "#eb153d"
+
+
+{-| warning03 #6e1233
+-}
+warning03 : String
+warning03 =
+    "#6e1233"
+
+
+{-| brandBackup01 #0e6aff
+-}
+brandBackup01 : String
+brandBackup01 =
+    "#0e6aff"
+
+
+{-| brandBackup02 #0c61eb
+-}
+brandBackup02 : String
+brandBackup02 =
+    "#0c61eb"
+
+
+{-| brandBackup03 #13428b
+-}
+brandBackup03 : String
+brandBackup03 =
+    "#13428b"
+
+
+{-| brandBackup04 #9fc4ff
+-}
+brandBackup04 : String
+brandBackup04 =
+    "#9fc4ff"
+
+
+
+-- Old Theme Colors
+
 
 {-| green #3AB676
 -}

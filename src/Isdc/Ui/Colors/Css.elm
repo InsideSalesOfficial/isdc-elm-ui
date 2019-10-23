@@ -1,5 +1,11 @@
 module Isdc.Ui.Colors.Css exposing
-    ( green, greenB, greenC, greenC10, green40, green10
+    ( brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04
+    , primary01, primary02, primary03, primary04, primary05
+    , tron01, tron02, tron03
+    , success01, success02, success03
+    , caution01, caution02, caution03
+    , warning01, warning02, warning03
+    , green, greenB, greenC, greenC10, green40, green10
     , grayA, grayB, grayC, grayD, grayE, grayF
     , blue, blue40, blue10
     , orange, orange40, orange10
@@ -11,6 +17,42 @@ module Isdc.Ui.Colors.Css exposing
     )
 
 {-| Contains all of the company colors as a Css Color
+
+
+# New Branding
+
+
+# Brand
+
+@docs brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04
+
+
+# Primary
+
+@docs primary01, primary02, primary03, primary04, primary05
+
+
+# Tron
+
+@docs tron01, tron02, tron03
+
+
+# Success
+
+@docs success01, success02, success03
+
+
+# Caution
+
+@docs caution01, caution02, caution03
+
+
+# Warning
+
+@docs warning01, warning02, warning03
+
+
+# Old Themes
 
 
 # Greens
@@ -61,6 +103,182 @@ module Isdc.Ui.Colors.Css exposing
 
 import Css exposing (..)
 import Isdc.Ui.Colors.Hex as Hex
+
+
+
+-- New Theme Colors
+
+
+{-| brand01 #ffdd00
+-}
+brand01 : Color
+brand01 =
+    hex Hex.brand01
+
+
+{-| brand02 #ebcb00
+-}
+brand02 : Color
+brand02 =
+    hex Hex.brand02
+
+
+{-| brand03 #737022
+-}
+brand03 : Color
+brand03 =
+    hex Hex.brand03
+
+
+{-| primary01 #16283a
+-}
+primary01 : Color
+primary01 =
+    hex Hex.primary01
+
+
+{-| primary02 #0d1822
+-}
+primary02 : Color
+primary02 =
+    hex Hex.primary02
+
+
+{-| primary03 #2d3d4e
+-}
+primary03 : Color
+primary03 =
+    hex Hex.primary03
+
+
+{-| primary04 #737e88
+-}
+primary04 : Color
+primary04 =
+    hex Hex.primary04
+
+
+{-| primary04 #737e88
+-}
+primary05 : Color
+primary05 =
+    hex Hex.primary05
+
+
+{-| tron01 #00c9ff
+-}
+tron01 : Color
+tron01 =
+    hex Hex.tron01
+
+
+{-| tron02 #00b9eb
+-}
+tron02 : Color
+tron02 =
+    hex Hex.tron02
+
+
+{-| tron03 #09688a
+-}
+tron03 : Color
+tron03 =
+    hex Hex.tron03
+
+
+{-| success01 #16c99d
+-}
+success01 : Color
+success01 =
+    hex Hex.success01
+
+
+{-| success02 #14b990
+-}
+success02 : Color
+success02 =
+    hex Hex.success02
+
+
+{-| success03 #136861
+-}
+success03 : Color
+success03 =
+    hex Hex.success03
+
+
+{-| caution01 #ffa210
+-}
+caution01 : Color
+caution01 =
+    hex Hex.caution01
+
+
+{-| caution02 #eb950e
+-}
+caution02 : Color
+caution02 =
+    hex Hex.caution02
+
+
+{-| caution03 #735922
+-}
+caution03 : Color
+caution03 =
+    hex Hex.caution03
+
+
+{-| warning01 #ff1743
+-}
+warning01 : Color
+warning01 =
+    hex Hex.warning01
+
+
+{-| warning02 #eb153d
+-}
+warning02 : Color
+warning02 =
+    hex Hex.warning02
+
+
+{-| warning03 #6e1233
+-}
+warning03 : Color
+warning03 =
+    hex Hex.warning03
+
+
+{-| brandBackup01 #0e6aff
+-}
+brandBackup01 : Color
+brandBackup01 =
+    hex Hex.brandBackup01
+
+
+{-| brandBackup02 #0c61eb
+-}
+brandBackup02 : Color
+brandBackup02 =
+    hex Hex.brandBackup02
+
+
+{-| brandBackup03 #13428b
+-}
+brandBackup03 : Color
+brandBackup03 =
+    hex Hex.brandBackup03
+
+
+{-| brandBackup04 #9fc4ff
+-}
+brandBackup04 : Color
+brandBackup04 =
+    hex Hex.brandBackup04
+
+
+
+-- Old Theme Colors
 
 
 {-| green #3AB676
