@@ -148,10 +148,26 @@ selectBox
                         ]
               , codeUsage = """
 selectBox
-    { ...theme = Theme.Dark }
+   { theme = Theme.Dark
+   , disabled = False
+   , inputValue = model.value
+   , labelText = "Hello world"
+   , onValueChange = ValueChange
+   , onSelectFocus = Focus
+   , onSelectBlur = Blur
+   , focused = model.focused
+   }
 
 selectBox
-    { ...theme = Theme.Light }
+   { theme = Theme.Light
+   , disabled = False
+   , inputValue = model.value
+   , labelText = "Hello world"
+   , onValueChange = ValueChange
+   , onSelectFocus = Focus
+   , onSelectBlur = Blur
+   , focused = model.focused
+   }
 """
               }
             ]
