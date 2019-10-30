@@ -1,4 +1,4 @@
-module Isdc.Ui.Colors.Css exposing
+module Isdc.Ui.Color.Css exposing
     ( brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04
     , primary01, primary02, primary03, primary04, primary05
     , tron01, tron02, tron03
@@ -102,11 +102,11 @@ module Isdc.Ui.Colors.Css exposing
 -}
 
 import Css exposing (..)
-import Isdc.Ui.Colors.Hex as Hex
+import Isdc.Ui.Color.Hex as Hex
 
 
 
--- New Theme Colors
+-- New Theme Color
 
 
 {-| brand01 #ffdd00
@@ -278,7 +278,7 @@ brandBackup04 =
 
 
 
--- Old Theme Colors
+-- Old Theme Color
 
 
 {-| green #3AB676

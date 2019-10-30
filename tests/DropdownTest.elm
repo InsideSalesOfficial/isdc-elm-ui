@@ -6,7 +6,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
 import Html.Styled.Events exposing (onClick, onInput)
 import Isdc.Ui.Checkbox exposing (..)
-import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Dropdown exposing (..)
 import Test exposing (..)
 

@@ -1,8 +1,8 @@
 module Isdc.Ui.Modal exposing (modal)
 
-import Html.Styled as Styled exposing (div, Html)
+import Html.Styled exposing (div, Html)
 import Css exposing (..)
-import Isdc.Ui.Colors.Css exposing (black40, white)
+import Isdc.Ui.Color.Css as Color
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
 
@@ -33,7 +33,7 @@ modal options close body =
             ]
             [ div
                 [ css
-                    [ backgroundColor black40
+                    [ backgroundColor Color.black40
                     , position absolute
                     , top zero
                     , left zero
@@ -46,12 +46,12 @@ modal options close body =
                 []
             , div
                 [ css
-                    [ backgroundColor white
+                    [ backgroundColor Color.white
                     , borderRadius (px 3)
                     , boxSizing borderBox
                     , width modalWidth
                     , padding modalPadding
-                    , boxShadow5 zero (px 19) (px 38) zero black40
+                    , boxShadow5 zero (px 19) (px 38) zero Color.black40
                     , zIndex <| int 20
                     ]
                 ]

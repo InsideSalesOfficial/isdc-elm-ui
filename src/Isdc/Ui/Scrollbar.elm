@@ -1,7 +1,7 @@
 module Isdc.Ui.Scrollbar exposing (styles)
 
 import Css exposing (..)
-import Isdc.Ui.Colors.Css as Colors
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Theme as Theme exposing (Theme)
 
 
@@ -24,13 +24,13 @@ styles theme =
             , backgroundColor <|
                 case theme of
                     Theme.Dark ->
-                        Colors.black40
+                        Color.black40
 
                     Theme.Light ->
-                        Colors.white40
+                        Color.white40
 
                     Theme.New ->
-                        Colors.primary05
+                        Color.primary05
             , border3 (px 1) solid transparent
             , borderRadius <| px 5
             ]

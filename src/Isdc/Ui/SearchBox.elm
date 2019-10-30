@@ -4,10 +4,10 @@ import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css, placeholder, value)
 import Html.Styled.Events exposing (onBlur, onFocus, onInput)
-import Isdc.Ui.Colors.Css as Color
-import Isdc.Ui.Colors.Hex as Hex
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Color.Hex as Hex
 import Isdc.Ui.Icons exposing (searchIcon)
-import Isdc.Ui.Typography as Typography exposing (subhead1)
+import Isdc.Ui.Typography as Typography
 
 
 type SearchBoxTheme
@@ -82,7 +82,7 @@ inputCss theme =
     in
     [ color primaryColor
     , paddingLeft (px 8)
-    , subhead1
+    , Typography.subhead1
     , zIndex (int 1)
     , backgroundColor transparent
     , outline zero

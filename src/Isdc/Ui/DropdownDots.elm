@@ -2,11 +2,9 @@ module Isdc.Ui.DropdownDots exposing (Direction(..), dropdownDots)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (class, css, href, placeholder, src, value)
+import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onBlur, onClick)
-import Isdc.Ui.Buttons exposing (..)
-import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Icons exposing (..)
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Typography exposing (..)
 
 
@@ -37,7 +35,7 @@ dot =
             [ width <| px 4
             , height <| px 4
             , borderRadius <| pct 50
-            , backgroundColor white60
+            , backgroundColor Color.white60
             , margin2 (px 2) zero
             , display block
             , cursor pointer
@@ -48,7 +46,7 @@ dot =
 
 dropdownBoxCss direction =
     Css.batch
-        [ backgroundColor white
+        [ backgroundColor Color.white
         , borderRadius <| px 3
         , position absolute
         , (case direction of
@@ -73,13 +71,13 @@ dropdownBoxCss direction =
             , case direction of
                 Up ->
                     Css.batch
-                        [ borderTop3 (px 4) solid white
+                        [ borderTop3 (px 4) solid Color.white
                         , top <| pct 100
                         ]
 
                 Down ->
                     Css.batch
-                        [ borderBottom3 (px 4) solid white
+                        [ borderBottom3 (px 4) solid Color.white
                         , bottom <| pct 100
                         ]
             , right <| px 14
@@ -108,10 +106,10 @@ dropDown fields choose direction close =
                         , whiteSpace noWrap
                         , padding4 (px 6) (px 24) (px 6) (px 10)
                         , textAlign left
-                        , color black90
+                        , color Color.black90
                         , boxSizing borderBox
                         , hover
-                            [ backgroundColor grayB
+                            [ backgroundColor Color.grayB
                             ]
                         ]
                     ]
