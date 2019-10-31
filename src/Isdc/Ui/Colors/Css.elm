@@ -1,5 +1,5 @@
 module Isdc.Ui.Colors.Css exposing
-    ( brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04
+    ( brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04, brand01Transparent10
     , primary01, primary02, primary03, primary04, primary05
     , tron01, tron02, tron03
     , success01, success02, success03
@@ -24,7 +24,7 @@ module Isdc.Ui.Colors.Css exposing
 
 # Brand
 
-@docs brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04
+@docs brand01, brand02, brand03, brandBackup01, brandBackup02, brandBackup03, brandBackup04, brand01Transparent10
 
 
 # Primary
@@ -114,6 +114,13 @@ import Isdc.Ui.Colors.Hex as Hex
 brand01 : Color
 brand01 =
     hex Hex.brand01
+
+
+{-| brand01Transparent10 rgba 255 221 0 0.1
+-}
+brand01Transparent10 : Color
+brand01Transparent10 =
+    rgba 255 221 0 0.1
 
 
 {-| brand02 #ebcb00
