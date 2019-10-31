@@ -770,11 +770,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.bp.aM === region.bJ.aM)
+	if (region.bp.aO === region.bJ.aO)
 	{
-		return 'on line ' + region.bp.aM;
+		return 'on line ' + region.bp.aO;
 	}
-	return 'on lines ' + region.bp.aM + ' through ' + region.bJ.aM;
+	return 'on lines ' + region.bp.aO + ' through ' + region.bJ.aO;
 }
 
 
@@ -1841,7 +1841,7 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.c2,
+		impl.c3,
 		impl.dy,
 		impl.du,
 		function() { return function() {} }
@@ -2643,7 +2643,7 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		G: func(record.G),
+		H: func(record.H),
 		bq: record.bq,
 		bo: record.bo
 	}
@@ -2913,7 +2913,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.G;
+		var message = !tag ? value : tag < 3 ? value.a : value.H;
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.bq;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
@@ -3863,7 +3863,7 @@ var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debug
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.c2,
+		impl.c3,
 		impl.dy,
 		impl.du,
 		function(sendToApp, initialModel) {
@@ -3899,11 +3899,11 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.c2,
+		impl.c3,
 		impl.dy,
 		impl.du,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.aR && impl.aR(sendToApp)
+			var divertHrefToApp = impl.aT && impl.aT(sendToApp)
 			var view = impl.dA;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
@@ -3912,7 +3912,7 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 			{
 				_VirtualDom_divertHrefToApp = divertHrefToApp;
 				var doc = view(model);
-				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.cH);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.cI);
 				var patches = _VirtualDom_diff(currNode, nextNode);
 				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
 				currNode = nextNode;
@@ -3968,12 +3968,12 @@ function _Browser_makeAnimator(model, draw)
 
 function _Browser_application(impl)
 {
-	var onUrlChange = impl.c9;
-	var onUrlRequest = impl.da;
+	var onUrlChange = impl.da;
+	var onUrlRequest = impl.db;
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		aR: function(sendToApp)
+		aT: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -3989,9 +3989,9 @@ function _Browser_application(impl)
 					var next = elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.ch === next.ch
+							&& curr.ci === next.ci
 							&& curr.bQ === next.bQ
-							&& curr.cd.a === next.cd.a
+							&& curr.ce.a === next.ce.a
 						)
 							? elm$browser$Browser$Internal(next)
 							: elm$browser$Browser$External(href)
@@ -3999,9 +3999,9 @@ function _Browser_application(impl)
 				}
 			});
 		},
-		c2: function(flags)
+		c3: function(flags)
 		{
-			return A3(impl.c2, flags, _Browser_getUrl(), key);
+			return A3(impl.c3, flags, _Browser_getUrl(), key);
 		},
 		dA: impl.dA,
 		dy: impl.dy,
@@ -4071,17 +4071,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { c_: 'hidden', aH: 'visibilitychange' }
+		? { c$: 'hidden', aJ: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { c_: 'mozHidden', aH: 'mozvisibilitychange' }
+		? { c$: 'mozHidden', aJ: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { c_: 'msHidden', aH: 'msvisibilitychange' }
+		? { c$: 'msHidden', aJ: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { c_: 'webkitHidden', aH: 'webkitvisibilitychange' }
-		: { c_: 'hidden', aH: 'visibilitychange' };
+		? { c$: 'webkitHidden', aJ: 'webkitvisibilitychange' }
+		: { c$: 'hidden', aJ: 'visibilitychange' };
 }
 
 
@@ -4162,12 +4162,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		co: _Browser_getScene(),
-		cA: {
+		cp: _Browser_getScene(),
+		cB: {
 			bd: _Browser_window.pageXOffset,
 			be: _Browser_window.pageYOffset,
-			aB: _Browser_doc.documentElement.clientWidth,
-			ak: _Browser_doc.documentElement.clientHeight
+			aD: _Browser_doc.documentElement.clientWidth,
+			al: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4177,8 +4177,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		aB: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		ak: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		aD: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		al: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4201,15 +4201,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			co: {
-				aB: node.scrollWidth,
-				ak: node.scrollHeight
+			cp: {
+				aD: node.scrollWidth,
+				al: node.scrollHeight
 			},
-			cA: {
+			cB: {
 				bd: node.scrollLeft,
 				be: node.scrollTop,
-				aB: node.clientWidth,
-				ak: node.clientHeight
+				aD: node.clientWidth,
+				al: node.clientHeight
 			}
 		};
 	});
@@ -4239,18 +4239,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			co: _Browser_getScene(),
-			cA: {
+			cp: _Browser_getScene(),
+			cB: {
 				bd: x,
 				be: y,
-				aB: _Browser_doc.documentElement.clientWidth,
-				ak: _Browser_doc.documentElement.clientHeight
+				aD: _Browser_doc.documentElement.clientWidth,
+				al: _Browser_doc.documentElement.clientHeight
 			},
-			cV: {
+			cW: {
 				bd: x + rect.left,
 				be: y + rect.top,
-				aB: rect.width,
-				ak: rect.height
+				aD: rect.width,
+				al: rect.height
 			}
 		};
 	});
@@ -4952,7 +4952,7 @@ var author$project$Checkbox$update = F2(
 	function (msg, model) {
 		return _Utils_update(
 			model,
-			{ac: !model.ac});
+			{C: !model.C});
 	});
 var elm$core$Basics$compare = _Utils_compare;
 var elm$core$Dict$get = F2(
@@ -5483,15 +5483,15 @@ var author$project$Dropdown$update = F2(
 			case 0:
 				return _Utils_update(
 					model,
-					{J: !model.J});
+					{K: !model.K});
 			case 1:
 				return _Utils_update(
 					model,
-					{J: false});
+					{K: false});
 			case 2:
 				return _Utils_update(
 					model,
-					{J: false});
+					{K: false});
 			case 3:
 				var value = msg.a;
 				var updated = A3(
@@ -5501,15 +5501,15 @@ var author$project$Dropdown$update = F2(
 						return elm$core$Maybe$Just(
 							!A2(elm$core$Maybe$withDefault, false, val));
 					},
-					model.aq);
+					model.as);
 				return _Utils_update(
 					model,
-					{aq: updated});
+					{as: updated});
 			default:
 				var search = msg.a;
 				return _Utils_update(
 					model,
-					{aQ: search});
+					{aS: search});
 		}
 	});
 var author$project$Isdc$Ui$DropdownDots$Down = 1;
@@ -5521,25 +5521,25 @@ var author$project$DropdownDots$update = F2(
 				var newVal = msg.a;
 				return _Utils_update(
 					model,
-					{J: false});
+					{K: false});
 			case 1:
 				return _Utils_update(
 					model,
-					{J: true});
+					{K: true});
 			case 2:
 				return _Utils_update(
 					model,
-					{J: false});
+					{K: false});
 			default:
-				var _n1 = model.N;
+				var _n1 = model.O;
 				if (!_n1) {
 					return _Utils_update(
 						model,
-						{N: 1});
+						{O: 1});
 				} else {
 					return _Utils_update(
 						model,
-						{N: 0});
+						{O: 0});
 				}
 		}
 	});
@@ -5550,15 +5550,15 @@ var author$project$Input$update = F2(
 				var newVal = msg.a;
 				return _Utils_update(
 					model,
-					{cz: newVal});
+					{cA: newVal});
 			case 1:
 				return _Utils_update(
 					model,
-					{ag: true});
+					{ah: true});
 			default:
 				return _Utils_update(
 					model,
-					{ag: false});
+					{ah: false});
 		}
 	});
 var author$project$Main$Checkbox = function (a) {
@@ -5585,11 +5585,11 @@ var author$project$Main$SearchBox = function (a) {
 var author$project$Main$Select = function (a) {
 	return {$: 11, a: a};
 };
-var author$project$Checkbox$checkboxModel = {ac: false, a$: false, a4: 'Hello'};
+var author$project$Checkbox$checkboxModel = {C: false, ae: false, ao: 'Hello'};
 var elm$core$Dict$empty = elm$core$Dict$RBEmpty_elm_builtin;
-var author$project$Dropdown$dropdownModel = {J: false, aq: elm$core$Dict$empty, aQ: ''};
-var author$project$DropdownDots$initModel = {N: 1, J: false};
-var author$project$Input$inputModel = {ag: false, cz: ''};
+var author$project$Dropdown$dropdownModel = {K: false, as: elm$core$Dict$empty, aS: ''};
+var author$project$DropdownDots$initModel = {O: 1, K: false};
+var author$project$Input$inputModel = {ah: false, cA: ''};
 var author$project$Isdc$Ui$Theme$New = 2;
 var author$project$Main$Buttons = {$: 2};
 var author$project$Main$Colors = {$: 5};
@@ -5598,8 +5598,8 @@ var author$project$Main$Loader = {$: 7};
 var author$project$Main$NotFound = {$: 0};
 var author$project$Main$Scrollbars = {$: 13};
 var author$project$Main$Typography = {$: 6};
-var author$project$SearchBox$searchBoxModel = {ag: false, cz: ''};
-var author$project$Select$selectModel = {ag: false, c4: false, cz: ''};
+var author$project$SearchBox$searchBoxModel = {ah: false, cA: ''};
+var author$project$Select$selectModel = {ah: false, c5: false, cA: ''};
 var elm$core$String$length = _String_length;
 var elm$core$String$slice = _String_slice;
 var elm$core$String$dropLeft = F2(
@@ -5637,7 +5637,7 @@ var author$project$Main$urlToPage = function (url) {
 			return author$project$Main$Select(author$project$Select$selectModel);
 		case '/modal':
 			return author$project$Main$Modal(
-				{J: false, cv: 2});
+				{K: false, cw: 2});
 		case '/scrollbars':
 			return author$project$Main$Scrollbars;
 		case '/searchBox':
@@ -5651,17 +5651,17 @@ var author$project$Main$urlToPage = function (url) {
 var author$project$Isdc$Ui$Theme$Light = 1;
 var author$project$Modal$update = F2(
 	function (msg, _n0) {
-		var open = _n0.J;
-		var theme = _n0.cv;
+		var open = _n0.K;
+		var theme = _n0.cw;
 		switch (msg) {
 			case 0:
-				return {J: true, cv: theme};
+				return {K: true, cw: theme};
 			case 1:
-				return {J: false, cv: theme};
+				return {K: false, cw: theme};
 			default:
 				return {
-					J: false,
-					cv: (theme === 2) ? 1 : 2
+					K: false,
+					cw: (theme === 2) ? 1 : 2
 				};
 		}
 	});
@@ -5677,15 +5677,15 @@ var author$project$SearchBox$update = F2(
 				var newVal = msg.a;
 				return _Utils_update(
 					model,
-					{cz: newVal});
+					{cA: newVal});
 			case 1:
 				return _Utils_update(
 					model,
-					{ag: true});
+					{ah: true});
 			default:
 				return _Utils_update(
 					model,
-					{ag: false});
+					{ah: false});
 		}
 	});
 var author$project$Select$update = F2(
@@ -5695,23 +5695,23 @@ var author$project$Select$update = F2(
 				var newVal = msg.a;
 				return _Utils_update(
 					model,
-					{c4: false, cz: newVal});
+					{c5: false, cA: newVal});
 			case 1:
 				return _Utils_update(
 					model,
-					{ag: true});
+					{ah: true});
 			case 2:
 				return _Utils_update(
 					model,
-					{ag: false});
+					{ah: false});
 			case 3:
 				return _Utils_update(
 					model,
-					{c4: !model.c4});
+					{c5: !model.c5});
 			case 4:
 				return _Utils_update(
 					model,
-					{c4: false});
+					{c5: false});
 			default:
 				return model;
 		}
@@ -5909,7 +5909,7 @@ var elm$core$String$contains = _String_contains;
 var elm$core$String$toInt = _String_toInt;
 var elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {bO: fragment, bQ: host, de: path, cd: port_, ch: protocol, ci: query};
+		return {bO: fragment, bQ: host, de: path, ce: port_, ci: protocol, cj: query};
 	});
 var elm$url$Url$chompBeforePath = F5(
 	function (protocol, path, params, frag, str) {
@@ -6037,7 +6037,7 @@ var elm$url$Url$addPrefixed = F3(
 	});
 var elm$url$Url$toString = function (url) {
 	var http = function () {
-		var _n0 = url.ch;
+		var _n0 = url.ci;
 		if (!_n0) {
 			return 'http://';
 		} else {
@@ -6051,11 +6051,11 @@ var elm$url$Url$toString = function (url) {
 		A3(
 			elm$url$Url$addPrefixed,
 			'?',
-			url.ci,
+			url.cj,
 			_Utils_ap(
 				A2(
 					elm$url$Url$addPort,
-					url.cd,
+					url.ce,
 					_Utils_ap(http, url.bQ)),
 				url.de)));
 };
@@ -6228,26 +6228,26 @@ var rtfeldman$elm_css$Css$property = F2(
 	});
 var rtfeldman$elm_css$Css$prop1 = F2(
 	function (key, arg) {
-		return A2(rtfeldman$elm_css$Css$property, key, arg.cz);
+		return A2(rtfeldman$elm_css$Css$property, key, arg.cA);
 	});
 var rtfeldman$elm_css$Css$fontSize = rtfeldman$elm_css$Css$prop1('font-size');
 var rtfeldman$elm_css$Css$fontWeight = function (_n0) {
-	var value = _n0.cz;
+	var value = _n0.cA;
 	return A2(rtfeldman$elm_css$Css$property, 'font-weight', value);
 };
 var rtfeldman$elm_css$Css$UnitlessInteger = 0;
 var rtfeldman$elm_css$Css$Structure$Compatible = 0;
 var rtfeldman$elm_css$Css$int = function (val) {
 	return {
-		E: 0,
-		a3: 0,
-		T: 0,
+		F: 0,
+		a4: 0,
+		U: 0,
 		y: 0,
-		aN: 0,
-		I: val,
-		az: '',
-		aW: 0,
-		cz: elm$core$String$fromInt(val)
+		aP: 0,
+		J: val,
+		aB: '',
+		aY: 0,
+		cA: elm$core$String$fromInt(val)
 	};
 };
 var rtfeldman$elm_css$Css$letterSpacing = rtfeldman$elm_css$Css$prop1('letter-spacing');
@@ -6259,21 +6259,21 @@ var rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
 		return {
 			bt: 0,
 			bD: 0,
-			af: 0,
+			ag: 0,
 			o: 0,
-			aL: 0,
-			an: 0,
-			F: 0,
-			ao: 0,
+			aN: 0,
 			ap: 0,
-			S: 0,
+			G: 0,
+			aq: 0,
+			ar: 0,
 			T: 0,
+			U: 0,
 			y: 0,
-			I: numericValue,
-			ax: 0,
-			az: unitLabel,
-			aW: units,
-			cz: _Utils_ap(
+			J: numericValue,
+			az: 0,
+			aB: unitLabel,
+			aY: units,
+			cA: _Utils_ap(
 				elm$core$String$fromFloat(numericValue),
 				unitLabel)
 		};
@@ -6305,13 +6305,13 @@ var rtfeldman$elm_css$Css$prop2 = F3(
 				elm$core$String$join,
 				' ',
 				_List_fromArray(
-					[argA.cz, argB.cz])));
+					[argA.cA, argB.cA])));
 	});
 var rtfeldman$elm_css$Css$padding2 = rtfeldman$elm_css$Css$prop2('padding');
-var rtfeldman$elm_css$Css$pointer = {c: 0, cz: 'pointer'};
+var rtfeldman$elm_css$Css$pointer = {c: 0, cA: 'pointer'};
 var rtfeldman$elm_css$Css$textTransform = rtfeldman$elm_css$Css$prop1('text-transform');
-var rtfeldman$elm_css$Css$uppercase = {Y: 0, cz: 'uppercase'};
-var rtfeldman$elm_css$Css$zero = {aL: 0, an: 0, F: 0, ao: 0, ap: 0, S: 0, T: 0, aN: 0, I: 0, a7: 0, az: '', aW: 0, cz: '0'};
+var rtfeldman$elm_css$Css$uppercase = {Z: 0, cA: 'uppercase'};
+var rtfeldman$elm_css$Css$zero = {aN: 0, ap: 0, G: 0, aq: 0, ar: 0, T: 0, U: 0, aP: 0, J: 0, a7: 0, aB: '', aY: 0, cA: '0'};
 var author$project$Isdc$Ui$Button$baseStyles = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
 		[
@@ -6340,12 +6340,12 @@ var rtfeldman$elm_css$Css$withPrecedingHash = function (str) {
 };
 var rtfeldman$elm_css$Css$erroneousHex = function (str) {
 	return {
-		aD: 1,
-		aG: 0,
+		aF: 1,
+		aI: 0,
 		x: 0,
-		aJ: 0,
-		aP: 0,
-		cz: rtfeldman$elm_css$Css$withPrecedingHash(str)
+		aL: 0,
+		aR: 0,
+		cA: rtfeldman$elm_css$Css$withPrecedingHash(str)
 	};
 };
 var elm$core$Basics$composeR = F3(
@@ -6613,12 +6613,12 @@ var rtfeldman$elm_css$Css$validHex = F5(
 			var blue = _n6.a.a;
 			var alpha = _n6.b.a;
 			return {
-				aD: alpha / 255,
-				aG: blue,
+				aF: alpha / 255,
+				aI: blue,
 				x: 0,
-				aJ: green,
-				aP: red,
-				cz: rtfeldman$elm_css$Css$withPrecedingHash(str)
+				aL: green,
+				aR: red,
+				cA: rtfeldman$elm_css$Css$withPrecedingHash(str)
 			};
 		} else {
 			return rtfeldman$elm_css$Css$erroneousHex(str);
@@ -6741,10 +6741,10 @@ var rtfeldman$elm_css$Css$pseudoClass = function (_class) {
 };
 var rtfeldman$elm_css$Css$active = rtfeldman$elm_css$Css$pseudoClass('active');
 var rtfeldman$elm_css$Css$backgroundColor = function (c) {
-	return A2(rtfeldman$elm_css$Css$property, 'background-color', c.cz);
+	return A2(rtfeldman$elm_css$Css$property, 'background-color', c.cA);
 };
 var rtfeldman$elm_css$Css$color = function (c) {
-	return A2(rtfeldman$elm_css$Css$property, 'color', c.cz);
+	return A2(rtfeldman$elm_css$Css$property, 'color', c.cA);
 };
 var rtfeldman$elm_css$Css$disabled = rtfeldman$elm_css$Css$pseudoClass('disabled');
 var rtfeldman$elm_css$Css$hover = rtfeldman$elm_css$Css$pseudoClass('hover');
@@ -6792,7 +6792,7 @@ var rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
 	});
 var Skinney$murmur3$Murmur3$HashData = F4(
 	function (shift, seed, hash, charsProcessed) {
-		return {ab: charsProcessed, aj: hash, W: seed, au: shift};
+		return {ac: charsProcessed, ak: hash, X: seed, aw: shift};
 	});
 var elm$core$Bitwise$and = _Bitwise_and;
 var elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
@@ -6810,8 +6810,8 @@ var Skinney$murmur3$Murmur3$mix = F2(
 	});
 var elm$core$Basics$neq = _Utils_notEqual;
 var Skinney$murmur3$Murmur3$finalize = function (data) {
-	var acc = data.aj ? A2(Skinney$murmur3$Murmur3$mix, data.W, data.aj) : data.W;
-	var h1 = acc ^ data.ab;
+	var acc = data.ak ? A2(Skinney$murmur3$Murmur3$mix, data.X, data.ak) : data.X;
+	var h1 = acc ^ data.ac;
 	var h2 = A2(Skinney$murmur3$Murmur3$mur, 2246822507, h1 ^ (h1 >>> 16));
 	var h3 = A2(Skinney$murmur3$Murmur3$mur, 3266489909, h2 ^ (h2 >>> 13));
 	return (h3 ^ (h3 >>> 16)) >>> 0;
@@ -6822,14 +6822,14 @@ var Skinney$murmur3$Murmur3$step = function (acc) {
 };
 var Skinney$murmur3$Murmur3$hashFold = F2(
 	function (c, data) {
-		var res = data.aj | (c << data.au);
-		var _n0 = data.au;
+		var res = data.ak | (c << data.aw);
+		var _n0 = data.aw;
 		if (_n0 === 24) {
 			var newHash = Skinney$murmur3$Murmur3$step(
-				A2(Skinney$murmur3$Murmur3$mix, data.W, res));
-			return {ab: data.ab + 1, aj: 0, W: newHash, au: 0};
+				A2(Skinney$murmur3$Murmur3$mix, data.X, res));
+			return {ac: data.ac + 1, ak: 0, X: newHash, aw: 0};
 		} else {
-			return {ab: data.ab + 1, aj: res, W: data.W, au: data.au + 8};
+			return {ac: data.ac + 1, ak: res, X: data.X, aw: data.aw + 8};
 		}
 	});
 var elm$core$Basics$ge = _Utils_ge;
@@ -6911,7 +6911,7 @@ var elm$core$List$singleton = function (value) {
 		[value]);
 };
 var rtfeldman$elm_css$Css$Preprocess$stylesheet = function (snippets) {
-	return {bF: elm$core$Maybe$Nothing, bR: _List_Nil, b3: _List_Nil, cq: snippets};
+	return {bF: elm$core$Maybe$Nothing, bR: _List_Nil, b3: _List_Nil, cr: snippets};
 };
 var elm$core$List$append = F2(
 	function (xs, ys) {
@@ -7916,7 +7916,7 @@ var rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles = F2(
 						_List_fromArray(
 							[
 								rtfeldman$elm_css$Css$Structure$Keyframes(
-								{cQ: str, c8: name})
+								{cR: str, c9: name})
 							]));
 				case 4:
 					var _n12 = styles.a;
@@ -8054,10 +8054,10 @@ var rtfeldman$elm_css$Css$Preprocess$Resolve$toStructure = function (_n0) {
 	var charset = _n0.bF;
 	var imports = _n0.bR;
 	var namespaces = _n0.b3;
-	var snippets = _n0.cq;
+	var snippets = _n0.cr;
 	var declarations = rtfeldman$elm_css$Css$Preprocess$Resolve$extract(
 		A2(elm$core$List$concatMap, rtfeldman$elm_css$Css$Preprocess$unwrapSnippet, snippets));
-	return {bF: charset, cR: declarations, bR: imports, b3: namespaces};
+	return {bF: charset, cS: declarations, bR: imports, b3: namespaces};
 };
 var elm$core$Basics$composeL = F3(
 	function (g, f, x) {
@@ -8135,8 +8135,8 @@ var rtfeldman$elm_css$Css$Structure$compactHelp = F2(
 					A2(elm$core$List$cons, declaration, declarations));
 			case 6:
 				var record = declaration.a;
-				return elm$core$String$isEmpty(record.cQ) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
-					A3(elm$core$Dict$insert, record.c8, record.cQ, keyframesByName),
+				return elm$core$String$isEmpty(record.cR) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					A3(elm$core$Dict$insert, record.c9, record.cR, keyframesByName),
 					declarations);
 			case 7:
 				var properties = declaration.a;
@@ -8171,7 +8171,7 @@ var rtfeldman$elm_css$Css$Structure$withKeyframeDeclarations = F2(
 					var name = _n0.a;
 					var decl = _n0.b;
 					return rtfeldman$elm_css$Css$Structure$Keyframes(
-						{cQ: decl, c8: name});
+						{cR: decl, c9: name});
 				},
 				elm$core$Dict$toList(keyframesByName)),
 			compactedDeclarations);
@@ -8180,7 +8180,7 @@ var rtfeldman$elm_css$Css$Structure$compactStylesheet = function (_n0) {
 	var charset = _n0.bF;
 	var imports = _n0.bR;
 	var namespaces = _n0.b3;
-	var declarations = _n0.cR;
+	var declarations = _n0.cS;
 	var _n1 = A3(
 		elm$core$List$foldr,
 		rtfeldman$elm_css$Css$Structure$compactHelp,
@@ -8189,7 +8189,7 @@ var rtfeldman$elm_css$Css$Structure$compactStylesheet = function (_n0) {
 	var keyframesByName = _n1.a;
 	var compactedDeclarations = _n1.b;
 	var finalDeclarations = A2(rtfeldman$elm_css$Css$Structure$withKeyframeDeclarations, keyframesByName, compactedDeclarations);
-	return {bF: charset, cR: finalDeclarations, bR: imports, b3: namespaces};
+	return {bF: charset, cS: finalDeclarations, bR: imports, b3: namespaces};
 };
 var elm$core$List$filter = F2(
 	function (isGood, list) {
@@ -8220,7 +8220,7 @@ var rtfeldman$elm_css$Css$Structure$Output$mediaExpressionToString = function (e
 		A2(
 			elm$core$Maybe$map,
 			elm$core$Basics$append(': '),
-			expression.cz)) + ')'));
+			expression.cA)) + ')'));
 };
 var rtfeldman$elm_css$Css$Structure$Output$mediaTypeToString = function (mediaType) {
 	switch (mediaType) {
@@ -8462,8 +8462,8 @@ var rtfeldman$elm_css$Css$Structure$Output$prettyPrintDeclaration = function (de
 		case 5:
 			return 'TODO';
 		case 6:
-			var name = decl.a.c8;
-			var declaration = decl.a.cQ;
+			var name = decl.a.c9;
+			var declaration = decl.a.cR;
 			return '@keyframes ' + (name + (' {\n' + (declaration + '\n}')));
 		case 7:
 			return 'TODO';
@@ -8477,7 +8477,7 @@ var rtfeldman$elm_css$Css$Structure$Output$prettyPrint = function (_n0) {
 	var charset = _n0.bF;
 	var imports = _n0.bR;
 	var namespaces = _n0.b3;
-	var declarations = _n0.cR;
+	var declarations = _n0.cS;
 	return A2(
 		elm$core$String$join,
 		'\n\n',
@@ -8599,8 +8599,8 @@ var rtfeldman$elm_css$Html$Styled$Attributes$boolProperty = F2(
 	});
 var rtfeldman$elm_css$Html$Styled$Attributes$disabled = rtfeldman$elm_css$Html$Styled$Attributes$boolProperty('disabled');
 var author$project$Buttons$brand = {
-	M: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10, Css.backgroundColor Color.primary01 ] ]\n        [ Button.brand [] [ text "Hello world" ]\n        , Button.brand [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
-	O: A2(
+	N: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10, Css.backgroundColor Color.primary01 ] ]\n        [ Button.brand [] [ text "Hello world" ]\n        , Button.brand [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
+	P: A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
@@ -8638,7 +8638,7 @@ var author$project$Buttons$brand = {
 							]))
 					]))
 			])),
-	R: 'brand : Styled.Html msg'
+	S: 'brand : Styled.Html msg'
 };
 var rtfeldman$elm_css$Css$cssFunction = F2(
 	function (funcName, args) {
@@ -8647,12 +8647,12 @@ var rtfeldman$elm_css$Css$cssFunction = F2(
 var rtfeldman$elm_css$Css$rgba = F4(
 	function (r, g, b, alpha) {
 		return {
-			aD: alpha,
-			aG: b,
+			aF: alpha,
+			aI: b,
 			x: 0,
-			aJ: g,
-			aP: r,
-			cz: A2(
+			aL: g,
+			aR: r,
+			cA: A2(
 				rtfeldman$elm_css$Css$cssFunction,
 				'rgba',
 				_Utils_ap(
@@ -8686,7 +8686,7 @@ var rtfeldman$elm_css$Css$prop4 = F5(
 				elm$core$String$join,
 				' ',
 				_List_fromArray(
-					[argA.cz, argB.cz, argC.cz, argD.cz])));
+					[argA.cA, argB.cA, argC.cA, argD.cA])));
 	});
 var rtfeldman$elm_css$Css$boxShadow4 = rtfeldman$elm_css$Css$prop4('box-shadow');
 var rtfeldman$elm_css$Css$prop5 = F6(
@@ -8698,15 +8698,15 @@ var rtfeldman$elm_css$Css$prop5 = F6(
 				elm$core$String$join,
 				' ',
 				_List_fromArray(
-					[argA.cz, argB.cz, argC.cz, argD.cz, argE.cz])));
+					[argA.cA, argB.cA, argC.cA, argD.cA, argE.cA])));
 	});
 var rtfeldman$elm_css$Css$boxShadow5 = rtfeldman$elm_css$Css$prop5('box-shadow');
-var rtfeldman$elm_css$Css$none = {_: 0, bB: 0, r: 0, c: 0, j: 0, c0: 0, bS: 0, bi: 0, ap: 0, S: 0, y: 0, e: 0, d: 0, bl: 0, a7: 0, df: 0, v: 0, a8: 0, dk: 0, aw: 0, Y: 0, t: 0, i: 0, dz: 0, cz: 'none'};
+var rtfeldman$elm_css$Css$none = {aa: 0, bB: 0, r: 0, c: 0, j: 0, c1: 0, bS: 0, bi: 0, ar: 0, T: 0, y: 0, e: 0, d: 0, bl: 0, a7: 0, df: 0, v: 0, a8: 0, dk: 0, ay: 0, Z: 0, t: 0, i: 0, dz: 0, cA: 'none'};
 var rtfeldman$elm_css$Css$Transitions$BackgroundColor = 1;
 var rtfeldman$elm_css$Css$Transitions$Transition = elm$core$Basics$identity;
 var rtfeldman$elm_css$Css$Transitions$durationTransition = F2(
 	function (animation, duration) {
-		return {aY: animation, a_: elm$core$Maybe$Nothing, a0: duration, bc: elm$core$Maybe$Nothing};
+		return {a_: animation, a0: elm$core$Maybe$Nothing, a1: duration, bc: elm$core$Maybe$Nothing};
 	});
 var rtfeldman$elm_css$Css$Transitions$backgroundColor = rtfeldman$elm_css$Css$Transitions$durationTransition(1);
 var rtfeldman$elm_css$Css$Transitions$BoxShadow = 25;
@@ -8943,9 +8943,9 @@ var rtfeldman$elm_css$Css$Transitions$transition = function (options) {
 			elm$core$List$foldl,
 			F2(
 				function (_n0, s) {
-					var animation = _n0.aY;
-					var duration = _n0.a0;
-					var delay = _n0.a_;
+					var animation = _n0.a_;
+					var duration = _n0.a1;
+					var delay = _n0.a0;
 					var timing = _n0.bc;
 					return s + (A2(
 						elm$core$String$join,
@@ -9026,8 +9026,8 @@ var author$project$Isdc$Ui$Button$green = F2(
 			children);
 	});
 var author$project$Buttons$green = {
-	M: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10 ] ]\n        [ Button.green [] [ text "Hello world" ]\n        , Button.green [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
-	O: A2(
+	N: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10 ] ]\n        [ Button.green [] [ text "Hello world" ]\n        , Button.green [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
+	P: A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
@@ -9064,7 +9064,7 @@ var author$project$Buttons$green = {
 							]))
 					]))
 			])),
-	R: 'green : Styled.Html msg'
+	S: 'green : Styled.Html msg'
 };
 var author$project$Isdc$Ui$Color$Css$green10 = A4(rtfeldman$elm_css$Css$rgba, 58, 182, 118, 0.1);
 var author$project$Isdc$Ui$Color$Css$white40 = A4(rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.4);
@@ -9096,8 +9096,8 @@ var author$project$Isdc$Ui$Button$greenDark = F2(
 var author$project$Isdc$Ui$Color$Hex$darkBlueC = '#21353B';
 var author$project$Isdc$Ui$Color$Css$darkBlueC = rtfeldman$elm_css$Css$hex(author$project$Isdc$Ui$Color$Hex$darkBlueC);
 var author$project$Buttons$greenDark = {
-	M: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10, Css.backgroundColor Color.darkBlueC ] ]\n        [ Button.greenDark [] [ text "Hello world" ]\n        , Button.greenDark [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
-	O: A2(
+	N: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10, Css.backgroundColor Color.darkBlueC ] ]\n        [ Button.greenDark [] [ text "Hello world" ]\n        , Button.greenDark [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
+	P: A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
@@ -9135,11 +9135,11 @@ var author$project$Buttons$greenDark = {
 							]))
 					]))
 			])),
-	R: 'greenDark : Styled.Html msg'
+	S: 'greenDark : Styled.Html msg'
 };
 var author$project$Isdc$Ui$Color$Css$white10 = A4(rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.1);
 var author$project$Isdc$Ui$Color$Css$white60 = A4(rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.6);
-var rtfeldman$elm_css$Css$transparent = {x: 0, cz: 'transparent'};
+var rtfeldman$elm_css$Css$transparent = {x: 0, cA: 'transparent'};
 var author$project$Isdc$Ui$Button$secondaryDarkStyles = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
 		[
@@ -9174,8 +9174,8 @@ var author$project$Isdc$Ui$Button$secondaryDark = F2(
 			children);
 	});
 var author$project$Buttons$secondaryDark = {
-	M: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10, Css.backgroundColor Color.primary01 ] ]\n        [ Button.secondaryDark [] [ text "Hello world" ]\n        , Button.secondaryDark [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
-	O: A2(
+	N: '\ndiv []\n    [ div [ css [ Css.padding <| Css.px 10, Css.backgroundColor Color.primary01 ] ]\n        [ Button.secondaryDark [] [ text "Hello world" ]\n        , Button.secondaryDark [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
+	P: A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
@@ -9213,7 +9213,7 @@ var author$project$Buttons$secondaryDark = {
 							]))
 					]))
 			])),
-	R: 'secondaryDark : Styled.Html msg'
+	S: 'secondaryDark : Styled.Html msg'
 };
 var author$project$Isdc$Ui$Color$Hex$black = '#000000';
 var author$project$Isdc$Ui$Color$Css$black = rtfeldman$elm_css$Css$hex(author$project$Isdc$Ui$Color$Hex$black);
@@ -9253,8 +9253,8 @@ var author$project$Isdc$Ui$Button$secondaryLight = F2(
 			children);
 	});
 var author$project$Buttons$secondaryLight = {
-	M: '\ndiv []\n    [ div []\n        [ Button.secondaryLight [] [ text "Hello world" ]\n        , Button.secondaryLight [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
-	O: A2(
+	N: '\ndiv []\n    [ div []\n        [ Button.secondaryLight [] [ text "Hello world" ]\n        , Button.secondaryLight [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
+	P: A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
@@ -9283,7 +9283,7 @@ var author$project$Buttons$secondaryLight = {
 							]))
 					]))
 			])),
-	R: 'secondaryLight : Styled.Html msg'
+	S: 'secondaryLight : Styled.Html msg'
 };
 var author$project$Isdc$Ui$Button$whiteStyles = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
@@ -9312,8 +9312,8 @@ var author$project$Isdc$Ui$Button$white = F2(
 			children);
 	});
 var author$project$Buttons$white = {
-	M: '\ndiv []\n    [ div []\n        [ Button.white [] [ text "Hello world" ]\n        , Button.white [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
-	O: A2(
+	N: '\ndiv []\n    [ div []\n        [ Button.white [] [ text "Hello world" ]\n        , Button.white [ disabled True ] [ text "Hello world" ]\n        ]\n    ]\n',
+	P: A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
@@ -9342,7 +9342,7 @@ var author$project$Buttons$white = {
 							]))
 					]))
 			])),
-	R: 'white : Styled.Html msg'
+	S: 'white : Styled.Html msg'
 };
 var elm$core$Result$withDefault = F2(
 	function (def, result) {
@@ -9358,10 +9358,10 @@ var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$HCode = elm$core$Basics$identity;
 var elm$parser$Parser$DeadEnd = F3(
 	function (row, col, problem) {
-		return {bG: col, ce: problem, cn: row};
+		return {bG: col, cf: problem, co: row};
 	});
 var elm$parser$Parser$problemToDeadEnd = function (p) {
-	return A3(elm$parser$Parser$DeadEnd, p.cn, p.bG, p.ce);
+	return A3(elm$parser$Parser$DeadEnd, p.co, p.bG, p.cf);
 };
 var elm$parser$Parser$Advanced$bagToList = F2(
 	function (bag, list) {
@@ -9393,7 +9393,7 @@ var elm$parser$Parser$Advanced$run = F2(
 	function (_n0, src) {
 		var parse = _n0;
 		var _n1 = parse(
-			{bG: 1, f: _List_Nil, g: 1, b: 0, cn: 1, a: src});
+			{bG: 1, f: _List_Nil, g: 1, b: 0, co: 1, a: src});
 		if (!_n1.$) {
 			var value = _n1.b;
 			return elm$core$Result$Ok(value);
@@ -9668,14 +9668,14 @@ var elm$parser$Parser$Advanced$AddRight = F2(
 	});
 var elm$parser$Parser$Advanced$DeadEnd = F4(
 	function (row, col, problem, contextStack) {
-		return {bG: col, cO: contextStack, ce: problem, cn: row};
+		return {bG: col, cP: contextStack, cf: problem, co: row};
 	});
 var elm$parser$Parser$Advanced$fromState = F2(
 	function (s, x) {
 		return A2(
 			elm$parser$Parser$Advanced$AddRight,
 			elm$parser$Parser$Advanced$Empty,
-			A4(elm$parser$Parser$Advanced$DeadEnd, s.cn, s.bG, x, s.f));
+			A4(elm$parser$Parser$Advanced$DeadEnd, s.co, s.bG, x, s.f));
 	});
 var elm$parser$Parser$Advanced$isSubString = _Parser_isSubString;
 var elm$parser$Parser$Advanced$token = function (_n0) {
@@ -9683,7 +9683,7 @@ var elm$parser$Parser$Advanced$token = function (_n0) {
 	var expecting = _n0.b;
 	var progress = !elm$core$String$isEmpty(str);
 	return function (s) {
-		var _n1 = A5(elm$parser$Parser$Advanced$isSubString, str, s.b, s.cn, s.bG, s.a);
+		var _n1 = A5(elm$parser$Parser$Advanced$isSubString, str, s.b, s.co, s.bG, s.a);
 		var newOffset = _n1.a;
 		var newRow = _n1.b;
 		var newCol = _n1.c;
@@ -9694,7 +9694,7 @@ var elm$parser$Parser$Advanced$token = function (_n0) {
 			elm$parser$Parser$Advanced$Good,
 			progress,
 			0,
-			{bG: newCol, f: s.f, g: s.g, b: newOffset, cn: newRow, a: s.a});
+			{bG: newCol, f: s.f, g: s.g, b: newOffset, co: newRow, a: s.a});
 	};
 };
 var elm$parser$Parser$Advanced$symbol = elm$parser$Parser$Advanced$token;
@@ -9719,7 +9719,7 @@ var elm$parser$Parser$Advanced$chompWhileHelp = F5(
 					elm$parser$Parser$Advanced$Good,
 					_Utils_cmp(s0.b, offset) < 0,
 					0,
-					{bG: col, f: s0.f, g: s0.g, b: offset, cn: row, a: s0.a});
+					{bG: col, f: s0.f, g: s0.g, b: offset, co: row, a: s0.a});
 			} else {
 				if (_Utils_eq(newOffset, -2)) {
 					var $temp$isGood = isGood,
@@ -9751,7 +9751,7 @@ var elm$parser$Parser$Advanced$chompWhileHelp = F5(
 	});
 var elm$parser$Parser$Advanced$chompWhile = function (isGood) {
 	return function (s) {
-		return A5(elm$parser$Parser$Advanced$chompWhileHelp, isGood, s.b, s.cn, s.bG, s);
+		return A5(elm$parser$Parser$Advanced$chompWhileHelp, isGood, s.b, s.co, s.bG, s);
 	};
 };
 var elm$parser$Parser$chompWhile = elm$parser$Parser$Advanced$chompWhile;
@@ -9850,11 +9850,11 @@ var elm$parser$Parser$Advanced$chompIf = F2(
 				elm$parser$Parser$Advanced$Good,
 				true,
 				0,
-				{bG: 1, f: s.f, g: s.g, b: s.b + 1, cn: s.cn + 1, a: s.a}) : A3(
+				{bG: 1, f: s.f, g: s.g, b: s.b + 1, co: s.co + 1, a: s.a}) : A3(
 				elm$parser$Parser$Advanced$Good,
 				true,
 				0,
-				{bG: s.bG + 1, f: s.f, g: s.g, b: newOffset, cn: s.cn, a: s.a}));
+				{bG: s.bG + 1, f: s.f, g: s.g, b: newOffset, co: s.co, a: s.a}));
 		};
 	});
 var elm$parser$Parser$chompIf = function (isGood) {
@@ -10517,7 +10517,7 @@ var elm$parser$Parser$Advanced$keyword = function (_n0) {
 	var expecting = _n0.b;
 	var progress = !elm$core$String$isEmpty(kwd);
 	return function (s) {
-		var _n1 = A5(elm$parser$Parser$Advanced$isSubString, kwd, s.b, s.cn, s.bG, s.a);
+		var _n1 = A5(elm$parser$Parser$Advanced$isSubString, kwd, s.b, s.co, s.bG, s.a);
 		var newOffset = _n1.a;
 		var newRow = _n1.b;
 		var newCol = _n1.c;
@@ -10534,7 +10534,7 @@ var elm$parser$Parser$Advanced$keyword = function (_n0) {
 			elm$parser$Parser$Advanced$Good,
 			progress,
 			0,
-			{bG: newCol, f: s.f, g: s.g, b: newOffset, cn: newRow, a: s.a});
+			{bG: newCol, f: s.f, g: s.g, b: newOffset, co: newRow, a: s.a});
 	};
 };
 var elm$parser$Parser$keyword = function (kwd) {
@@ -10960,7 +10960,7 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Language$Elm$mainLoop = f
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Language$Elm$toRevTokens = A2(elm$parser$Parser$loop, _List_Nil, pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Language$Elm$mainLoop);
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Line$Helpers$newLine = function (fragments) {
-	return {cZ: fragments, c$: elm$core$Maybe$Nothing};
+	return {c_: fragments, c0: elm$core$Maybe$Nothing};
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Comment = 1;
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Default = 0;
@@ -10970,17 +10970,17 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Line$Helpers$toFragment =
 		var text = _n0.b;
 		switch (syntax.$) {
 			case 0:
-				return {cD: '', dg: 0, dv: text};
+				return {cE: '', dg: 0, dv: text};
 			case 1:
-				return {cD: '', dg: 1, dv: text};
+				return {cE: '', dg: 1, dv: text};
 			case 2:
-				return {cD: '', dg: 0, dv: text};
+				return {cE: '', dg: 0, dv: text};
 			default:
 				var c = syntax.a;
 				var _n2 = toStyle(c);
 				var requiredStyle = _n2.a;
 				var additionalClass = _n2.b;
-				return {cD: additionalClass, dg: requiredStyle, dv: text};
+				return {cE: additionalClass, dg: requiredStyle, dv: text};
 		}
 	});
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Line$Helpers$toLinesHelp = F3(
@@ -11079,27 +11079,27 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex = function (a) 
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$DefaultColor = {$: 0};
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor = function (background) {
-	return {aE: background, al: false, am: false, aK: false, dv: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$DefaultColor};
+	return {aG: background, am: false, an: false, aM: false, dv: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$DefaultColor};
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$noEmphasis = F2(
 	function (text, background) {
-		return {aE: background, al: false, am: false, aK: false, dv: text};
+		return {aG: background, am: false, an: false, aM: false, dv: text};
 	});
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$textColor = function (text) {
-	return {aE: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$DefaultColor, al: false, am: false, aK: false, dv: text};
+	return {aG: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$DefaultColor, am: false, an: false, aM: false, dv: text};
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$GitHub$requiredStyles = {
-	cC: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor(
+	cD: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#eaffea')),
-	cN: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$textColor(
+	cO: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$textColor(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#969896')),
-	cS: A2(
+	cT: A2(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$noEmphasis,
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#24292e'),
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#ffffff')),
-	cT: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor(
+	cU: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#ffecec')),
-	c$: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor(
+	c0: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$backgroundColor(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#fffbdd')),
 	dn: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$textColor(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#005cc5')),
@@ -11116,7 +11116,7 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$GitHub$requiredStyl
 	dt: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$textColor(
 		pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$Hex('#795da3'))
 };
-var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$GitHub$theme = {cP: _List_Nil, dh: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$GitHub$requiredStyles};
+var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$GitHub$theme = {cQ: _List_Nil, dh: pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$GitHub$requiredStyles};
 var elm$core$Tuple$mapFirst = F2(
 	function (func, _n0) {
 		var x = _n0.a;
@@ -11178,11 +11178,11 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$emptyIfFalse = F2(
 		return bool ? str : '';
 	});
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$styleToCss = function (_n0) {
-	var isBold = _n0.al;
-	var isItalic = _n0.am;
-	var isUnderline = _n0.aK;
+	var isBold = _n0.am;
+	var isItalic = _n0.an;
+	var isUnderline = _n0.aM;
 	var text = _n0.dv;
-	var background = _n0.aE;
+	var background = _n0.aG;
 	return elm$core$String$concat(
 		_List_fromArray(
 			[
@@ -11371,16 +11371,16 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$Type$syntaxesToSele
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Theme$Type$toCss = function (_n0) {
 	var requiredStyles = _n0.dh;
-	var customStyles = _n0.cP;
+	var customStyles = _n0.cQ;
 	return pablohirafuji$elm_syntax_highlight$SyntaxHighlight$Style$toCss(
 		_Utils_ap(
 			_List_fromArray(
 				[
-					_Utils_Tuple2('.elmsh', requiredStyles.cS),
-					_Utils_Tuple2('.elmsh-hl', requiredStyles.c$),
-					_Utils_Tuple2('.elmsh-add', requiredStyles.cC),
-					_Utils_Tuple2('.elmsh-del', requiredStyles.cT),
-					_Utils_Tuple2('.elmsh-comm', requiredStyles.cN),
+					_Utils_Tuple2('.elmsh', requiredStyles.cT),
+					_Utils_Tuple2('.elmsh-hl', requiredStyles.c0),
+					_Utils_Tuple2('.elmsh-add', requiredStyles.cD),
+					_Utils_Tuple2('.elmsh-del', requiredStyles.cU),
+					_Utils_Tuple2('.elmsh-comm', requiredStyles.cO),
 					_Utils_Tuple2('.elmsh1', requiredStyles.dn),
 					_Utils_Tuple2('.elmsh2', requiredStyles.$7),
 					_Utils_Tuple2('.elmsh3', requiredStyles.dp),
@@ -11456,7 +11456,7 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$View$requiredStyleToStrin
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$View$fragmentView = function (_n0) {
 	var text = _n0.dv;
 	var requiredStyle = _n0.dg;
-	var additionalClass = _n0.cD;
+	var additionalClass = _n0.cE;
 	return ((!requiredStyle) && elm$core$String$isEmpty(additionalClass)) ? elm$html$Html$text(text) : A2(
 		elm$html$Html$span,
 		_List_fromArray(
@@ -11477,8 +11477,8 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$View$fragmentView = funct
 };
 var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$View$lineView = F3(
 	function (start, index, _n0) {
-		var fragments = _n0.cZ;
-		var highlight = _n0.c$;
+		var fragments = _n0.c_;
+		var highlight = _n0.c0;
 		return A2(
 			elm$html$Html$div,
 			_List_fromArray(
@@ -11521,8 +11521,8 @@ var pablohirafuji$elm_syntax_highlight$SyntaxHighlight$View$toInlineHtml = funct
 			A2(
 				elm$core$List$map,
 				function (_n0) {
-					var highlight = _n0.c$;
-					var fragments = _n0.cZ;
+					var highlight = _n0.c0;
+					var fragments = _n0.c_;
 					return _Utils_eq(highlight, elm$core$Maybe$Nothing) ? A2(elm$core$List$map, pablohirafuji$elm_syntax_highlight$SyntaxHighlight$View$fragmentView, fragments) : _List_fromArray(
 						[
 							A2(
@@ -11627,7 +11627,7 @@ var author$project$Isdc$Ui$Color$Hex$grayB = '#E5E5E5';
 var author$project$Isdc$Ui$Color$Css$grayB = rtfeldman$elm_css$Css$hex(author$project$Isdc$Ui$Color$Hex$grayB);
 var author$project$Isdc$Ui$Color$Hex$grayF = '#0A0A0';
 var author$project$Isdc$Ui$Color$Css$grayF = rtfeldman$elm_css$Css$hex(author$project$Isdc$Ui$Color$Hex$grayF);
-var rtfeldman$elm_css$Css$auto = {cE: 0, c: 0, af: 0, a3: 0, c5: 0, an: 0, F: 0, y: 0, ar: 0, v: 0, bb: 0, ay: 0, t: 0, cz: 'auto'};
+var rtfeldman$elm_css$Css$auto = {cF: 0, c: 0, ag: 0, a4: 0, c6: 0, ap: 0, G: 0, y: 0, at: 0, v: 0, bb: 0, aA: 0, t: 0, cA: 'auto'};
 var rtfeldman$elm_css$Css$prop3 = F4(
 	function (key, argA, argB, argC) {
 		return A2(
@@ -11637,7 +11637,7 @@ var rtfeldman$elm_css$Css$prop3 = F4(
 				elm$core$String$join,
 				' ',
 				_List_fromArray(
-					[argA.cz, argB.cz, argC.cz])));
+					[argA.cA, argB.cA, argC.cA])));
 	});
 var rtfeldman$elm_css$Css$border3 = rtfeldman$elm_css$Css$prop3('border');
 var rtfeldman$elm_css$Css$borderTop3 = rtfeldman$elm_css$Css$prop3('border-top');
@@ -11646,9 +11646,9 @@ var rtfeldman$elm_css$Css$margin2 = rtfeldman$elm_css$Css$prop2('margin');
 var rtfeldman$elm_css$Css$marginBottom = rtfeldman$elm_css$Css$prop1('margin-bottom');
 var rtfeldman$elm_css$Css$marginTop = rtfeldman$elm_css$Css$prop1('margin-top');
 var rtfeldman$elm_css$Css$overflow = rtfeldman$elm_css$Css$prop1('overflow');
-var rtfeldman$elm_css$Css$preWrap = {cz: 'pre-wrap', L: 0};
-var rtfeldman$elm_css$Css$sansSerif = {P: 0, cz: 'sans-serif'};
-var rtfeldman$elm_css$Css$solid = {r: 0, X: 0, cz: 'solid'};
+var rtfeldman$elm_css$Css$preWrap = {cA: 'pre-wrap', M: 0};
+var rtfeldman$elm_css$Css$sansSerif = {Q: 0, cA: 'sans-serif'};
+var rtfeldman$elm_css$Css$solid = {r: 0, Y: 0, cA: 'solid'};
 var rtfeldman$elm_css$Css$whiteSpace = rtfeldman$elm_css$Css$prop1('white-space');
 var rtfeldman$elm_css$VirtualDom$Styled$unstyledNode = rtfeldman$elm_css$VirtualDom$Styled$Unstyled;
 var rtfeldman$elm_css$Html$Styled$fromUnstyled = rtfeldman$elm_css$VirtualDom$Styled$unstyledNode;
@@ -11730,7 +11730,7 @@ var author$project$DocsLayout$story = function (doc) {
 									_List_fromArray(
 										[
 											rtfeldman$elm_css$Html$Styled$fromUnstyled(
-											A2(author$project$DocsLayout$highLighted, chapter.R, elm$core$Maybe$Nothing))
+											A2(author$project$DocsLayout$highLighted, chapter.S, elm$core$Maybe$Nothing))
 										])),
 									A2(
 									rtfeldman$elm_css$Html$Styled$div,
@@ -11762,19 +11762,19 @@ var author$project$DocsLayout$story = function (doc) {
 											rtfeldman$elm_css$Html$Styled$fromUnstyled(
 											A2(
 												author$project$DocsLayout$highLighted,
-												chapter.M,
+												chapter.N,
 												elm$core$Maybe$Just(1)))
 										])),
-									chapter.O
+									chapter.P
 								]));
 					},
-					doc.cK))
+					doc.cL))
 			]));
 };
 var author$project$Buttons$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[author$project$Buttons$brand, author$project$Buttons$secondaryDark, author$project$Buttons$secondaryLight, author$project$Buttons$green, author$project$Buttons$greenDark, author$project$Buttons$white]),
 			dw: 'Isdc.Ui.Button as Button'
 		});
@@ -11784,7 +11784,7 @@ var rtfeldman$elm_css$Css$border2 = rtfeldman$elm_css$Css$prop2('border');
 var rtfeldman$elm_css$Css$height = rtfeldman$elm_css$Css$prop1('height');
 var rtfeldman$elm_css$Css$marginRight = rtfeldman$elm_css$Css$prop1('margin-right');
 var rtfeldman$elm_css$Css$position = rtfeldman$elm_css$Css$prop1('position');
-var rtfeldman$elm_css$Css$relative = {aO: 0, cz: 'relative'};
+var rtfeldman$elm_css$Css$relative = {aQ: 0, cA: 'relative'};
 var rtfeldman$elm_css$Css$width = rtfeldman$elm_css$Css$prop1('width');
 var author$project$Isdc$Ui$Checkbox$baseCheckboxStyles = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
@@ -11807,18 +11807,18 @@ var author$project$Isdc$Ui$Checkbox$baseCheckboxStyles = rtfeldman$elm_css$Css$b
 			rtfeldman$elm_css$Css$borderRadius(
 			rtfeldman$elm_css$Css$px(2))
 		]));
-var rtfeldman$elm_css$Css$absolute = {aO: 0, cz: 'absolute'};
+var rtfeldman$elm_css$Css$absolute = {aQ: 0, cA: 'absolute'};
 var rtfeldman$elm_css$Css$borderBottom3 = rtfeldman$elm_css$Css$prop3('border-bottom');
 var rtfeldman$elm_css$Css$borderColor = function (c) {
-	return A2(rtfeldman$elm_css$Css$property, 'border-color', c.cz);
+	return A2(rtfeldman$elm_css$Css$property, 'border-color', c.cA);
 };
 var rtfeldman$elm_css$Css$borderLeft3 = rtfeldman$elm_css$Css$prop3('border-left');
 var rtfeldman$elm_css$Css$angleConverter = F2(
 	function (suffix, angleVal) {
 		return {
-			cF: 0,
+			cG: 0,
 			w: 0,
-			cz: _Utils_ap(
+			cA: _Utils_ap(
 				elm$core$String$fromFloat(angleVal),
 				suffix)
 		};
@@ -11828,10 +11828,10 @@ var rtfeldman$elm_css$Css$left = rtfeldman$elm_css$Css$prop1('left');
 var rtfeldman$elm_css$Css$PercentageUnits = 0;
 var rtfeldman$elm_css$Css$pct = A2(rtfeldman$elm_css$Css$Internal$lengthConverter, 0, '%');
 var rtfeldman$elm_css$Css$rotate = function (_n0) {
-	var value = _n0.cz;
+	var value = _n0.cA;
 	return {
 		i: 0,
-		cz: A2(
+		cA: A2(
 			rtfeldman$elm_css$Css$cssFunction,
 			'rotate',
 			_List_fromArray(
@@ -11840,14 +11840,14 @@ var rtfeldman$elm_css$Css$rotate = function (_n0) {
 };
 var rtfeldman$elm_css$Css$top = rtfeldman$elm_css$Css$prop1('top');
 var rtfeldman$elm_css$Css$valuesOrNone = function (list) {
-	return elm$core$List$isEmpty(list) ? {cz: 'none'} : {
-		cz: A2(
+	return elm$core$List$isEmpty(list) ? {cA: 'none'} : {
+		cA: A2(
 			elm$core$String$join,
 			' ',
 			A2(
 				elm$core$List$map,
 				function ($) {
-					return $.cz;
+					return $.cA;
 				},
 				list))
 	};
@@ -11860,11 +11860,11 @@ var rtfeldman$elm_css$Css$translate2 = F2(
 	function (tx, ty) {
 		return {
 			i: 0,
-			cz: A2(
+			cA: A2(
 				rtfeldman$elm_css$Css$cssFunction,
 				'translate',
 				_List_fromArray(
-					[tx.cz, ty.cz]))
+					[tx.cA, ty.cA]))
 		};
 	});
 var rtfeldman$elm_css$Html$Styled$span = rtfeldman$elm_css$Html$Styled$node('span');
@@ -11901,91 +11901,191 @@ var rtfeldman$elm_css$Html$Styled$Events$onClick = function (msg) {
 		'click',
 		elm$json$Json$Decode$succeed(msg));
 };
-var author$project$Isdc$Ui$Checkbox$checkBox = function (options) {
-	return A2(
-		rtfeldman$elm_css$Html$Styled$div,
-		_List_Nil,
-		_List_fromArray(
-			[
-				A2(
-				rtfeldman$elm_css$Html$Styled$button,
-				_List_fromArray(
-					[
-						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						options.ac ? _List_fromArray(
-							[
-								rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Color$Css$green),
-								author$project$Isdc$Ui$Checkbox$baseCheckboxStyles,
-								rtfeldman$elm_css$Css$borderColor(author$project$Isdc$Ui$Color$Css$green)
-							]) : _List_fromArray(
-							[
-								author$project$Isdc$Ui$Checkbox$baseCheckboxStyles,
-								rtfeldman$elm_css$Css$borderColor(author$project$Isdc$Ui$Color$Css$black40)
-							])),
-						rtfeldman$elm_css$Html$Styled$Events$onClick(options.db),
-						rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__checkbox')
-					]),
-				options.ac ? _List_fromArray(
-					[
-						A2(
-						rtfeldman$elm_css$Html$Styled$span,
+var author$project$Isdc$Ui$Checkbox$checkBox = F2(
+	function (theme, options) {
+		var labelColor = function () {
+			if (theme === 2) {
+				return author$project$Isdc$Ui$Color$Css$white60;
+			} else {
+				return author$project$Isdc$Ui$Color$Css$black;
+			}
+		}();
+		var checkmarkColor = function () {
+			if (theme === 2) {
+				return author$project$Isdc$Ui$Color$Css$primary01;
+			} else {
+				return author$project$Isdc$Ui$Color$Css$white;
+			}
+		}();
+		var borderColor_ = function () {
+			if (theme === 2) {
+				var _n4 = _Utils_Tuple2(options.C, options.ae);
+				if (!_n4.a) {
+					if (!_n4.b) {
+						return author$project$Isdc$Ui$Color$Css$white60;
+					} else {
+						return author$project$Isdc$Ui$Color$Css$white40;
+					}
+				} else {
+					if (!_n4.b) {
+						return author$project$Isdc$Ui$Color$Css$brand01;
+					} else {
+						return author$project$Isdc$Ui$Color$Css$white40;
+					}
+				}
+			} else {
+				var _n5 = options.C;
+				if (_n5) {
+					return author$project$Isdc$Ui$Color$Css$green;
+				} else {
+					return author$project$Isdc$Ui$Color$Css$black40;
+				}
+			}
+		}();
+		var backgroundColor_ = function () {
+			if (theme === 2) {
+				var _n1 = _Utils_Tuple2(options.C, options.ae);
+				if (!_n1.a) {
+					if (!_n1.b) {
+						return author$project$Isdc$Ui$Color$Css$primary01;
+					} else {
+						return author$project$Isdc$Ui$Color$Css$primary01;
+					}
+				} else {
+					if (!_n1.b) {
+						return author$project$Isdc$Ui$Color$Css$brand01;
+					} else {
+						return author$project$Isdc$Ui$Color$Css$white40;
+					}
+				}
+			} else {
+				var _n2 = options.C;
+				if (_n2) {
+					return author$project$Isdc$Ui$Color$Css$green;
+				} else {
+					return author$project$Isdc$Ui$Color$Css$white;
+				}
+			}
+		}();
+		return A2(
+			rtfeldman$elm_css$Html$Styled$div,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					rtfeldman$elm_css$Html$Styled$button,
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$Attributes$css(
+							_List_fromArray(
+								[
+									author$project$Isdc$Ui$Checkbox$baseCheckboxStyles,
+									rtfeldman$elm_css$Css$backgroundColor(backgroundColor_),
+									rtfeldman$elm_css$Css$borderColor(borderColor_)
+								])),
+							rtfeldman$elm_css$Html$Styled$Events$onClick(options.cb),
+							rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__checkbox')
+						]),
+					options.C ? _List_fromArray(
+						[
+							A2(
+							rtfeldman$elm_css$Html$Styled$span,
+							_List_fromArray(
+								[
+									rtfeldman$elm_css$Html$Styled$Attributes$css(
+									_List_fromArray(
+										[
+											A3(
+											rtfeldman$elm_css$Css$borderBottom3,
+											rtfeldman$elm_css$Css$px(2),
+											rtfeldman$elm_css$Css$solid,
+											checkmarkColor),
+											A3(
+											rtfeldman$elm_css$Css$borderLeft3,
+											rtfeldman$elm_css$Css$px(2),
+											rtfeldman$elm_css$Css$solid,
+											checkmarkColor),
+											rtfeldman$elm_css$Css$width(
+											rtfeldman$elm_css$Css$px(10)),
+											rtfeldman$elm_css$Css$height(
+											rtfeldman$elm_css$Css$px(5)),
+											rtfeldman$elm_css$Css$transforms(
+											_List_fromArray(
+												[
+													A2(
+													rtfeldman$elm_css$Css$translate2,
+													rtfeldman$elm_css$Css$pct(-50),
+													rtfeldman$elm_css$Css$pct(-65)),
+													rtfeldman$elm_css$Css$rotate(
+													rtfeldman$elm_css$Css$deg(-45))
+												])),
+											rtfeldman$elm_css$Css$position(rtfeldman$elm_css$Css$absolute),
+											rtfeldman$elm_css$Css$top(
+											rtfeldman$elm_css$Css$pct(50)),
+											rtfeldman$elm_css$Css$left(
+											rtfeldman$elm_css$Css$pct(50))
+										]))
+								]),
+							_List_Nil)
+						]) : _List_Nil),
+					A2(
+					rtfeldman$elm_css$Html$Styled$span,
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$Attributes$css(
+							_List_fromArray(
+								[
+									rtfeldman$elm_css$Css$color(labelColor)
+								]))
+						]),
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$text(options.ao)
+						]))
+				]));
+	});
+var author$project$Isdc$Ui$Theme$Dark = 0;
+var author$project$Checkbox$view = function (model) {
+	return author$project$DocsLayout$story(
+		{
+			cL: _List_fromArray(
+				[
+					{
+					N: '\ncheckBox Theme.New\n    { checked = model.checked\n    , disabled = model.disabled\n    , onValueChange = ValueChange\n    , label = model.label\n    }\n',
+					P: A2(
+						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
 								rtfeldman$elm_css$Html$Styled$Attributes$css(
 								_List_fromArray(
 									[
-										A3(
-										rtfeldman$elm_css$Css$borderBottom3,
-										rtfeldman$elm_css$Css$px(2),
-										rtfeldman$elm_css$Css$solid,
-										author$project$Isdc$Ui$Color$Css$white),
-										A3(
-										rtfeldman$elm_css$Css$borderLeft3,
-										rtfeldman$elm_css$Css$px(2),
-										rtfeldman$elm_css$Css$solid,
-										author$project$Isdc$Ui$Color$Css$white),
-										rtfeldman$elm_css$Css$width(
-										rtfeldman$elm_css$Css$px(10)),
-										rtfeldman$elm_css$Css$height(
-										rtfeldman$elm_css$Css$px(5)),
-										rtfeldman$elm_css$Css$transforms(
-										_List_fromArray(
-											[
-												A2(
-												rtfeldman$elm_css$Css$translate2,
-												rtfeldman$elm_css$Css$pct(-50),
-												rtfeldman$elm_css$Css$pct(-65)),
-												rtfeldman$elm_css$Css$rotate(
-												rtfeldman$elm_css$Css$deg(-45))
-											])),
-										rtfeldman$elm_css$Css$position(rtfeldman$elm_css$Css$absolute),
-										rtfeldman$elm_css$Css$top(
-										rtfeldman$elm_css$Css$pct(50)),
-										rtfeldman$elm_css$Css$left(
-										rtfeldman$elm_css$Css$pct(50))
+										rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Color$Css$primary01),
+										rtfeldman$elm_css$Css$padding(
+										rtfeldman$elm_css$Css$px(10))
 									]))
 							]),
-						_List_Nil)
-					]) : _List_Nil),
-				rtfeldman$elm_css$Html$Styled$text(options.a4)
-			]));
-};
-var author$project$Checkbox$view = function (model) {
-	return author$project$DocsLayout$story(
-		{
-			cK: _List_fromArray(
-				[
+						_List_fromArray(
+							[
+								A2(
+								author$project$Isdc$Ui$Checkbox$checkBox,
+								2,
+								{C: model.C, ae: model.ae, ao: model.ao, cb: 0})
+							])),
+					S: 'checkBox : CheckboxOptions msg -> Html msg'
+				},
 					{
-					M: '\ncheckBox\n    { checked = model.checked\n    , disabled = False\n    , onValueChange = ValueChange\n    , label = "Hello"\n    }\n',
-					O: A2(
+					N: '\n checkBox Theme.Dark\n     { checked = model.checked\n     , disabled = False\n     , onValueChange = ValueChange\n     , label = "Hello"\n     }\n ',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_Nil,
 						_List_fromArray(
 							[
-								author$project$Isdc$Ui$Checkbox$checkBox(
-								{ac: model.ac, a$: model.a$, a4: model.a4, db: 0})
+								A2(
+								author$project$Isdc$Ui$Checkbox$checkBox,
+								0,
+								{C: model.C, ae: model.ae, ao: model.ao, cb: 0})
 							])),
-					R: 'checkBox : CheckboxOptions msg -> Html msg'
+					S: 'checkBox : CheckboxOptions msg -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Checkbox exposing (..)'
@@ -12092,12 +12192,12 @@ var author$project$Colors$colors = _List_fromArray(
 var author$project$Colors$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
-			cK: A2(
+			cL: A2(
 				elm$core$List$map,
 				function (color) {
 					return {
-						M: '\ndiv\n    [ css\n        [ backgroundColor Color.' + (color.b + '\n        , width (px 100)\n        , height (px 100)\n        ]\n    ]\n                            '),
-						O: A2(
+						N: '\ndiv\n    [ css\n        [ backgroundColor Color.' + (color.b + '\n        , width (px 100)\n        , height (px 100)\n        ]\n    ]\n                            '),
+						P: A2(
 							rtfeldman$elm_css$Html$Styled$div,
 							_List_fromArray(
 								[
@@ -12112,7 +12212,7 @@ var author$project$Colors$view = function (_n0) {
 										]))
 								]),
 							_List_Nil),
-						R: 'Color.' + (color.b + ' : Css.Color')
+						S: 'Color.' + (color.b + ' : Css.Color')
 					};
 				},
 				author$project$Colors$colors),
@@ -12130,32 +12230,32 @@ var author$project$Dropdown$Toggle = function (a) {
 };
 var author$project$Dropdown$dropdownProps = function (model) {
 	return {
-		cI: author$project$Dropdown$Cancel,
-		cU: 'Some value you determine',
-		c6: 'Hello world',
-		J: model.J,
+		cJ: author$project$Dropdown$Cancel,
+		cV: 'Some value you determine',
+		c7: 'Hello world',
+		K: model.K,
 		dc: author$project$Dropdown$Open,
 		dd: _List_fromArray(
 			[
 				{
-				ac: A2(
+				C: A2(
 					elm$core$Maybe$withDefault,
 					false,
-					A2(elm$core$Dict$get, 'foo', model.aq)),
-				a4: 'Foo',
-				cz: 'foo'
+					A2(elm$core$Dict$get, 'foo', model.as)),
+				ao: 'Foo',
+				cA: 'foo'
 			},
 				{
-				ac: A2(
+				C: A2(
 					elm$core$Maybe$withDefault,
 					false,
-					A2(elm$core$Dict$get, 'bar', model.aq)),
-				a4: 'Bar',
-				cz: 'bar'
+					A2(elm$core$Dict$get, 'bar', model.as)),
+				ao: 'Bar',
+				cA: 'bar'
 			}
 			]),
 		dj: author$project$Dropdown$Save,
-		aQ: model.aQ,
+		aS: model.aS,
 		dm: author$project$Dropdown$Search,
 		dx: author$project$Dropdown$Toggle
 	};
@@ -12177,12 +12277,14 @@ var author$project$Isdc$Ui$Dropdown$multiCheckDropdownItem = F2(
 				]),
 			_List_fromArray(
 				[
-					author$project$Isdc$Ui$Checkbox$checkBox(
+					A2(
+					author$project$Isdc$Ui$Checkbox$checkBox,
+					2,
 					{
-						ac: option.ac,
-						a$: false,
-						a4: option.a4,
-						db: toggleMessage(option.cz)
+						C: option.C,
+						ae: false,
+						ao: option.ao,
+						cb: toggleMessage(option.cA)
 					})
 				]));
 	});
@@ -12328,13 +12430,13 @@ var rtfeldman$elm_css$Css$alignItems = function (fn) {
 		'align-items',
 		fn(rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
 };
-var rtfeldman$elm_css$Css$borderBox = {bf: 0, aZ: 0, cz: 'border-box'};
+var rtfeldman$elm_css$Css$borderBox = {bf: 0, a$: 0, cA: 'border-box'};
 var rtfeldman$elm_css$Css$borderRight3 = rtfeldman$elm_css$Css$prop3('border-right');
 var rtfeldman$elm_css$Css$bottom = rtfeldman$elm_css$Css$prop1('bottom');
 var rtfeldman$elm_css$Css$boxSizing = rtfeldman$elm_css$Css$prop1('box-sizing');
 var rtfeldman$elm_css$Css$center = rtfeldman$elm_css$Css$prop1('center');
 var rtfeldman$elm_css$Css$displayFlex = A2(rtfeldman$elm_css$Css$property, 'display', 'flex');
-var rtfeldman$elm_css$Css$fixed = {aF: 0, aO: 0, bb: 0, cz: 'fixed'};
+var rtfeldman$elm_css$Css$fixed = {aH: 0, aQ: 0, bb: 0, cA: 'fixed'};
 var rtfeldman$elm_css$Css$flexEnd = rtfeldman$elm_css$Css$prop1('flex-end');
 var rtfeldman$elm_css$Css$justifyContent = function (fn) {
 	return A3(
@@ -12349,12 +12451,12 @@ var rtfeldman$elm_css$Css$paddingTop = rtfeldman$elm_css$Css$prop1('padding-top'
 var rtfeldman$elm_css$Css$rgb = F3(
 	function (r, g, b) {
 		return {
-			aD: 1,
-			aG: b,
+			aF: 1,
+			aI: b,
 			x: 0,
-			aJ: g,
-			aP: r,
-			cz: A2(
+			aL: g,
+			aR: r,
+			cA: A2(
 				rtfeldman$elm_css$Css$cssFunction,
 				'rgb',
 				A2(
@@ -12378,10 +12480,10 @@ var rtfeldman$elm_css$Css$transform = function (only) {
 			[only]));
 };
 var rtfeldman$elm_css$Css$translateY = function (_n0) {
-	var value = _n0.cz;
+	var value = _n0.cA;
 	return {
 		i: 0,
-		cz: A2(
+		cA: A2(
 			rtfeldman$elm_css$Css$cssFunction,
 			'translateY',
 			_List_fromArray(
@@ -12428,16 +12530,16 @@ var rtfeldman$elm_css$Html$Styled$Events$onInput = function (tagger) {
 };
 var author$project$Isdc$Ui$Dropdown$multiCheckDropdown = function (dropDownArgs) {
 	var _n0 = dropDownArgs;
-	var labelText = _n0.c6;
-	var dropDownValue = _n0.cU;
+	var labelText = _n0.c7;
+	var dropDownValue = _n0.cV;
 	var options = _n0.dd;
-	var open = _n0.J;
+	var open = _n0.K;
 	var openMessage = _n0.dc;
 	var toggleMessage = _n0.dx;
 	var searchMessage = _n0.dm;
-	var search = _n0.aQ;
+	var search = _n0.aS;
 	var saveMessage = _n0.dj;
-	var cancelMessage = _n0.cI;
+	var cancelMessage = _n0.cJ;
 	return A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -12729,11 +12831,11 @@ var author$project$Dropdown$view = function (model) {
 	var props = author$project$Dropdown$dropdownProps(model);
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\nlet model =\n    { labelText = "Hello world"\n    , dropDownValue = "Some value you determine"\n    , options =\n        [ { label = "Foo"\n          , value = "foo"\n          , checked = False\n          }\n        , { label = "Bar"\n          , value = "bar"\n          , checked = False\n          }\n        ]\n    , open = False\n    , openMessage = Open\n    , toggleMessage = Toggle\n    , searchMessage = Search\n    , saveMessage = Save\n    , cancelMessage = Cancel\n    , search = ""\n    }\n\nin multiCheckDropdown model',
-					O: A2(
+					N: '\nlet model =\n    { labelText = "Hello world"\n    , dropDownValue = "Some value you determine"\n    , options =\n        [ { label = "Foo"\n          , value = "foo"\n          , checked = False\n          }\n        , { label = "Bar"\n          , value = "bar"\n          , checked = False\n          }\n        ]\n    , open = False\n    , openMessage = Open\n    , toggleMessage = Toggle\n    , searchMessage = Search\n    , saveMessage = Save\n    , cancelMessage = Cancel\n    , search = ""\n    }\n\nin multiCheckDropdown model',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
@@ -12748,7 +12850,7 @@ var author$project$Dropdown$view = function (model) {
 							[
 								author$project$Isdc$Ui$Dropdown$multiCheckDropdown(props)
 							])),
-					R: 'multiCheckDropdown : DropDownProperties msg -> Html msg'
+					S: 'multiCheckDropdown : DropDownProperties msg -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Dropdown exposing (..)'
@@ -12760,7 +12862,7 @@ var author$project$DropdownDots$Choose = function (a) {
 var author$project$DropdownDots$Close = {$: 2};
 var author$project$DropdownDots$Open = {$: 1};
 var author$project$DropdownDots$ToggleDirection = {$: 3};
-var rtfeldman$elm_css$Css$block = {j: 0, cz: 'block'};
+var rtfeldman$elm_css$Css$block = {j: 0, cA: 'block'};
 var rtfeldman$elm_css$Css$display = rtfeldman$elm_css$Css$prop1('display');
 var author$project$Isdc$Ui$DropdownDots$dot = A2(
 	rtfeldman$elm_css$Html$Styled$span,
@@ -12880,7 +12982,7 @@ var author$project$Isdc$Ui$Typography$subhead1 = rtfeldman$elm_css$Css$batch(
 			rtfeldman$elm_css$Css$letterSpacing(
 			rtfeldman$elm_css$Css$px(0.5))
 		]));
-var rtfeldman$elm_css$Css$noWrap = {aI: 0, a1: 0, cz: 'nowrap', L: 0};
+var rtfeldman$elm_css$Css$noWrap = {aK: 0, a2: 0, cA: 'nowrap', M: 0};
 var rtfeldman$elm_css$Css$padding4 = rtfeldman$elm_css$Css$prop4('padding');
 var author$project$Isdc$Ui$DropdownDots$dropDown = F4(
 	function (fields, choose, direction, close) {
@@ -12902,7 +13004,7 @@ var author$project$Isdc$Ui$DropdownDots$dropDown = F4(
 						_List_fromArray(
 							[
 								rtfeldman$elm_css$Html$Styled$Events$onClick(
-								choose(field.cz)),
+								choose(field.cA)),
 								rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__select-option'),
 								rtfeldman$elm_css$Html$Styled$Attributes$css(
 								_List_fromArray(
@@ -12931,12 +13033,12 @@ var author$project$Isdc$Ui$DropdownDots$dropDown = F4(
 							]),
 						_List_fromArray(
 							[
-								rtfeldman$elm_css$Html$Styled$text(field.a4)
+								rtfeldman$elm_css$Html$Styled$text(field.ao)
 							]));
 				},
 				fields));
 	});
-var rtfeldman$elm_css$Css$inlineBlock = {j: 0, cz: 'inline-block'};
+var rtfeldman$elm_css$Css$inlineBlock = {j: 0, cA: 'inline-block'};
 var rtfeldman$elm_css$Html$Styled$Events$onBlur = function (msg) {
 	return A2(
 		rtfeldman$elm_css$Html$Styled$Events$on,
@@ -12945,12 +13047,12 @@ var rtfeldman$elm_css$Html$Styled$Events$onBlur = function (msg) {
 };
 var author$project$Isdc$Ui$DropdownDots$dropdownDots = function (dropdownOptions) {
 	var _n0 = dropdownOptions;
-	var fields = _n0.cX;
-	var choose = _n0.cL;
-	var close = _n0.cM;
-	var open = _n0.J;
-	var isOpen = _n0.c4;
-	var direction = _n0.N;
+	var fields = _n0.cY;
+	var choose = _n0.cM;
+	var close = _n0.cN;
+	var open = _n0.K;
+	var isOpen = _n0.c5;
+	var direction = _n0.O;
 	return A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -12997,11 +13099,11 @@ var author$project$Isdc$Ui$DropdownDots$dropdownDots = function (dropdownOptions
 var author$project$DropdownDots$view = function (model) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\ndropdownDots\n            { fields =\n                [ { label = "Foo"\n                    , value = "Bar"\n                    }\n                ]\n            , choose = Choose\n            , close = Close\n            , open = Open\n            , isOpen = model.open\n            , direction = model.direction\n            }\n',
-					O: A2(
+					N: '\ndropdownDots\n            { fields =\n                [ { label = "Foo"\n                    , value = "Bar"\n                    }\n                ]\n            , choose = Choose\n            , close = Close\n            , open = Open\n            , isOpen = model.open\n            , direction = model.direction\n            }\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
@@ -13020,15 +13122,15 @@ var author$project$DropdownDots$view = function (model) {
 							[
 								author$project$Isdc$Ui$DropdownDots$dropdownDots(
 								{
-									cL: author$project$DropdownDots$Choose,
-									cM: author$project$DropdownDots$Close,
-									N: model.N,
-									cX: _List_fromArray(
+									cM: author$project$DropdownDots$Choose,
+									cN: author$project$DropdownDots$Close,
+									O: model.O,
+									cY: _List_fromArray(
 										[
-											{a4: 'Foo', cz: 'Bar'}
+											{ao: 'Foo', cA: 'Bar'}
 										]),
-									c4: model.J,
-									J: author$project$DropdownDots$Open
+									c5: model.K,
+									K: author$project$DropdownDots$Open
 								}),
 								A2(
 								author$project$Isdc$Ui$Button$green,
@@ -13041,7 +13143,7 @@ var author$project$DropdownDots$view = function (model) {
 										rtfeldman$elm_css$Html$Styled$text('Toggle Direction')
 									]))
 							])),
-					R: 'dropdownDots : DropdownOptions a msg -> Html msg'
+					S: 'dropdownDots : DropdownOptions a msg -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.DropdownDots exposing (..)'
@@ -13285,55 +13387,55 @@ var author$project$Isdc$Ui$Icons$vpnKey = F3(
 var author$project$Icons$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: 'searchIcon \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'searchIcon \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A3(author$project$Isdc$Ui$Icons$searchIcon, '100px', '100px', '#000000')),
-					R: 'searchIcon : String -> String -> String -> Html.Html msg'
+					S: 'searchIcon : String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'addCircleIcon \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'addCircleIcon \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A3(author$project$Isdc$Ui$Icons$addCircleIcon, '100px', '100px', '#000000')),
-					R: 'addCircleIcon : String -> String -> String -> Html.Html msg'
+					S: 'addCircleIcon : String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'chevronRightIcon \"100px\" \"100px\" \"#000000\" grayD',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'chevronRightIcon \"100px\" \"100px\" \"#000000\" grayD',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A4(author$project$Isdc$Ui$Icons$chevronRightIcon, '100px', '100px', '#000000', author$project$Isdc$Ui$Color$Hex$grayD)),
-					R: 'chevronRightIcon : String -> String -> String -> String -> Html.Html msg'
+					S: 'chevronRightIcon : String -> String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'emailFilled \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'emailFilled \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A3(author$project$Isdc$Ui$Icons$emailFilled, '100px', '100px', '#000000')),
-					R: 'emailFilled : String -> String -> String -> Html.Html msg'
+					S: 'emailFilled : String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'salesforceIconFilled \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'salesforceIconFilled \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A3(author$project$Isdc$Ui$Icons$salesforceIconFilled, '100px', '100px', '#000000')),
-					R: 'salesforceIconFilled : String -> String -> String -> Html.Html msg'
+					S: 'salesforceIconFilled : String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'vpnKey \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'vpnKey \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A3(author$project$Isdc$Ui$Icons$vpnKey, '100px', '100px', '#000000')),
-					R: 'vpnKey : String -> String -> String -> Html.Html msg'
+					S: 'vpnKey : String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'microsoftIcon \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'microsoftIcon \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A2(author$project$Isdc$Ui$Icons$microsoftIcon, '100px', '100px')),
-					R: 'microsoftIcon : String -> String -> String -> Html.Html msg'
+					S: 'microsoftIcon : String -> String -> String -> Html.Html msg'
 				},
 					{
-					M: 'domain \"100px\" \"100px\" \"#000000\"',
-					O: rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					N: 'domain \"100px\" \"100px\" \"#000000\"',
+					P: rtfeldman$elm_css$Html$Styled$fromUnstyled(
 						A3(author$project$Isdc$Ui$Icons$domain, '100px', '100px', '#000000')),
-					R: 'domain : String -> String -> String -> Html.Html msg'
+					S: 'domain : String -> String -> String -> Html.Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Icons exposing (..)'
@@ -13480,12 +13582,12 @@ var author$project$Isdc$Ui$V2$Input$recordFromInputOptions = function (options) 
 						var theme = cur.a;
 						return _Utils_update(
 							acc,
-							{cv: theme});
+							{cw: theme});
 					case 1:
 						var disabled = cur.a;
 						return _Utils_update(
 							acc,
-							{a$: disabled});
+							{ae: disabled});
 					case 2:
 						var val = cur.a;
 						return _Utils_update(
@@ -13495,13 +13597,13 @@ var author$project$Isdc$Ui$V2$Input$recordFromInputOptions = function (options) 
 						var text = cur.a;
 						return _Utils_update(
 							acc,
-							{c6: text});
+							{c7: text});
 					case 4:
 						var message = cur.a;
 						return _Utils_update(
 							acc,
 							{
-								db: elm$core$Maybe$Just(message)
+								cb: elm$core$Maybe$Just(message)
 							});
 					case 5:
 						var message = cur.a;
@@ -13521,15 +13623,15 @@ var author$project$Isdc$Ui$V2$Input$recordFromInputOptions = function (options) 
 						var inputFocused = cur.a;
 						return _Utils_update(
 							acc,
-							{ag: inputFocused});
+							{ah: inputFocused});
 					default:
 						var givenType = cur.a;
 						return _Utils_update(
 							acc,
-							{a2: givenType});
+							{a3: givenType});
 				}
 			}),
-		{a$: false, ag: false, a2: 'text', bV: '', c6: '', b6: elm$core$Maybe$Nothing, b7: elm$core$Maybe$Nothing, db: elm$core$Maybe$Nothing, cv: 1},
+		{ae: false, ah: false, a3: 'text', bV: '', c7: '', b6: elm$core$Maybe$Nothing, b7: elm$core$Maybe$Nothing, cb: elm$core$Maybe$Nothing, cw: 1},
 		options);
 };
 var rtfeldman$elm_css$Html$Styled$Attributes$type_ = rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('type');
@@ -13546,7 +13648,7 @@ var author$project$Isdc$Ui$V2$Input$inputBox = function (options) {
 		_List_fromArray(
 			[
 				rtfeldman$elm_css$Html$Styled$Attributes$css(
-				A2(author$project$Isdc$Ui$V2$Input$inputContainerCss, recordOptions.cv, recordOptions.ag))
+				A2(author$project$Isdc$Ui$V2$Input$inputContainerCss, recordOptions.cw, recordOptions.ah))
 			]),
 		_List_fromArray(
 			[
@@ -13555,18 +13657,18 @@ var author$project$Isdc$Ui$V2$Input$inputBox = function (options) {
 				_List_fromArray(
 					[
 						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						A3(author$project$Isdc$Ui$V2$Input$labelCss, recordOptions.cv, recordOptions.bV, recordOptions.ag))
+						A3(author$project$Isdc$Ui$V2$Input$labelCss, recordOptions.cw, recordOptions.bV, recordOptions.ah))
 					]),
 				_List_fromArray(
 					[
-						rtfeldman$elm_css$Html$Styled$text(recordOptions.c6)
+						rtfeldman$elm_css$Html$Styled$text(recordOptions.c7)
 					])),
 				A2(
 				rtfeldman$elm_css$Html$Styled$input,
 				A3(
 					author$project$Isdc$Ui$V2$Input$mayAttrToAppend,
 					rtfeldman$elm_css$Html$Styled$Events$onInput,
-					recordOptions.db,
+					recordOptions.cb,
 					A3(
 						author$project$Isdc$Ui$V2$Input$mayAttrToAppend,
 						rtfeldman$elm_css$Html$Styled$Events$onBlur,
@@ -13579,8 +13681,8 @@ var author$project$Isdc$Ui$V2$Input$inputBox = function (options) {
 								[
 									rtfeldman$elm_css$Html$Styled$Attributes$value(recordOptions.bV),
 									rtfeldman$elm_css$Html$Styled$Attributes$css(
-									author$project$Isdc$Ui$V2$Input$inputCss(recordOptions.cv)),
-									rtfeldman$elm_css$Html$Styled$Attributes$type_(recordOptions.a2)
+									author$project$Isdc$Ui$V2$Input$inputCss(recordOptions.cw)),
+									rtfeldman$elm_css$Html$Styled$Attributes$type_(recordOptions.a3)
 								])))),
 				_List_Nil)
 			]));
@@ -13620,11 +13722,11 @@ var author$project$Isdc$Ui$V2$Input$onValueChange = author$project$Isdc$Ui$V2$In
 var author$project$Input$view = function (model) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\ninputBox\n    [ inputTheme Dark\n    , inputDisabled False\n    , inputValue model.value\n    , labelText "Hello world"\n    , onValueChange ValueChange\n    , onInputFocus Focus\n    , onInputBlur Blur\n    , focused model.focused\n    , inputType "text"\n    ]\n\n inputBox\n    [ inputTheme Light\n    , inputDisabled False\n    , inputValue model.value\n    , labelText "Hello world"\n    , onValueChange ValueChange\n    , onInputFocus Focus\n    , onInputBlur Blur\n    , focused model.focused\n    , inputType "text"\n    ]\n',
-					O: A2(
+					N: '\ninputBox\n    [ inputTheme Dark\n    , inputDisabled False\n    , inputValue model.value\n    , labelText "Hello world"\n    , onValueChange ValueChange\n    , onInputFocus Focus\n    , onInputBlur Blur\n    , focused model.focused\n    , inputType "text"\n    ]\n\n inputBox\n    [ inputTheme Light\n    , inputDisabled False\n    , inputValue model.value\n    , labelText "Hello world"\n    , onValueChange ValueChange\n    , onInputFocus Focus\n    , onInputBlur Blur\n    , focused model.focused\n    , inputType "text"\n    ]\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_Nil,
 						_List_fromArray(
@@ -13634,12 +13736,12 @@ var author$project$Input$view = function (model) {
 									[
 										author$project$Isdc$Ui$V2$Input$inputTheme(0),
 										author$project$Isdc$Ui$V2$Input$inputDisabled(false),
-										author$project$Isdc$Ui$V2$Input$inputValue(model.cz),
+										author$project$Isdc$Ui$V2$Input$inputValue(model.cA),
 										author$project$Isdc$Ui$V2$Input$labelText('Hello world'),
 										author$project$Isdc$Ui$V2$Input$onValueChange(author$project$Input$ValueChange),
 										author$project$Isdc$Ui$V2$Input$onInputFocus(author$project$Input$Focus),
 										author$project$Isdc$Ui$V2$Input$onInputBlur(author$project$Input$Blur),
-										author$project$Isdc$Ui$V2$Input$focused(model.ag),
+										author$project$Isdc$Ui$V2$Input$focused(model.ah),
 										author$project$Isdc$Ui$V2$Input$inputType('text')
 									])),
 								A2(
@@ -13660,17 +13762,17 @@ var author$project$Input$view = function (model) {
 											[
 												author$project$Isdc$Ui$V2$Input$inputTheme(1),
 												author$project$Isdc$Ui$V2$Input$inputDisabled(false),
-												author$project$Isdc$Ui$V2$Input$inputValue(model.cz),
+												author$project$Isdc$Ui$V2$Input$inputValue(model.cA),
 												author$project$Isdc$Ui$V2$Input$labelText('Hello world'),
 												author$project$Isdc$Ui$V2$Input$onValueChange(author$project$Input$ValueChange),
 												author$project$Isdc$Ui$V2$Input$onInputFocus(author$project$Input$Focus),
 												author$project$Isdc$Ui$V2$Input$onInputBlur(author$project$Input$Blur),
-												author$project$Isdc$Ui$V2$Input$focused(model.ag),
+												author$project$Isdc$Ui$V2$Input$focused(model.ah),
 												author$project$Isdc$Ui$V2$Input$inputType('text')
 											]))
 									]))
 							])),
-					R: 'inputBox : InputOptions msg -> Html msg'
+					S: 'inputBox : InputOptions msg -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.V2.Input exposing (..)'
@@ -13682,7 +13784,7 @@ var author$project$Isdc$Ui$Loader$Small = 0;
 var rtfeldman$elm_css$Css$scale = function (x) {
 	return {
 		i: 0,
-		cz: A2(
+		cA: A2(
 			rtfeldman$elm_css$Css$cssFunction,
 			'scale',
 			_List_fromArray(
@@ -13699,7 +13801,7 @@ var rtfeldman$elm_css$Css$Animations$transform = function (values) {
 		A2(
 			elm$core$List$map,
 			function ($) {
-				return $.cz;
+				return $.cA;
 			},
 			values)));
 };
@@ -13714,7 +13816,7 @@ var rtfeldman$elm_css$Css$Preprocess$WithKeyframes = function (a) {
 	return {$: 5, a: a};
 };
 var rtfeldman$elm_css$Css$animationName = function (arg) {
-	return ((arg.cz === 'none') || ((arg.cz === 'inherit') || ((arg.cz === 'unset') || (arg.cz === 'initial')))) ? A2(rtfeldman$elm_css$Css$prop1, 'animation-name', arg) : rtfeldman$elm_css$Css$Preprocess$WithKeyframes(arg.cz);
+	return ((arg.cA === 'none') || ((arg.cA === 'inherit') || ((arg.cA === 'unset') || (arg.cA === 'initial')))) ? A2(rtfeldman$elm_css$Css$prop1, 'animation-name', arg) : rtfeldman$elm_css$Css$Preprocess$WithKeyframes(arg.cA);
 };
 var rtfeldman$elm_css$Css$Internal$printKeyframeSelector = function (_n0) {
 	var percentage = _n0.a;
@@ -13739,21 +13841,28 @@ var rtfeldman$elm_css$Css$Internal$compileKeyframes = function (tuples) {
 		A2(elm$core$List$map, rtfeldman$elm_css$Css$Internal$printKeyframeSelector, tuples));
 };
 var rtfeldman$elm_css$Css$Animations$keyframes = function (tuples) {
-	return elm$core$List$isEmpty(tuples) ? {bi: 0, bl: 0, cz: 'none'} : {
+	return elm$core$List$isEmpty(tuples) ? {bi: 0, bl: 0, cA: 'none'} : {
 		bi: 0,
 		bl: 0,
-		cz: rtfeldman$elm_css$Css$Internal$compileKeyframes(tuples)
+		cA: rtfeldman$elm_css$Css$Internal$compileKeyframes(tuples)
 	};
 };
-var author$project$Isdc$Ui$Loader$loaderBubbleCss = F2(
-	function (delay, size) {
+var author$project$Isdc$Ui$Loader$loaderBubbleCss = F3(
+	function (delay, size, theme) {
 		return _List_fromArray(
 			[
 				rtfeldman$elm_css$Css$width(
 				rtfeldman$elm_css$Css$px(size)),
 				rtfeldman$elm_css$Css$height(
 				rtfeldman$elm_css$Css$px(size)),
-				rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Color$Css$green),
+				rtfeldman$elm_css$Css$backgroundColor(
+				function () {
+					if (theme === 2) {
+						return author$project$Isdc$Ui$Color$Css$brand01;
+					} else {
+						return author$project$Isdc$Ui$Color$Css$green;
+					}
+				}()),
 				rtfeldman$elm_css$Css$borderRadius(
 				rtfeldman$elm_css$Css$pct(50)),
 				rtfeldman$elm_css$Css$display(rtfeldman$elm_css$Css$inlineBlock),
@@ -13796,77 +13905,78 @@ var author$project$Isdc$Ui$Loader$loaderBubbleCss = F2(
 						])))
 			]);
 	});
-var author$project$Isdc$Ui$Loader$loader = function (size) {
-	var _n0 = function () {
-		switch (size) {
-			case 0:
-				return _Utils_Tuple2(40, 10);
-			case 1:
-				return _Utils_Tuple2(55, 18);
-			default:
-				return _Utils_Tuple2(80, 20);
-		}
-	}();
-	var totalWidth = _n0.a;
-	var radius = _n0.b;
-	return A2(
-		rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						A2(rtfeldman$elm_css$Css$margin2, rtfeldman$elm_css$Css$zero, rtfeldman$elm_css$Css$auto),
-						rtfeldman$elm_css$Css$width(
-						rtfeldman$elm_css$Css$px(totalWidth)),
-						rtfeldman$elm_css$Css$textAlign(rtfeldman$elm_css$Css$center)
-					]))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						A2(author$project$Isdc$Ui$Loader$loaderBubbleCss, -0.32, radius))
-					]),
-				_List_Nil),
-				A2(
-				rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						A2(author$project$Isdc$Ui$Loader$loaderBubbleCss, -0.16, radius))
-					]),
-				_List_Nil),
-				A2(
-				rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						rtfeldman$elm_css$Html$Styled$Attributes$css(
-						A2(author$project$Isdc$Ui$Loader$loaderBubbleCss, 0, radius))
-					]),
-				_List_Nil)
-			]));
-};
+var author$project$Isdc$Ui$Loader$loader = F2(
+	function (size, theme) {
+		var _n0 = function () {
+			switch (size) {
+				case 0:
+					return _Utils_Tuple2(40, 10);
+				case 1:
+					return _Utils_Tuple2(55, 18);
+				default:
+					return _Utils_Tuple2(80, 20);
+			}
+		}();
+		var totalWidth = _n0.a;
+		var radius = _n0.b;
+		return A2(
+			rtfeldman$elm_css$Html$Styled$div,
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							A2(rtfeldman$elm_css$Css$margin2, rtfeldman$elm_css$Css$zero, rtfeldman$elm_css$Css$auto),
+							rtfeldman$elm_css$Css$width(
+							rtfeldman$elm_css$Css$px(totalWidth)),
+							rtfeldman$elm_css$Css$textAlign(rtfeldman$elm_css$Css$center)
+						]))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					rtfeldman$elm_css$Html$Styled$div,
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$Attributes$css(
+							A3(author$project$Isdc$Ui$Loader$loaderBubbleCss, -0.32, radius, theme))
+						]),
+					_List_Nil),
+					A2(
+					rtfeldman$elm_css$Html$Styled$div,
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$Attributes$css(
+							A3(author$project$Isdc$Ui$Loader$loaderBubbleCss, -0.16, radius, theme))
+						]),
+					_List_Nil),
+					A2(
+					rtfeldman$elm_css$Html$Styled$div,
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$Attributes$css(
+							A3(author$project$Isdc$Ui$Loader$loaderBubbleCss, 0, radius, theme))
+						]),
+					_List_Nil)
+				]));
+	});
 var author$project$Loader$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\ndiv []\n        [ loader Large\n        , loader Medium\n        , loader Small\n]\n',
-					O: A2(
+					N: '\ndiv []\n        [ loader Large Theme.New\n        , loader Medium Theme.Light\n        , loader Small Theme.Light\n]\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_Nil,
 						_List_fromArray(
 							[
-								author$project$Isdc$Ui$Loader$loader(2),
-								author$project$Isdc$Ui$Loader$loader(1),
-								author$project$Isdc$Ui$Loader$loader(0)
+								A2(author$project$Isdc$Ui$Loader$loader, 2, 2),
+								A2(author$project$Isdc$Ui$Loader$loader, 1, 1),
+								A2(author$project$Isdc$Ui$Loader$loader, 0, 1)
 							])),
-					R: 'loader : Size -> Html.Html msg'
+					S: 'loader : Size -> Theme -> Html.Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Loader exposing (..)'
@@ -14044,14 +14154,14 @@ var author$project$Modal$Close = 1;
 var author$project$Modal$Open = 0;
 var author$project$Modal$ToggleTheme = 2;
 var author$project$Modal$view = function (_n0) {
-	var open = _n0.J;
-	var theme = _n0.cv;
+	var open = _n0.K;
+	var theme = _n0.cw;
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: function () {
+					N: function () {
 						var themeText = function () {
 							switch (theme) {
 								case 1:
@@ -14064,7 +14174,7 @@ var author$project$Modal$view = function (_n0) {
 						}();
 						return '\nmodal Nothing Close ' + (themeText + ' [...]');
 					}(),
-					O: A2(
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_Nil,
 						_List_fromArray(
@@ -14108,7 +14218,7 @@ var author$project$Modal$view = function (_n0) {
 											]))
 									])) : rtfeldman$elm_css$Html$Styled$text('')
 							])),
-					R: 'modal : Maybe a -> msg -> Theme -> List (Html msg) -> Html msg'
+					S: 'modal : Maybe a -> msg -> Theme -> List (Html msg) -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Modal exposing (..)'
@@ -14136,8 +14246,8 @@ var author$project$Isdc$Ui$Radio$radio = F4(
 			}
 		}();
 		var _n0 = radioContent;
-		var label = _n0.a4;
-		var value = _n0.cz;
+		var label = _n0.ao;
+		var value = _n0.cA;
 		var selected = _Utils_eq(currentValue, value);
 		var borderCircleColor = function () {
 			var _n7 = _Utils_Tuple2(selected, theme);
@@ -14343,77 +14453,77 @@ var author$project$Radio$whiteBackground = function (html) {
 var author$project$Radio$view = function (model) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\nlet\n    radioContent =\n        { label = text "Foo"\n        , value = 0\n        }\nin\nradio radioContent model ValueChange Theme.Light\n',
-					O: author$project$Radio$whiteBackground(
+					N: '\nlet\n    radioContent =\n        { label = text "Foo"\n        , value = 0\n        }\nin\nradio radioContent model ValueChange Theme.Light\n',
+					P: author$project$Radio$whiteBackground(
 						function () {
 							var radioContent = {
-								a4: rtfeldman$elm_css$Html$Styled$text('Foo'),
-								cz: 0
+								ao: rtfeldman$elm_css$Html$Styled$text('Foo'),
+								cA: 0
 							};
 							return A4(author$project$Isdc$Ui$Radio$radio, radioContent, model, elm$core$Basics$identity, 1);
 						}()),
-					R: 'radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg'
+					S: 'radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg'
 				},
 					{
-					M: '\nlet\n    radioContent =\n        { label = text "Foo"\n        , value = 0\n        }\nin\nradio radioContent model ValueChange Theme.New\n',
-					O: author$project$Radio$darkbackground(
+					N: '\nlet\n    radioContent =\n        { label = text "Foo"\n        , value = 0\n        }\nin\nradio radioContent model ValueChange Theme.New\n',
+					P: author$project$Radio$darkbackground(
 						function () {
 							var radioContent = {
-								a4: rtfeldman$elm_css$Html$Styled$text('Foo'),
-								cz: 0
+								ao: rtfeldman$elm_css$Html$Styled$text('Foo'),
+								cA: 0
 							};
 							return A4(author$project$Isdc$Ui$Radio$radio, radioContent, model, elm$core$Basics$identity, 2);
 						}()),
-					R: 'radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg'
+					S: 'radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg'
 				},
 					{
-					M: '\nlet\n    radios =\n        [ { label = text "Foo"\n            , value = 0\n            }\n        , { label = text "Bar"\n            , value = 1\n            }\n        , { label = text "Baz"\n            , value = 2\n            }\n        ]\nin\nradioList radios model ValueChange Theme.Light\n',
-					O: author$project$Radio$whiteBackground(
+					N: '\nlet\n    radios =\n        [ { label = text "Foo"\n            , value = 0\n            }\n        , { label = text "Bar"\n            , value = 1\n            }\n        , { label = text "Baz"\n            , value = 2\n            }\n        ]\nin\nradioList radios model ValueChange Theme.Light\n',
+					P: author$project$Radio$whiteBackground(
 						function () {
 							var radios = _List_fromArray(
 								[
 									{
-									a4: rtfeldman$elm_css$Html$Styled$text('Foo'),
-									cz: 0
+									ao: rtfeldman$elm_css$Html$Styled$text('Foo'),
+									cA: 0
 								},
 									{
-									a4: rtfeldman$elm_css$Html$Styled$text('Bar'),
-									cz: 1
+									ao: rtfeldman$elm_css$Html$Styled$text('Bar'),
+									cA: 1
 								},
 									{
-									a4: rtfeldman$elm_css$Html$Styled$text('Baz'),
-									cz: 2
+									ao: rtfeldman$elm_css$Html$Styled$text('Baz'),
+									cA: 2
 								}
 								]);
 							return A4(author$project$Isdc$Ui$Radio$radioList, radios, model, elm$core$Basics$identity, 1);
 						}()),
-					R: 'radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg'
+					S: 'radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg'
 				},
 					{
-					M: '\nlet\n    radios =\n        [ { label = text "Foo"\n            , value = 0\n            }\n        , { label = text "Bar"\n            , value = 1\n            }\n        , { label = text "Baz"\n            , value = 2\n            }\n        ]\nin\nradioList radios model ValueChange Theme.New\n',
-					O: author$project$Radio$darkbackground(
+					N: '\nlet\n    radios =\n        [ { label = text "Foo"\n            , value = 0\n            }\n        , { label = text "Bar"\n            , value = 1\n            }\n        , { label = text "Baz"\n            , value = 2\n            }\n        ]\nin\nradioList radios model ValueChange Theme.New\n',
+					P: author$project$Radio$darkbackground(
 						function () {
 							var radios = _List_fromArray(
 								[
 									{
-									a4: rtfeldman$elm_css$Html$Styled$text('Foo'),
-									cz: 0
+									ao: rtfeldman$elm_css$Html$Styled$text('Foo'),
+									cA: 0
 								},
 									{
-									a4: rtfeldman$elm_css$Html$Styled$text('Bar'),
-									cz: 1
+									ao: rtfeldman$elm_css$Html$Styled$text('Bar'),
+									cA: 1
 								},
 									{
-									a4: rtfeldman$elm_css$Html$Styled$text('Baz'),
-									cz: 2
+									ao: rtfeldman$elm_css$Html$Styled$text('Baz'),
+									cA: 2
 								}
 								]);
 							return A4(author$project$Isdc$Ui$Radio$radioList, radios, model, elm$core$Basics$identity, 2);
 						}()),
-					R: 'radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg'
+					S: 'radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.Checkbox exposing (radio, radioList)'
@@ -14423,7 +14533,7 @@ var author$project$Isdc$Ui$Color$Hex$primary05 = '#42505e';
 var author$project$Isdc$Ui$Color$Css$primary05 = rtfeldman$elm_css$Css$hex(author$project$Isdc$Ui$Color$Hex$primary05);
 var rtfeldman$elm_css$Css$backgroundClip = rtfeldman$elm_css$Css$prop1('background-clip');
 var rtfeldman$elm_css$Css$borderLeft = rtfeldman$elm_css$Css$prop1('border-left');
-var rtfeldman$elm_css$Css$contentBox = {bf: 0, aZ: 0, cz: 'content-box'};
+var rtfeldman$elm_css$Css$contentBox = {bf: 0, a$: 0, cA: 'content-box'};
 var author$project$Isdc$Ui$Scrollbar$styles = function (theme) {
 	return rtfeldman$elm_css$Css$batch(
 		_List_fromArray(
@@ -14484,8 +14594,7 @@ var author$project$Isdc$Ui$Scrollbar$styles = function (theme) {
 					]))
 			]));
 };
-var author$project$Isdc$Ui$Theme$Dark = 0;
-var rtfeldman$elm_css$Css$scroll = {aF: 0, bB: 0, bS: 0, ar: 0, dl: 0, cz: 'scroll'};
+var rtfeldman$elm_css$Css$scroll = {aH: 0, bB: 0, bS: 0, at: 0, dl: 0, cA: 'scroll'};
 var author$project$Scrollbars$scrollingElement = function (scrollbarCss) {
 	return A2(
 		rtfeldman$elm_css$Html$Styled$div,
@@ -14524,11 +14633,11 @@ var author$project$Scrollbars$scrollingElement = function (scrollbarCss) {
 var author$project$Scrollbars$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\ndiv\n    [ css\n        [ overflow scroll\n        , height <| px 200\n        , backgroundColor Color.darkBlueC\n        , color Color.white\n        , scrollbarStyles Theme.New\n        , padding <| px 10\n        ]\n    ]\n    [ div\n        [ css\n            [ height <| px 500\n            ]\n        ]\n        [ text "hello world" ]\n    ]\n',
-					O: A2(
+					N: '\ndiv\n    [ css\n        [ overflow scroll\n        , height <| px 200\n        , backgroundColor Color.darkBlueC\n        , color Color.white\n        , scrollbarStyles Theme.New\n        , padding <| px 10\n        ]\n    ]\n    [ div\n        [ css\n            [ height <| px 500\n            ]\n        ]\n        [ text "hello world" ]\n    ]\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
@@ -14544,11 +14653,11 @@ var author$project$Scrollbars$view = function (_n0) {
 								author$project$Scrollbars$scrollingElement(
 								author$project$Isdc$Ui$Scrollbar$styles(2))
 							])),
-					R: 'lightScrollBarStyles : Css.Style'
+					S: 'lightScrollBarStyles : Css.Style'
 				},
 					{
-					M: '\ndiv\n    [ css\n        [ overflow scroll\n        , height <| px 200\n        , backgroundColor Color.darkBlueC\n        , color Color.white\n        , scrollbarStyles Theme.Light\n        , padding <| px 10\n        ]\n    ]\n    [ div\n        [ css\n            [ height <| px 500\n            ]\n        ]\n        [ text "hello world" ]\n    ]\n',
-					O: A2(
+					N: '\ndiv\n    [ css\n        [ overflow scroll\n        , height <| px 200\n        , backgroundColor Color.darkBlueC\n        , color Color.white\n        , scrollbarStyles Theme.Light\n        , padding <| px 10\n        ]\n    ]\n    [ div\n        [ css\n            [ height <| px 500\n            ]\n        ]\n        [ text "hello world" ]\n    ]\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
@@ -14564,29 +14673,30 @@ var author$project$Scrollbars$view = function (_n0) {
 								author$project$Scrollbars$scrollingElement(
 								author$project$Isdc$Ui$Scrollbar$styles(1))
 							])),
-					R: 'lightScrollBarStyles : Css.Style'
+					S: 'lightScrollBarStyles : Css.Style'
 				},
 					{
-					M: '\ndiv\n    [ css\n        [ overflow scroll\n        , height <| px 200\n        , scrollbarStyles Theme.Dark\n        , padding <| px 10\n        ]\n    ]\n    [ div\n        [ css\n            [ height <| px 500\n            ]\n        ]\n        [ text "hello world" ]\n    ]\n',
-					O: author$project$Scrollbars$scrollingElement(
+					N: '\ndiv\n    [ css\n        [ overflow scroll\n        , height <| px 200\n        , scrollbarStyles Theme.Dark\n        , padding <| px 10\n        ]\n    ]\n    [ div\n        [ css\n            [ height <| px 500\n            ]\n        ]\n        [ text "hello world" ]\n    ]\n',
+					P: author$project$Scrollbars$scrollingElement(
 						author$project$Isdc$Ui$Scrollbar$styles(0)),
-					R: 'darkScrollBarStyles : Css.Style'
+					S: 'darkScrollBarStyles : Css.Style'
 				}
 				]),
 			dw: 'Isdc.Ui.Scrollbars exposing (..)'
 		});
 };
-var author$project$Isdc$Ui$SearchBox$Dark = 0;
-var author$project$Isdc$Ui$SearchBox$Light = 1;
 var author$project$Isdc$Ui$SearchBox$iconSize = 24;
 var author$project$Isdc$Ui$SearchBox$iconSizeStr = elm$core$String$fromInt(author$project$Isdc$Ui$SearchBox$iconSize) + 'px';
 var rtfeldman$elm_css$Css$paddingLeft = rtfeldman$elm_css$Css$prop1('padding-left');
 var author$project$Isdc$Ui$SearchBox$inputCss = function (theme) {
 	var _n0 = function () {
-		if (!theme) {
-			return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$white90, author$project$Isdc$Ui$Color$Css$white40);
-		} else {
-			return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$black90, author$project$Isdc$Ui$Color$Css$black60);
+		switch (theme) {
+			case 0:
+				return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$white90, author$project$Isdc$Ui$Color$Css$white40);
+			case 1:
+				return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$black90, author$project$Isdc$Ui$Color$Css$black60);
+			default:
+				return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$white90, author$project$Isdc$Ui$Color$Css$white40);
 		}
 	}();
 	var primaryColor = _n0.a;
@@ -14622,19 +14732,25 @@ var author$project$Isdc$Ui$SearchBox$inputCss = function (theme) {
 			rtfeldman$elm_css$Css$pct(100))
 		]);
 };
+var author$project$Isdc$Ui$Color$Hex$primary02 = '#0d1822';
+var author$project$Isdc$Ui$Color$Css$primary02 = rtfeldman$elm_css$Css$hex(author$project$Isdc$Ui$Color$Hex$primary02);
 var rtfeldman$elm_css$Css$flexDirection = rtfeldman$elm_css$Css$prop1('flex-direction');
-var rtfeldman$elm_css$Css$row = {bh: 0, aI: 0, cz: 'row'};
+var rtfeldman$elm_css$Css$row = {bh: 0, aK: 0, cA: 'row'};
 var author$project$Isdc$Ui$SearchBox$searchBoxContainerCss = F2(
 	function (theme, focused) {
 		var _n0 = function () {
-			if (!theme) {
-				return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$darkBlue, author$project$Isdc$Ui$Color$Css$white60);
-			} else {
-				return _Utils_Tuple2(author$project$Isdc$Ui$Color$Css$grayA, author$project$Isdc$Ui$Color$Css$black40);
+			switch (theme) {
+				case 0:
+					return _Utils_Tuple3(author$project$Isdc$Ui$Color$Css$darkBlue, author$project$Isdc$Ui$Color$Css$white60, author$project$Isdc$Ui$Color$Css$green);
+				case 1:
+					return _Utils_Tuple3(author$project$Isdc$Ui$Color$Css$grayA, author$project$Isdc$Ui$Color$Css$black40, author$project$Isdc$Ui$Color$Css$green);
+				default:
+					return _Utils_Tuple3(author$project$Isdc$Ui$Color$Css$primary02, author$project$Isdc$Ui$Color$Css$white40, author$project$Isdc$Ui$Color$Css$brand01);
 			}
 		}();
 		var bgColor = _n0.a;
 		var inputBorderColor = _n0.b;
+		var brandColor = _n0.c;
 		return _List_fromArray(
 			[
 				rtfeldman$elm_css$Css$backgroundColor(bgColor),
@@ -14644,7 +14760,7 @@ var author$project$Isdc$Ui$SearchBox$searchBoxContainerCss = F2(
 				rtfeldman$elm_css$Css$borderBottom3,
 				rtfeldman$elm_css$Css$px(2),
 				rtfeldman$elm_css$Css$solid,
-				focused ? author$project$Isdc$Ui$Color$Css$green : inputBorderColor),
+				focused ? brandColor : inputBorderColor),
 				rtfeldman$elm_css$Css$boxSizing(rtfeldman$elm_css$Css$borderBox),
 				rtfeldman$elm_css$Css$height(
 				rtfeldman$elm_css$Css$px(36)),
@@ -14666,14 +14782,14 @@ var author$project$Isdc$Ui$SearchBox$searchBoxCss = _List_fromArray(
 		rtfeldman$elm_css$Css$px(author$project$Isdc$Ui$SearchBox$iconSize))
 	]);
 var author$project$Isdc$Ui$SearchBox$searchBox = function (_n0) {
-	var theme = _n0.cv;
-	var disabled = _n0.a$;
+	var theme = _n0.cw;
+	var disabled = _n0.ae;
 	var inputValue = _n0.bV;
-	var onValueChange = _n0.db;
-	var placeholderText = _n0.cc;
+	var onValueChange = _n0.cb;
+	var placeholderText = _n0.cd;
 	var onInputFocus = _n0.b7;
 	var onInputBlur = _n0.b6;
-	var focused = _n0.ag;
+	var focused = _n0.ah;
 	return A2(
 		rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -14718,11 +14834,11 @@ var author$project$SearchBox$ValueChange = function (a) {
 var author$project$SearchBox$view = function (model) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\nsearchBox\n    { theme = Dark\n    , disabled = False\n    , inputValue = model.value\n    , placeholderText = "Search"\n    , onValueChange = ValueChange\n    , onInputFocus = Focus\n    , onInputBlur = Blur\n    , focused = model.focused\n    }\n\nsearchBox\n    { theme = Light\n    , disabled = False\n    , inputValue = model.value\n    , placeholderText = "Hello world"\n    , onValueChange = ValueChange\n    , onInputFocus = Focus\n    , onInputBlur = Blur\n    , focused = model.focused\n    }\n',
-					O: A2(
+					N: '\nsearchBox\n    { theme = Dark\n    , disabled = False\n    , inputValue = model.value\n    , placeholderText = "Search"\n    , onValueChange = ValueChange\n    , onInputFocus = Focus\n    , onInputBlur = Blur\n    , focused = model.focused\n    }\n\nsearchBox\n    { theme = Light\n    , disabled = False\n    , inputValue = model.value\n    , placeholderText = "Hello world"\n    , onValueChange = ValueChange\n    , onInputFocus = Focus\n    , onInputBlur = Blur\n    , focused = model.focused\n    }\n\nsearchBox\n    { theme = New\n    , disabled = False\n    , inputValue = model.value\n    , placeholderText = "Hello world"\n    , onValueChange = ValueChange\n    , onInputFocus = Focus\n    , onInputBlur = Blur\n    , focused = model.focused\n    }\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_Nil,
 						_List_fromArray(
@@ -14734,8 +14850,7 @@ var author$project$SearchBox$view = function (model) {
 										rtfeldman$elm_css$Html$Styled$Attributes$css(
 										_List_fromArray(
 											[
-												rtfeldman$elm_css$Css$backgroundColor(
-												rtfeldman$elm_css$Css$hex('#fff')),
+												rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Color$Css$white),
 												rtfeldman$elm_css$Css$padding(
 												rtfeldman$elm_css$Css$px(10))
 											]))
@@ -14743,7 +14858,7 @@ var author$project$SearchBox$view = function (model) {
 								_List_fromArray(
 									[
 										author$project$Isdc$Ui$SearchBox$searchBox(
-										{a$: false, ag: model.ag, bV: model.cz, b6: author$project$SearchBox$Blur, b7: author$project$SearchBox$Focus, db: author$project$SearchBox$ValueChange, cc: 'Search', cv: 0})
+										{ae: false, ah: model.ah, bV: model.cA, b6: author$project$SearchBox$Blur, b7: author$project$SearchBox$Focus, cb: author$project$SearchBox$ValueChange, cd: 'Search', cw: 0})
 									])),
 								A2(
 								rtfeldman$elm_css$Html$Styled$div,
@@ -14752,8 +14867,7 @@ var author$project$SearchBox$view = function (model) {
 										rtfeldman$elm_css$Html$Styled$Attributes$css(
 										_List_fromArray(
 											[
-												rtfeldman$elm_css$Css$backgroundColor(
-												rtfeldman$elm_css$Css$hex('#fff')),
+												rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Color$Css$white),
 												rtfeldman$elm_css$Css$padding(
 												rtfeldman$elm_css$Css$px(10))
 											]))
@@ -14761,10 +14875,27 @@ var author$project$SearchBox$view = function (model) {
 								_List_fromArray(
 									[
 										author$project$Isdc$Ui$SearchBox$searchBox(
-										{a$: false, ag: model.ag, bV: model.cz, b6: author$project$SearchBox$Blur, b7: author$project$SearchBox$Focus, db: author$project$SearchBox$ValueChange, cc: 'Search', cv: 1})
+										{ae: false, ah: model.ah, bV: model.cA, b6: author$project$SearchBox$Blur, b7: author$project$SearchBox$Focus, cb: author$project$SearchBox$ValueChange, cd: 'Search', cw: 1})
+									])),
+								A2(
+								rtfeldman$elm_css$Html$Styled$div,
+								_List_fromArray(
+									[
+										rtfeldman$elm_css$Html$Styled$Attributes$css(
+										_List_fromArray(
+											[
+												rtfeldman$elm_css$Css$backgroundColor(author$project$Isdc$Ui$Color$Css$primary01),
+												rtfeldman$elm_css$Css$padding(
+												rtfeldman$elm_css$Css$px(10))
+											]))
+									]),
+								_List_fromArray(
+									[
+										author$project$Isdc$Ui$SearchBox$searchBox(
+										{ae: false, ah: model.ah, bV: model.cA, b6: author$project$SearchBox$Blur, b7: author$project$SearchBox$Focus, cb: author$project$SearchBox$ValueChange, cd: 'Search', cw: 2})
 									]))
 							])),
-					R: 'searchBox : SearchBoxOptions msg -> Html msg'
+					S: 'searchBox : SearchBoxOptions msg -> Html msg'
 				}
 				]),
 			dw: 'Isdc.Ui.SearchBox exposing (..)'
@@ -14953,8 +15084,8 @@ var author$project$Isdc$Ui$Select$labelCss = F3(
 					]))
 			]);
 	});
-var rtfeldman$elm_css$Css$ellipsis = {cu: 0, cz: 'ellipsis'};
-var rtfeldman$elm_css$Css$hidden = {r: 0, ar: 0, cz: 'hidden', aX: 0};
+var rtfeldman$elm_css$Css$ellipsis = {cv: 0, cA: 'ellipsis'};
+var rtfeldman$elm_css$Css$hidden = {r: 0, at: 0, cA: 'hidden', aZ: 0};
 var rtfeldman$elm_css$Css$textOverflow = rtfeldman$elm_css$Css$prop1('text-overflow');
 var author$project$Isdc$Ui$Select$cutOffText = rtfeldman$elm_css$Css$batch(
 	_List_fromArray(
@@ -14966,18 +15097,18 @@ var author$project$Isdc$Ui$Select$cutOffText = rtfeldman$elm_css$Css$batch(
 var rtfeldman$elm_css$Css$UnitlessFloat = 0;
 var rtfeldman$elm_css$Css$num = function (val) {
 	return {
-		T: 0,
+		U: 0,
 		y: 0,
-		aN: 0,
-		I: val,
-		az: '',
-		aW: 0,
-		cz: elm$core$String$fromFloat(val)
+		aP: 0,
+		J: val,
+		aB: '',
+		aY: 0,
+		cA: elm$core$String$fromFloat(val)
 	};
 };
 var rtfeldman$elm_css$Css$opacity = rtfeldman$elm_css$Css$prop1('opacity');
 var rtfeldman$elm_css$Css$Animations$opacity = function (_n0) {
-	var value = _n0.cz;
+	var value = _n0.cA;
 	return 'opacity:' + value;
 };
 var author$project$Isdc$Ui$Select$selectOptionAnimation = F2(
@@ -15065,7 +15196,7 @@ var author$project$Isdc$Ui$Select$selectOptionColor = function (theme) {
 			]));
 };
 var author$project$Isdc$Ui$Select$selectOptionLabel = function (option) {
-	var _n0 = option.a4;
+	var _n0 = option.ao;
 	switch (_n0.$) {
 		case 0:
 			var str = _n0.a;
@@ -15086,7 +15217,7 @@ var author$project$Isdc$Ui$Select$selectOption = F5(
 			_List_fromArray(
 				[
 					rtfeldman$elm_css$Html$Styled$Events$onClick(
-					onValueChange(option.cz)),
+					onValueChange(option.cA)),
 					rtfeldman$elm_css$Html$Styled$Attributes$class('pb-test__select-input'),
 					rtfeldman$elm_css$Html$Styled$Attributes$css(
 					_List_fromArray(
@@ -15118,7 +15249,7 @@ var author$project$Isdc$Ui$Select$selectOption = F5(
 var rtfeldman$elm_css$Css$scaleY = function (y) {
 	return {
 		i: 0,
-		cz: A2(
+		cA: A2(
 			rtfeldman$elm_css$Css$cssFunction,
 			'scaleY',
 			_List_fromArray(
@@ -15286,15 +15417,15 @@ var author$project$Isdc$Ui$Select$selectedOption = function (theme) {
 		]);
 };
 var author$project$Isdc$Ui$Select$selectBox = function (_n0) {
-	var theme = _n0.cv;
-	var disabled = _n0.a$;
+	var theme = _n0.cw;
+	var disabled = _n0.ae;
 	var inputValue = _n0.bV;
-	var labelText = _n0.c6;
-	var onValueChange = _n0.db;
+	var labelText = _n0.c7;
+	var onValueChange = _n0.cb;
 	var onSelectFocus = _n0.b9;
 	var onSelectBlur = _n0.b8;
-	var focused = _n0.ag;
-	var isOpen = _n0.c4;
+	var focused = _n0.ah;
+	var isOpen = _n0.c5;
 	var options = _n0.dd;
 	var onToggle = _n0.ca;
 	var onClose = _n0.b5;
@@ -15362,42 +15493,42 @@ var author$project$Isdc$Ui$Select$String = function (a) {
 var author$project$Select$options = _List_fromArray(
 	[
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world'),
-		cz: 'HI'
+		ao: author$project$Isdc$Ui$Select$String('hello world'),
+		cA: 'HI'
 	},
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world 2'),
-		cz: 'HI 2'
+		ao: author$project$Isdc$Ui$Select$String('hello world 2'),
+		cA: 'HI 2'
 	},
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world 3'),
-		cz: 'HI 3'
+		ao: author$project$Isdc$Ui$Select$String('hello world 3'),
+		cA: 'HI 3'
 	},
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world 4'),
-		cz: 'HI 4'
+		ao: author$project$Isdc$Ui$Select$String('hello world 4'),
+		cA: 'HI 4'
 	},
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world 5'),
-		cz: 'HI 5'
+		ao: author$project$Isdc$Ui$Select$String('hello world 5'),
+		cA: 'HI 5'
 	},
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world 6'),
-		cz: 'HI 6'
+		ao: author$project$Isdc$Ui$Select$String('hello world 6'),
+		cA: 'HI 6'
 	},
 		{
-		a4: author$project$Isdc$Ui$Select$String('hello world 7 really really really really really really really really really really really really really long string'),
-		cz: 'hello world 7 really really really really really really really really really really really really really long string'
+		ao: author$project$Isdc$Ui$Select$String('hello world 7 really really really really really really really really really really really really really long string'),
+		cA: 'hello world 7 really really really really really really really really really really really really really long string'
 	}
 	]);
 var author$project$Select$view = function (model) {
 	return author$project$DocsLayout$story(
 		{
-			cK: _List_fromArray(
+			cL: _List_fromArray(
 				[
 					{
-					M: '\nselectBox\n   { theme = Theme.New\n   , disabled = False\n   , inputValue = model.value\n   , labelText = "Hello world"\n   , onValueChange = ValueChange\n   , onSelectFocus = Focus\n   , onSelectBlur = Blur\n   , focused = model.focused\n   }\n',
-					O: A2(
+					N: '\nselectBox\n   { theme = Theme.New\n   , disabled = False\n   , inputValue = model.value\n   , labelText = "Hello world"\n   , onValueChange = ValueChange\n   , onSelectFocus = Focus\n   , onSelectBlur = Blur\n   , focused = model.focused\n   }\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
@@ -15425,14 +15556,14 @@ var author$project$Select$view = function (model) {
 								_List_fromArray(
 									[
 										author$project$Isdc$Ui$Select$selectBox(
-										{a$: false, ag: model.ag, bV: model.cz, c4: model.c4, c6: 'Hello world', b5: author$project$Select$Close, b8: author$project$Select$Blur, b9: author$project$Select$Focus, ca: author$project$Select$Toggle, db: author$project$Select$ValueChange, dd: author$project$Select$options, cv: 2})
+										{ae: false, ah: model.ah, bV: model.cA, c5: model.c5, c7: 'Hello world', b5: author$project$Select$Close, b8: author$project$Select$Blur, b9: author$project$Select$Focus, ca: author$project$Select$Toggle, cb: author$project$Select$ValueChange, dd: author$project$Select$options, cw: 2})
 									]))
 							])),
-					R: 'selectBox : SelectOptions msg -> Html msg'
+					S: 'selectBox : SelectOptions msg -> Html msg'
 				},
 					{
-					M: '\nselectBox\n   { theme = Theme.Dark\n   , disabled = False\n   , inputValue = model.value\n   , labelText = "Hello world"\n   , onValueChange = ValueChange\n   , onSelectFocus = Focus\n   , onSelectBlur = Blur\n   , focused = model.focused\n   }\n\nselectBox\n   { theme = Theme.Light\n   , disabled = False\n   , inputValue = model.value\n   , labelText = "Hello world"\n   , onValueChange = ValueChange\n   , onSelectFocus = Focus\n   , onSelectBlur = Blur\n   , focused = model.focused\n   }\n',
-					O: A2(
+					N: '\nselectBox\n   { theme = Theme.Dark\n   , disabled = False\n   , inputValue = model.value\n   , labelText = "Hello world"\n   , onValueChange = ValueChange\n   , onSelectFocus = Focus\n   , onSelectBlur = Blur\n   , focused = model.focused\n   }\n\nselectBox\n   { theme = Theme.Light\n   , disabled = False\n   , inputValue = model.value\n   , labelText = "Hello world"\n   , onValueChange = ValueChange\n   , onSelectFocus = Focus\n   , onSelectBlur = Blur\n   , focused = model.focused\n   }\n',
+					P: A2(
 						rtfeldman$elm_css$Html$Styled$div,
 						_List_fromArray(
 							[
@@ -15463,7 +15594,7 @@ var author$project$Select$view = function (model) {
 								_List_fromArray(
 									[
 										author$project$Isdc$Ui$Select$selectBox(
-										{a$: false, ag: model.ag, bV: model.cz, c4: model.c4, c6: 'Hello world', b5: author$project$Select$Close, b8: author$project$Select$Blur, b9: author$project$Select$Focus, ca: author$project$Select$Toggle, db: author$project$Select$ValueChange, dd: author$project$Select$options, cv: 0})
+										{ae: false, ah: model.ah, bV: model.cA, c5: model.c5, c7: 'Hello world', b5: author$project$Select$Close, b8: author$project$Select$Blur, b9: author$project$Select$Focus, ca: author$project$Select$Toggle, cb: author$project$Select$ValueChange, dd: author$project$Select$options, cw: 0})
 									])),
 								A2(
 								rtfeldman$elm_css$Html$Styled$div,
@@ -15481,10 +15612,10 @@ var author$project$Select$view = function (model) {
 								_List_fromArray(
 									[
 										author$project$Isdc$Ui$Select$selectBox(
-										{a$: false, ag: model.ag, bV: model.cz, c4: model.c4, c6: 'Hello world', b5: author$project$Select$Close, b8: author$project$Select$Blur, b9: author$project$Select$Focus, ca: author$project$Select$Toggle, db: author$project$Select$ValueChange, dd: author$project$Select$options, cv: 1})
+										{ae: false, ah: model.ah, bV: model.cA, c5: model.c5, c7: 'Hello world', b5: author$project$Select$Close, b8: author$project$Select$Blur, b9: author$project$Select$Focus, ca: author$project$Select$Toggle, cb: author$project$Select$ValueChange, dd: author$project$Select$options, cw: 1})
 									]))
 							])),
-					R: 'DEPRECATED: Dark and Light Themes'
+					S: 'DEPRECATED: Dark and Light Themes'
 				}
 				]),
 			dw: 'Isdc.Ui.Select exposing (..)'
@@ -15573,12 +15704,12 @@ var rtfeldman$elm_css$Html$Styled$p = rtfeldman$elm_css$Html$Styled$node('p');
 var author$project$Typography$view = function (_n0) {
 	return author$project$DocsLayout$story(
 		{
-			cK: A2(
+			cL: A2(
 				elm$core$List$map,
 				function (font) {
 					return {
-						M: 'p [ css [ ' + (font.b + ' ] ] [ text \"The quick brown fox jumps over the lazy dog\" ]'),
-						O: A2(
+						N: 'p [ css [ ' + (font.b + ' ] ] [ text \"The quick brown fox jumps over the lazy dog\" ]'),
+						P: A2(
 							rtfeldman$elm_css$Html$Styled$p,
 							_List_fromArray(
 								[
@@ -15590,7 +15721,7 @@ var author$project$Typography$view = function (_n0) {
 								[
 									rtfeldman$elm_css$Html$Styled$text('The quick brown fox jumps over the lazy dog')
 								])),
-						R: font.b + ' : Css.Style'
+						S: font.b + ' : Css.Style'
 					};
 				},
 				author$project$Typography$fonts),
@@ -16361,7 +16492,7 @@ var rtfeldman$elm_css$VirtualDom$Styled$toUnstyled = function (vdom) {
 var rtfeldman$elm_css$Html$Styled$toUnstyled = rtfeldman$elm_css$VirtualDom$Styled$toUnstyled;
 var author$project$Main$view = function (model) {
 	return {
-		cH: _List_fromArray(
+		cI: _List_fromArray(
 			[
 				A2(elm$core$Basics$composeR, author$project$Main$body, rtfeldman$elm_css$Html$Styled$toUnstyled)(model)
 			]),
@@ -16370,6 +16501,6 @@ var author$project$Main$view = function (model) {
 };
 var elm$browser$Browser$application = _Browser_application;
 var author$project$Main$main = elm$browser$Browser$application(
-	{c2: author$project$Main$init, c9: author$project$Main$UrlChanged, da: author$project$Main$LinkClicked, du: author$project$Main$subscriptions, dy: author$project$Main$update, dA: author$project$Main$view});
+	{c3: author$project$Main$init, da: author$project$Main$UrlChanged, db: author$project$Main$LinkClicked, du: author$project$Main$subscriptions, dy: author$project$Main$update, dA: author$project$Main$view});
 _Platform_export({'Main':{'init':author$project$Main$main(
 	elm$json$Json$Decode$succeed(0))(0)}});}(this));
