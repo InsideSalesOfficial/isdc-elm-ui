@@ -2,10 +2,9 @@ module Select exposing (Model, Msg(..), selectModel, update, view)
 
 import Css exposing (..)
 import DocsLayout exposing (..)
-import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
-import Isdc.Ui.Colors.Css as Color
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Select exposing (..)
 import Isdc.Ui.Theme as Theme
 

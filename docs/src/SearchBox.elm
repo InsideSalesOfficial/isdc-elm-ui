@@ -2,7 +2,6 @@ module SearchBox exposing (Model, Msg(..), searchBoxModel, update, view)
 
 import Css exposing (..)
 import DocsLayout exposing (..)
-import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
 import Isdc.Ui.SearchBox exposing (..)

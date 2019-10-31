@@ -4,7 +4,7 @@ import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onClick)
-import Isdc.Ui.Colors.Css as Colors
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Typography as Typography
 
 
@@ -25,7 +25,7 @@ radio radioContent currentValue select =
     in
     button
         [ css
-            [ color Colors.black60
+            [ color Color.black60
             , displayFlex
             , width <| pct 100
             , outline zero
@@ -38,16 +38,16 @@ radio radioContent currentValue select =
             , cursor pointer
             , focus
                 [ if selected then
-                    backgroundColor Colors.green40
+                    backgroundColor Color.green40
 
                   else
-                    backgroundColor Colors.green10
+                    backgroundColor Color.green10
                 ]
             , if selected then
-                backgroundColor Colors.green40
+                backgroundColor Color.green40
 
               else
-                backgroundColor Colors.grayA
+                backgroundColor Color.grayA
             , firstChild
                 [ marginTop zero
                 ]
@@ -60,9 +60,9 @@ radio radioContent currentValue select =
         ]
         [ div
             [ css
-                [ border3 (px 2) solid Colors.black
+                [ border3 (px 2) solid Color.black
                 , borderRadius <| pct 50
-                , backgroundColor Colors.white
+                , backgroundColor Color.white
                 , marginRight <| px 10
                 , displayFlex
                 , alignItems center
@@ -76,7 +76,7 @@ radio radioContent currentValue select =
             if selected then
                 [ div
                     [ css
-                        [ backgroundColor Colors.green
+                        [ backgroundColor Color.green
                         , borderRadius <| pct 50
                         , width <| px 10
                         , height <| px 10

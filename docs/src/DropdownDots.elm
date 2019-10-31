@@ -2,12 +2,11 @@ module DropdownDots exposing (Model, Msg(..), initModel, update, view)
 
 import Css exposing (..)
 import DocsLayout exposing (..)
-import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
-import Isdc.Ui.Buttons exposing (..)
-import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.Button as Button
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.DropdownDots exposing (..)
 
 
@@ -39,7 +38,7 @@ view model =
               , example =
                     div
                         [ css
-                            [ backgroundColor darkBlueC
+                            [ backgroundColor Color.darkBlueC
                             , height <| px 300
                             , displayFlex
                             , justifyContent flexEnd
@@ -58,7 +57,7 @@ view model =
                             , isOpen = model.open
                             , direction = model.direction
                             }
-                        , button [ css [ greenButtonStyles ], onClick ToggleDirection ] [ text "Toggle Direction" ]
+                        , Button.green [ onClick ToggleDirection ] [ text "Toggle Direction" ]
                         ]
               , codeUsage = """
 dropdownDots

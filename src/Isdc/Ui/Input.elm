@@ -3,10 +3,10 @@ module Isdc.Ui.Input exposing (InputOptions, InputTheme(..), inputBox, inputCont
 import Css exposing (..)
 import Css.Transitions as Transitions
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (class, css, href, placeholder, src, value)
+import Html.Styled.Attributes exposing (class, css, value)
 import Html.Styled.Events exposing (onBlur, onFocus, onInput)
-import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Typography as Typography exposing (caption, subhead1)
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Typography as Typography exposing (subhead1)
 
 
 type InputTheme
@@ -31,17 +31,17 @@ inputContainerCss theme focused =
         ( bgColor, inputBorderColor ) =
             case theme of
                 Dark ->
-                    ( darkBlue, white60 )
+                    ( Color.darkBlue, Color.white60 )
 
                 Light ->
-                    ( grayA, black40 )
+                    ( Color.grayA, Color.black40 )
     in
     [ backgroundColor bgColor
     , borderRadius (px 3)
     , borderBottom3 (px 2)
         solid
         (if focused then
-            green
+            Color.green
 
          else
             inputBorderColor
@@ -55,10 +55,10 @@ inputCss theme =
         primaryColor =
             case theme of
                 Dark ->
-                    white90
+                    Color.white90
 
                 Light ->
-                    black90
+                    Color.black90
     in
     [ color primaryColor
     , subhead1
@@ -88,15 +88,15 @@ labelCss theme labelText focused =
 
         labelColor =
             if focused then
-                green
+                Color.green
 
             else
                 case theme of
                     Dark ->
-                        white60
+                        Color.white60
 
                     Light ->
-                        black60
+                        Color.black60
     in
     [ position absolute
     , top topOffset

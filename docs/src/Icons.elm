@@ -1,10 +1,8 @@
 module Icons exposing (view)
 
 import DocsLayout exposing (..)
-import Html
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
-import Isdc.Ui.Colors.Hex exposing (grayD)
+import Isdc.Ui.Color.Hex exposing (grayD)
 import Isdc.Ui.Icons exposing (..)
 
 

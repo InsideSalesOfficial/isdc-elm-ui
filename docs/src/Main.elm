@@ -12,7 +12,7 @@ import Html.Styled as Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href)
 import Icons as Icons
 import Input as Input
-import Isdc.Ui.Colors.Css as IsdcColors
+import Isdc.Ui.Color.Css as Color
 import Loader as Loader
 import Modal
 import Radio
@@ -257,7 +257,7 @@ body model =
         [ ul
             [ css
                 [ width <| px 230
-                , backgroundColor IsdcColors.grayA
+                , backgroundColor Color.grayA
                 , margin zero
                 , padding <| px 20
                 , boxSizing borderBox
@@ -267,7 +267,7 @@ body model =
             , viewLink "/icons" "Icons"
             , viewLink "/buttons" "Buttons"
             , viewLink "/checkbox" "Checkbox"
-            , viewLink "/colors" "Colors"
+            , viewLink "/colors" "Color"
             , viewLink "/input" "Input"
             , viewLink "/dropdown" "Dropdown"
             , viewLink "/loader" "Loader"
@@ -340,7 +340,7 @@ viewLink path label =
         [ css
             [ display block
             , padding2 (px 10) zero
-            , borderBottom3 (px 1) solid IsdcColors.grayC
+            , borderBottom3 (px 1) solid Color.grayC
             , lastChild
                 [ borderBottom zero
                 ]
@@ -349,7 +349,7 @@ viewLink path label =
         [ a
             [ href ("/isdc-elm-ui" ++ path)
             , css
-                [ color IsdcColors.grayD
+                [ color Color.grayD
                 , textDecoration none
                 ]
             ]

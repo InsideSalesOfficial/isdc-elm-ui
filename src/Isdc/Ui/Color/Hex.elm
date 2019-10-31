@@ -1,4 +1,4 @@
-module Isdc.Ui.Colors.Hex exposing (..)
+module Isdc.Ui.Color.Hex exposing (..)
 
 {-| Contains all of the company colors hex codes
 
@@ -9,7 +9,7 @@ module Isdc.Ui.Colors.Hex exposing (..)
 
 -}
 
--- New Theme Colors
+-- New Theme Color
 
 
 {-| brand01 #ffdd00
@@ -179,7 +179,7 @@ brandBackup04 =
 
 
 
--- Old Theme Colors
+-- Old Theme Color
 
 
 {-| green #3AB676

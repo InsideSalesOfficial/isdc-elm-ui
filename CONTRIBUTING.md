@@ -10,5 +10,5 @@ In the root directory of the project run ```make createDocs``` and commit ./docs
 
 ## Style Guide
 * Use elm format to keep consistent formatting
-* Only use colors from the Isdc.Ui.Colors module
+* Only use colors from the Isdc.Ui.Color module
 * Rather than setting properties like "font-weight", "font-size" and "letter-spacing" use typography from Isdc.Ui.Typography

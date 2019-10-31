@@ -1,6 +1,5 @@
 module Dropdown exposing (..)
 
-import Html
 import Html.Styled exposing (..)
 import Isdc.Ui.Dropdown exposing (..)
 import DocsLayout exposing (..)

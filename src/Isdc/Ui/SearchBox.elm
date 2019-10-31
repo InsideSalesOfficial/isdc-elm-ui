@@ -4,10 +4,10 @@ import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css, placeholder, value)
 import Html.Styled.Events exposing (onBlur, onFocus, onInput)
-import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Colors.Hex exposing (grayC)
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Color.Hex as Hex
 import Isdc.Ui.Icons exposing (searchIcon)
-import Isdc.Ui.Typography as Typography exposing (subhead1)
+import Isdc.Ui.Typography as Typography
 
 
 type SearchBoxTheme
@@ -32,17 +32,17 @@ searchBoxContainerCss theme focused =
         ( bgColor, inputBorderColor ) =
             case theme of
                 Dark ->
-                    ( darkBlue, white60 )
+                    ( Color.darkBlue, Color.white60 )
 
                 Light ->
-                    ( grayA, black40 )
+                    ( Color.grayA, Color.black40 )
     in
     [ backgroundColor bgColor
     , borderRadius (px 3)
     , borderBottom3 (px 2)
         solid
         (if focused then
-            green
+            Color.green
 
          else
             inputBorderColor
@@ -61,10 +61,10 @@ inputContainerCss theme =
         bgColor =
             case theme of
                 Dark ->
-                    darkBlue
+                    Color.darkBlue
 
                 Light ->
-                    grayA
+                    Color.grayA
     in
     [ backgroundColor bgColor
     ]
@@ -75,14 +75,14 @@ inputCss theme =
         ( primaryColor, placeholderColor ) =
             case theme of
                 Dark ->
-                    ( white90, white40 )
+                    ( Color.white90, Color.white40 )
 
                 Light ->
-                    ( black90, black60 )
+                    ( Color.black90, Color.black60 )
     in
     [ color primaryColor
     , paddingLeft (px 8)
-    , subhead1
+    , Typography.subhead1
     , zIndex (int 1)
     , backgroundColor transparent
     , outline zero
@@ -116,7 +116,7 @@ searchBoxCss =
 searchBox : SearchBoxOptions msg -> Html msg
 searchBox { theme, disabled, inputValue, onValueChange, placeholderText, onInputFocus, onInputBlur, focused } =
     div [ css <| searchBoxContainerCss theme focused ]
-        [ span [ css searchBoxCss ] [ fromUnstyled <| searchIcon iconSizeStr iconSizeStr grayC ]
+        [ span [ css searchBoxCss ] [ fromUnstyled <| searchIcon iconSizeStr iconSizeStr Hex.grayC ]
         , input
             [ onFocus onInputFocus
             , onBlur onInputBlur

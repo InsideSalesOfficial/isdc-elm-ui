@@ -20,7 +20,7 @@ import Css.Transitions as Transitions
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, placeholder, src, type_, value)
 import Html.Styled.Events exposing (onBlur, onFocus, onInput)
-import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Typography as Typography exposing (caption, subhead1)
 
 
@@ -140,17 +140,17 @@ inputContainerCss theme isFocused =
         ( bgColor, inputBorderColor ) =
             case theme of
                 Dark ->
-                    ( darkBlue, white60 )
+                    ( Color.darkBlue, Color.white60 )
 
                 Light ->
-                    ( grayA, black40 )
+                    ( Color.grayA, Color.black40 )
     in
     [ backgroundColor bgColor
     , borderRadius (px 2)
     , borderBottom3 (px 2)
         solid
         (if isFocused then
-            green
+            Color.green
 
          else
             inputBorderColor
@@ -164,10 +164,10 @@ inputCss theme =
         primaryColor =
             case theme of
                 Dark ->
-                    white90
+                    Color.white90
 
                 Light ->
-                    black90
+                    Color.black90
     in
     [ color primaryColor
     , subhead1
@@ -197,15 +197,15 @@ labelCss theme inputLabelText isFocused =
 
         labelColor =
             if isFocused then
-                green
+                Color.green
 
             else
                 case theme of
                     Dark ->
-                        white60
+                        Color.white60
 
                     Light ->
-                        black60
+                        Color.black60
     in
     [ position absolute
     , top topOffset
