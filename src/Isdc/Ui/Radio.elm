@@ -5,6 +5,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onClick)
 import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography as Typography
 
 
@@ -14,18 +15,73 @@ type alias Radio a msg =
     }
 
 
-radio : Radio a msg -> a -> (a -> msg) -> Html msg
-radio radioContent currentValue select =
+radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg
+radio radioContent currentValue select theme =
     let
         { label, value } =
             radioContent
 
         selected =
             currentValue == value
+
+        focusColor =
+            case ( selected, theme ) of
+                ( True, Theme.New ) ->
+                    Color.brand01Transparent10
+
+                ( False, Theme.New ) ->
+                    Color.primary04
+
+                ( True, _ ) ->
+                    Color.green40
+
+                ( False, _ ) ->
+                    Color.green10
+
+        radioBackground =
+            case ( selected, theme ) of
+                ( True, Theme.New ) ->
+                    Color.brand01Transparent10
+
+                ( False, Theme.New ) ->
+                    Color.primary03
+
+                ( True, _ ) ->
+                    Color.green40
+
+                ( False, _ ) ->
+                    Color.grayA
+
+        selectedColor =
+            case theme of
+                Theme.New ->
+                    Color.brand01
+
+                _ ->
+                    Color.green
+
+        borderCircleColor =
+            case ( selected, theme ) of
+                ( False, Theme.New ) ->
+                    Color.white60
+
+                ( True, Theme.New ) ->
+                    Color.brand01
+
+                _ ->
+                    Color.black
+
+        textColor =
+            case theme of
+                Theme.New ->
+                    Color.white60
+
+                _ ->
+                    Color.black60
     in
     button
         [ css
-            [ color Color.black60
+            [ color textColor
             , displayFlex
             , width <| pct 100
             , outline zero
@@ -36,18 +92,8 @@ radio radioContent currentValue select =
             , border zero
             , alignItems center
             , cursor pointer
-            , focus
-                [ if selected then
-                    backgroundColor Color.green40
-
-                  else
-                    backgroundColor Color.green10
-                ]
-            , if selected then
-                backgroundColor Color.green40
-
-              else
-                backgroundColor Color.grayA
+            , focus [ backgroundColor focusColor ]
+            , backgroundColor radioBackground
             , firstChild
                 [ marginTop zero
                 ]
@@ -60,9 +106,9 @@ radio radioContent currentValue select =
         ]
         [ div
             [ css
-                [ border3 (px 2) solid Color.black
+                [ border3 (px 2) solid borderCircleColor
                 , borderRadius <| pct 50
-                , backgroundColor Color.white
+                , backgroundColor transparent
                 , marginRight <| px 10
                 , displayFlex
                 , alignItems center
@@ -76,7 +122,7 @@ radio radioContent currentValue select =
             if selected then
                 [ div
                     [ css
-                        [ backgroundColor Color.green
+                        [ backgroundColor selectedColor
                         , borderRadius <| pct 50
                         , width <| px 10
                         , height <| px 10
@@ -91,7 +137,7 @@ radio radioContent currentValue select =
         ]
 
 
-radioList : List (Radio a msg) -> a -> (a -> msg) -> Html msg
-radioList radios currentValue select =
+radioList : List (Radio a msg) -> a -> (a -> msg) -> Theme -> Html msg
+radioList radios currentValue select theme =
     div [] <|
-        List.map (\radioContent -> radio radioContent currentValue select) radios
+        List.map (\radioContent -> radio radioContent currentValue select theme) radios
