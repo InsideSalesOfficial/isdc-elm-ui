@@ -13,6 +13,7 @@ import Html.Styled.Attributes exposing (css, href)
 import Icons as Icons
 import Input as Input
 import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 import Loader as Loader
 import Modal
 import Radio
@@ -105,7 +106,7 @@ urlToPage url =
             Select Select.selectModel
 
         "/modal" ->
-            Modal False
+            Modal { open = False, theme = Theme.New }
 
         "/scrollbars" ->
             Scrollbars
@@ -196,9 +197,9 @@ update msg model =
             , Cmd.none
             )
 
-        ( ModalUpdate modalMsg, Modal open ) ->
+        ( ModalUpdate modalMsg, Modal modalModel ) ->
             ( { model
-                | page = Modal (Modal.update modalMsg open)
+                | page = Modal (Modal.update modalMsg modalModel)
               }
             , Cmd.none
             )
@@ -319,8 +320,8 @@ body model =
                 Select selectModel ->
                     Styled.map (\msg -> SelectModelUpdate msg) <| Select.view selectModel
 
-                Modal open ->
-                    Styled.map (\msg -> ModalUpdate msg) <| Modal.view open
+                Modal modalModel ->
+                    Styled.map (\msg -> ModalUpdate msg) <| Modal.view modalModel
 
                 Scrollbars ->
                     Scrollbars.view Nothing

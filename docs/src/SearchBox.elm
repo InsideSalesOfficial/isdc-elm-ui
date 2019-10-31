@@ -4,7 +4,9 @@ import Css exposing (..)
 import DocsLayout exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.SearchBox exposing (..)
+import Isdc.Ui.Theme as Theme
 
 
 searchBoxModel : Model
@@ -33,9 +35,9 @@ view model =
             [ { heading = "searchBox : SearchBoxOptions msg -> Html msg"
               , example =
                     div []
-                        [ div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
+                        [ div [ css [ backgroundColor <| Color.white, padding <| px 10 ] ]
                             [ searchBox
-                                { theme = Dark
+                                { theme = Theme.Dark
                                 , disabled = False
                                 , inputValue = model.value
                                 , placeholderText = "Search"
@@ -45,9 +47,21 @@ view model =
                                 , focused = model.focused
                                 }
                             ]
-                        , div [ css [ backgroundColor <| hex "#fff", padding <| px 10 ] ]
+                        , div [ css [ backgroundColor <| Color.white, padding <| px 10 ] ]
                             [ searchBox
-                                { theme = Light
+                                { theme = Theme.Light
+                                , disabled = False
+                                , inputValue = model.value
+                                , placeholderText = "Search"
+                                , onValueChange = ValueChange
+                                , onInputFocus = Focus
+                                , onInputBlur = Blur
+                                , focused = model.focused
+                                }
+                            ]
+                        , div [ css [ backgroundColor <| Color.primary01, padding <| px 10 ] ]
+                            [ searchBox
+                                { theme = Theme.New
                                 , disabled = False
                                 , inputValue = model.value
                                 , placeholderText = "Search"
@@ -72,6 +86,17 @@ searchBox
 
 searchBox
     { theme = Light
+    , disabled = False
+    , inputValue = model.value
+    , placeholderText = "Hello world"
+    , onValueChange = ValueChange
+    , onInputFocus = Focus
+    , onInputBlur = Blur
+    , focused = model.focused
+    }
+
+searchBox
+    { theme = New
     , disabled = False
     , inputValue = model.value
     , placeholderText = "Hello world"
