@@ -117,7 +117,7 @@ recordFromInputOptions options =
                 Type givenType ->
                     { acc | inputType = givenType }
         )
-        { theme = Theme.Light
+        { theme = Theme.New
         , disabled = False
         , inputValue = ""
         , labelText = ""
