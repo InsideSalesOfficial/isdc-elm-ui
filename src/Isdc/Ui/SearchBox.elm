@@ -1,4 +1,4 @@
-module Isdc.Ui.SearchBox exposing (SearchBoxOptions, SearchBoxTheme(..), searchBox)
+module Isdc.Ui.SearchBox exposing (SearchBoxOptions, searchBox)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
@@ -7,16 +7,12 @@ import Html.Styled.Events exposing (onBlur, onFocus, onInput)
 import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Color.Hex as Hex
 import Isdc.Ui.Icons exposing (searchIcon)
+import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography as Typography
 
 
-type SearchBoxTheme
-    = Dark
-    | Light
-
-
 type alias SearchBoxOptions msg =
-    { theme : SearchBoxTheme
+    { theme : Theme
     , disabled : Bool
     , inputValue : String
     , placeholderText : String
@@ -29,20 +25,23 @@ type alias SearchBoxOptions msg =
 
 searchBoxContainerCss theme focused =
     let
-        ( bgColor, inputBorderColor ) =
+        ( bgColor, inputBorderColor, brandColor ) =
             case theme of
-                Dark ->
-                    ( Color.darkBlue, Color.white60 )
+                Theme.Dark ->
+                    ( Color.darkBlue, Color.white60, Color.green )
 
-                Light ->
-                    ( Color.grayA, Color.black40 )
+                Theme.Light ->
+                    ( Color.grayA, Color.black40, Color.green )
+
+                Theme.New ->
+                    ( Color.primary02, Color.white40, Color.brand01 )
     in
     [ backgroundColor bgColor
     , borderRadius (px 3)
     , borderBottom3 (px 2)
         solid
         (if focused then
-            Color.green
+            brandColor
 
          else
             inputBorderColor
@@ -56,29 +55,18 @@ searchBoxContainerCss theme focused =
     ]
 
 
-inputContainerCss theme =
-    let
-        bgColor =
-            case theme of
-                Dark ->
-                    Color.darkBlue
-
-                Light ->
-                    Color.grayA
-    in
-    [ backgroundColor bgColor
-    ]
-
-
 inputCss theme =
     let
         ( primaryColor, placeholderColor ) =
             case theme of
-                Dark ->
+                Theme.Dark ->
                     ( Color.white90, Color.white40 )
 
-                Light ->
+                Theme.Light ->
                     ( Color.black90, Color.black60 )
+
+                Theme.New ->
+                    ( Color.white90, Color.white40 )
     in
     [ color primaryColor
     , paddingLeft (px 8)
