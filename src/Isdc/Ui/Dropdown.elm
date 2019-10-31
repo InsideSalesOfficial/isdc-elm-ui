@@ -18,7 +18,7 @@ import Isdc.Ui.Checkbox exposing (..)
 import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Color.Hex as Hex
 import Isdc.Ui.Icons exposing (..)
-import Isdc.Ui.Theme as Theme
+import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography exposing (..)
 
 
@@ -58,6 +58,7 @@ type alias DropDownProperties msg =
     , saveMessage : msg
     , cancelMessage : msg
     , search : String
+    , theme : Theme
     }
 
 
@@ -91,17 +92,93 @@ type alias DropDownProperties msg =
 multiCheckDropdown : DropDownProperties msg -> Html msg
 multiCheckDropdown dropDownArgs =
     let
-        { labelText, dropDownValue, options, open, openMessage, toggleMessage, searchMessage, search, saveMessage, cancelMessage } =
+        { theme, labelText, dropDownValue, options, open, openMessage, toggleMessage, searchMessage, search, saveMessage, cancelMessage } =
             dropDownArgs
+
+        labelColor =
+            case theme of
+                Theme.New ->
+                    Color.white40
+
+                _ ->
+                    Color.black
+
+        inputColor =
+            case theme of
+                Theme.New ->
+                    Color.white60
+
+                _ ->
+                    Color.black60
+
+        inputBorderColor =
+            case theme of
+                Theme.New ->
+                    Color.white40
+
+                _ ->
+                    Color.black40
+
+        modalBackgroundColor =
+            case theme of
+                Theme.New ->
+                    Color.primary05
+
+                _ ->
+                    Color.white
+
+        searchTextColor =
+            case theme of
+                Theme.New ->
+                    Color.white60
+
+                _ ->
+                    Color.black40
+
+        searchIconColor =
+            Hex.grayC
+
+        borderBottomColor =
+            case theme of
+                Theme.New ->
+                    Color.white60
+
+                _ ->
+                    Color.black60
+
+        caretColor =
+            case theme of
+                Theme.New ->
+                    Color.white90
+
+                _ ->
+                    Color.black60
+
+        cancelButton =
+            case theme of
+                Theme.New ->
+                    Button.secondaryDark
+
+                _ ->
+                    Button.white
+
+        saveButton =
+            case theme of
+                Theme.New ->
+                    Button.brand
+
+                _ ->
+                    Button.green
     in
     div [ css [ position relative ] ]
-        [ label [ css [ Isdc.Ui.Typography.caption ] ] [ text labelText ]
+        [ label [ css [ Isdc.Ui.Typography.caption, color labelColor ] ] [ text labelText ]
         , button
             [ css
-                [ color Color.black60
+                [ color inputColor
+                , backgroundColor <| rgba 0 0 0 0
                 , fontSize (px 16)
                 , border zero
-                , borderBottom3 (px 1) solid Color.black60
+                , borderBottom3 (px 1) solid borderBottomColor
                 , width (pct 100)
                 , textAlign left
                 , outline zero
@@ -117,7 +194,7 @@ multiCheckDropdown dropDownArgs =
                     , height zero
                     , borderLeft3 (px 5) solid transparent
                     , borderRight3 (px 5) solid transparent
-                    , borderTop3 (px 5) solid Color.black60
+                    , borderTop3 (px 5) solid caretColor
                     , position absolute
                     , top (pct 50)
                     , right (px 10)
@@ -145,7 +222,7 @@ multiCheckDropdown dropDownArgs =
                         [ position absolute
                         , top zero
                         , boxShadow4 (px 2) (px 4) (px 10) Color.black40
-                        , backgroundColor (rgb 255 255 255)
+                        , backgroundColor modalBackgroundColor
                         , padding (px 15)
                         , zIndex (int 101)
                         , width (pct 100)
@@ -155,7 +232,7 @@ multiCheckDropdown dropDownArgs =
                     ]
                     [ div
                         [ css
-                            [ border3 (px 1) solid Color.black40
+                            [ border3 (px 1) solid inputBorderColor
                             , borderRadius (px 3)
                             , alignItems center
                             , displayFlex
@@ -168,14 +245,15 @@ multiCheckDropdown dropDownArgs =
                                 , alignItems center
                                 ]
                             ]
-                            [ fromUnstyled <| searchIcon "24px" "24px" Hex.grayC ]
+                            [ fromUnstyled <| searchIcon "24px" "24px" searchIconColor ]
                         , input
                             [ css
                                 [ border zero
                                 , body1
                                 , outline zero
                                 , height (px 36)
-                                , color Color.black40
+                                , backgroundColor <| rgba 0 0 0 0
+                                , color searchTextColor
                                 ]
                             , onInput searchMessage
                             , value search
@@ -194,15 +272,15 @@ multiCheckDropdown dropDownArgs =
                                 , overflow auto
                                 ]
                             ]
-                            (List.map (\option -> multiCheckDropdownItem option toggleMessage) options)
+                            (List.map (\option -> multiCheckDropdownItem theme option toggleMessage) options)
                         , div
                             [ css
                                 [ displayFlex
                                 , justifyContent flexEnd
                                 ]
                             ]
-                            [ Button.white [ css [ minWidth (px 88) ], onClick cancelMessage ] [ text "Cancel" ]
-                            , Button.green [ css [ minWidth (px 88) ], onClick saveMessage ] [ text "Save" ]
+                            [ cancelButton [ css [ minWidth (px 88) ], onClick cancelMessage ] [ text "Cancel" ]
+                            , saveButton [ css [ minWidth (px 88) ], onClick saveMessage ] [ text "Save" ]
                             ]
                         ]
                     ]
@@ -223,12 +301,12 @@ type alias Option =
 
 {-| multiCheckDropdownItem is a single checkbox and label which can send a message to toggle the checkbox
 -}
-multiCheckDropdownItem : Option -> (String -> msg) -> Html msg
-multiCheckDropdownItem option toggleMessage =
+multiCheckDropdownItem : Theme -> Option -> (String -> msg) -> Html msg
+multiCheckDropdownItem theme option toggleMessage =
     div
         [ css [ margin2 (px 10) (px 0) ]
         ]
-        [ checkBox Theme.New
+        [ checkBox theme
             { checked = option.checked
             , disabled = False
             , onValueChange = toggleMessage option.value

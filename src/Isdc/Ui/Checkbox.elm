@@ -39,7 +39,7 @@ checkBox theme options =
                 Theme.New ->
                     case ( options.checked, options.disabled ) of
                         ( False, False ) ->
-                            Color.primary01
+                            rgba 0 0 0 0
 
                         ( True, False ) ->
                             Color.brand01
@@ -56,7 +56,7 @@ checkBox theme options =
                             Color.green
 
                         False ->
-                            Color.white
+                            rgba 0 0 0 0
 
         borderColor_ =
             case theme of
