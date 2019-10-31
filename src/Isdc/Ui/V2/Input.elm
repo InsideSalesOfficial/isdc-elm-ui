@@ -135,7 +135,7 @@ inputContainerCss theme isFocused =
         ( bgColor, inputBorderColor ) =
             case theme of
                 Theme.New ->
-                    ( Color.primary04, Color.white40 )
+                    ( Color.primary03, Color.white40 )
 
                 Theme.Dark ->
                     ( Color.darkBlue, Color.white60 )
