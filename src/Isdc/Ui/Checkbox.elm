@@ -34,7 +34,7 @@ type alias CheckboxOptions msg =
 checkBox : Theme -> CheckboxOptions msg -> Html msg
 checkBox theme options =
     let
-        bgColor =
+        backgroundColor_ =
             case theme of
                 Theme.New ->
                     case ( options.checked, options.disabled ) of
@@ -58,7 +58,7 @@ checkBox theme options =
                         False ->
                             Color.white
 
-        borderColor1 =
+        borderColor_ =
             case theme of
                 Theme.New ->
                     case ( options.checked, options.disabled ) of
@@ -102,8 +102,8 @@ checkBox theme options =
         [ button
             [ css
                 [ baseCheckboxStyles
-                , backgroundColor bgColor
-                , borderColor borderColor1
+                , backgroundColor backgroundColor_
+                , borderColor borderColor_
                 ]
             , onClick options.onValueChange
             , class "pb-test__checkbox"
