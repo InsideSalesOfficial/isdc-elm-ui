@@ -4,6 +4,7 @@ import Css exposing (..)
 import DocsLayout exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
+import Isdc.Ui.Theme as Theme
 import Isdc.Ui.V2.Input exposing (..)
 
 
@@ -34,7 +35,7 @@ view model =
               , example =
                     div []
                         [ inputBox
-                            [ inputTheme Dark
+                            [ inputTheme Theme.New
                             , inputDisabled False
                             , inputValue model.value
                             , labelText "Hello world"
@@ -46,7 +47,20 @@ view model =
                             ]
                         , div [ css [ paddingTop <| px 10 ] ]
                             [ inputBox
-                                [ inputTheme Light
+                                [ inputTheme Theme.Dark
+                                , inputDisabled False
+                                , inputValue model.value
+                                , labelText "Hello world"
+                                , onValueChange ValueChange
+                                , onInputFocus Focus
+                                , onInputBlur Blur
+                                , focused model.focused
+                                , inputType "text"
+                                ]
+                            ]
+                        , div [ css [ paddingTop <| px 10 ] ]
+                            [ inputBox
+                                [ inputTheme Theme.Light
                                 , inputDisabled False
                                 , inputValue model.value
                                 , labelText "Hello world"
@@ -60,7 +74,19 @@ view model =
                         ]
               , codeUsage = """
 inputBox
-    [ inputTheme Dark
+    [ inputTheme Theme.New
+    , inputDisabled False
+    , inputValue model.value
+    , labelText "Hello world"
+    , onValueChange ValueChange
+    , onInputFocus Focus
+    , onInputBlur Blur
+    , focused model.focused
+    , inputType "text"
+    ]
+    
+inputBox
+    [ inputTheme Theme.Dark
     , inputDisabled False
     , inputValue model.value
     , labelText "Hello world"
@@ -72,7 +98,7 @@ inputBox
     ]
 
  inputBox
-    [ inputTheme Light
+    [ inputTheme Theme.Light
     , inputDisabled False
     , inputValue model.value
     , labelText "Hello world"
