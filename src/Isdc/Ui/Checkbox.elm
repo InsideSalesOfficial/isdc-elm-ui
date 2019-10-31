@@ -5,6 +5,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onClick)
 import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 
 
 baseCheckboxStyles : Css.Style
@@ -30,30 +31,88 @@ type alias CheckboxOptions msg =
     }
 
 
-checkBox : CheckboxOptions msg -> Html msg
-checkBox options =
+checkBox : Theme -> CheckboxOptions msg -> Html msg
+checkBox theme options =
+    let
+        backgroundColor_ =
+            case theme of
+                Theme.New ->
+                    case ( options.checked, options.disabled ) of
+                        ( False, False ) ->
+                            Color.primary01
+
+                        ( True, False ) ->
+                            Color.brand01
+
+                        ( False, True ) ->
+                            Color.primary01
+
+                        ( True, True ) ->
+                            Color.white40
+
+                _ ->
+                    case options.checked of
+                        True ->
+                            Color.green
+
+                        False ->
+                            Color.white
+
+        borderColor_ =
+            case theme of
+                Theme.New ->
+                    case ( options.checked, options.disabled ) of
+                        ( False, False ) ->
+                            Color.white60
+
+                        ( True, False ) ->
+                            Color.brand01
+
+                        ( False, True ) ->
+                            Color.white40
+
+                        ( True, True ) ->
+                            Color.white40
+
+                _ ->
+                    case options.checked of
+                        True ->
+                            Color.green
+
+                        False ->
+                            Color.black40
+
+        checkmarkColor =
+            case theme of
+                Theme.New ->
+                    Color.primary01
+
+                _ ->
+                    Color.white
+
+        labelColor =
+            case theme of
+                Theme.New ->
+                    Color.white60
+
+                _ ->
+                    Color.black
+    in
     div []
         [ button
             [ css
-                (if options.checked then
-                    [ backgroundColor Color.green
-                    , baseCheckboxStyles
-                    , borderColor Color.green
-                    ]
-
-                 else
-                    [ baseCheckboxStyles
-                    , borderColor Color.black40
-                    ]
-                )
+                [ baseCheckboxStyles
+                , backgroundColor backgroundColor_
+                , borderColor borderColor_
+                ]
             , onClick options.onValueChange
             , class "pb-test__checkbox"
             ]
             (if options.checked then
                 [ span
                     [ css
-                        [ borderBottom3 (px 2) solid Color.white
-                        , borderLeft3 (px 2) solid Color.white
+                        [ borderBottom3 (px 2) solid checkmarkColor
+                        , borderLeft3 (px 2) solid checkmarkColor
                         , width (px 10)
                         , height (px 5)
                         , transforms [ translate2 (pct -50) (pct -65), rotate (deg -45) ]
@@ -68,5 +127,5 @@ checkBox options =
              else
                 []
             )
-        , text options.label
+        , span [ css [ color labelColor ] ] [ text options.label ]
         ]
