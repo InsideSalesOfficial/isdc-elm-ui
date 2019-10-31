@@ -1,4 +1,7 @@
-module Isdc.Ui.Loader exposing (..)
+module Isdc.Ui.Loader exposing
+    ( loader
+    , LoaderSize(..)
+    )
 
 {-| Loading Element
 
@@ -14,6 +17,7 @@ import Css.Animations as Animations
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 
 
 {-| LoaderSize is small medium or large
@@ -28,15 +32,22 @@ transformTo val =
     Animations.transform [ scale val ]
 
 
-loaderBubbleCss delay size =
+loaderBubbleCss delay size theme =
     [ width <| px size
     , height <| px size
-    , backgroundColor Color.green
+    , backgroundColor
+        (case theme of
+            Theme.New ->
+                Color.brand01
+
+            _ ->
+                Color.green
+        )
     , borderRadius <| pct 50
     , display inlineBlock
     , property "animation-duration" "1.4s"
     , property "animation-timing-function" "ease-in-out"
-    , property "animation-delay" <| (String.fromFloat delay) ++ "s"
+    , property "animation-delay" <| String.fromFloat delay ++ "s"
     , property "animation-iteration-count" "infinite"
     , property "animation-fill-mode" "BOTH"
     , animationName <|
@@ -49,10 +60,10 @@ loaderBubbleCss delay size =
     ]
 
 
-{-| loader is an animated loader with green dots
+{-| loader is an animated loader with brand colored dots
 -}
-loader : LoaderSize -> Html msg
-loader size =
+loader : LoaderSize -> Theme -> Html msg
+loader size theme =
     let
         ( totalWidth, radius ) =
             case size of
@@ -65,14 +76,14 @@ loader size =
                 Large ->
                     ( 80, 20 )
     in
-        div
-            [ css
-                [ margin2 zero auto
-                , width <| px totalWidth
-                , textAlign center
-                ]
+    div
+        [ css
+            [ margin2 zero auto
+            , width <| px totalWidth
+            , textAlign center
             ]
-            [ div [ css <| loaderBubbleCss -0.32 radius ] []
-            , div [ css <| loaderBubbleCss -0.16 radius ] []
-            , div [ css <| loaderBubbleCss 0 radius ] []
-            ]
+        ]
+        [ div [ css <| loaderBubbleCss -0.32 radius theme ] []
+        , div [ css <| loaderBubbleCss -0.16 radius theme ] []
+        , div [ css <| loaderBubbleCss 0 radius theme ] []
+        ]
