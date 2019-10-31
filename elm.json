@@ -5,15 +5,15 @@
     "license": "MIT",
     "version": "1.0.0",
     "exposed-modules": [
-        "Isdc.Ui.Colors.Css",
-        "Isdc.Ui.Colors.Hex",
-        "Isdc.Ui.Buttons",
+        "Isdc.Ui.Color.Css",
+        "Isdc.Ui.Color.Hex",
+        "Isdc.Ui.Button",
         "Isdc.Ui.Dropdown",
         "Isdc.Ui.Icons",
         "Isdc.Ui.Typography",
         "Isdc.Ui.Loader"
     ],
-    "elm-version": "0.19.1",
+    "elm-version": "0.19.1 <= v < 0.20.0",
     "dependencies": {
         "elm/core": "1.0.0 <= v < 2.0.0",
         "elm/html": "1.0.0 <= v < 2.0.0",
