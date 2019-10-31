@@ -1,6 +1,5 @@
 module Isdc.Ui.V2.Input exposing
-    ( InputTheme(..)
-    , focused
+    ( focused
     , inputBox
     , inputContainerCss
     , inputCss
@@ -21,16 +20,12 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, placeholder, src, type_, value)
 import Html.Styled.Events exposing (onBlur, onFocus, onInput)
 import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography as Typography exposing (caption, subhead1)
 
 
-type InputTheme
-    = Dark
-    | Light
-
-
 type InputOptions msg
-    = Theme InputTheme
+    = Theme Theme
     | Disabled Bool
     | InputValue String
     | LabelText String
@@ -78,7 +73,7 @@ inputType =
 
 
 type alias InputOptionsRecord msg =
-    { theme : InputTheme
+    { theme : Theme
     , disabled : Bool
     , inputValue : String
     , labelText : String
@@ -122,7 +117,7 @@ recordFromInputOptions options =
                 Type givenType ->
                     { acc | inputType = givenType }
         )
-        { theme = Light
+        { theme = Theme.New
         , disabled = False
         , inputValue = ""
         , labelText = ""
@@ -139,10 +134,13 @@ inputContainerCss theme isFocused =
     let
         ( bgColor, inputBorderColor ) =
             case theme of
-                Dark ->
+                Theme.New ->
+                    ( Color.primary04, Color.white40 )
+
+                Theme.Dark ->
                     ( Color.darkBlue, Color.white60 )
 
-                Light ->
+                Theme.Light ->
                     ( Color.grayA, Color.black40 )
     in
     [ backgroundColor bgColor
@@ -150,7 +148,12 @@ inputContainerCss theme isFocused =
     , borderBottom3 (px 2)
         solid
         (if isFocused then
-            Color.green
+            case theme of
+                Theme.New ->
+                    Color.brand01
+
+                _ ->
+                    Color.green
 
          else
             inputBorderColor
@@ -163,10 +166,13 @@ inputCss theme =
     let
         primaryColor =
             case theme of
-                Dark ->
+                Theme.New ->
                     Color.white90
 
-                Light ->
+                Theme.Dark ->
+                    Color.white90
+
+                Theme.Light ->
                     Color.black90
     in
     [ color primaryColor
@@ -197,14 +203,22 @@ labelCss theme inputLabelText isFocused =
 
         labelColor =
             if isFocused then
-                Color.green
+                case theme of
+                    Theme.New ->
+                        Color.brand01
+
+                    _ ->
+                        Color.green
 
             else
                 case theme of
-                    Dark ->
+                    Theme.New ->
+                        Color.white40
+
+                    Theme.Dark ->
                         Color.white60
 
-                    Light ->
+                    Theme.Light ->
                         Color.black60
     in
     [ position absolute
