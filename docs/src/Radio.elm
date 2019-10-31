@@ -6,6 +6,7 @@ import Html.Styled exposing (div, text)
 import Html.Styled.Attributes exposing (css)
 import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Radio exposing (radio, radioList)
+import Isdc.Ui.Theme as Theme
 
 
 type alias Model =
@@ -26,11 +27,21 @@ whiteBackground html =
         [ html ]
 
 
+darkbackground html =
+    div
+        [ css
+            [ backgroundColor Color.primary01
+            , padding <| px 10
+            ]
+        ]
+        [ html ]
+
+
 view model =
     story
         { title = "Isdc.Ui.Checkbox exposing (radio, radioList)"
         , chapters =
-            [ { heading = "radio : Radio a msg -> a -> (a -> msg) -> Html msg"
+            [ { heading = "radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg"
               , example =
                     whiteBackground <|
                         let
@@ -39,7 +50,7 @@ view model =
                                 , value = 0
                                 }
                         in
-                        radio radioContent model ValueChange
+                        radio radioContent model ValueChange Theme.Light
               , codeUsage = """
 let
     radioContent =
@@ -47,10 +58,30 @@ let
         , value = 0
         }
 in
-radio radioContent model ValueChange
+radio radioContent model ValueChange Theme.Light
 """
               }
-            , { heading = "radioList : List (Radio a msg) -> (a -> msg) -> Html msg"
+            , { heading = "radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg"
+              , example =
+                    darkbackground <|
+                        let
+                            radioContent =
+                                { label = text "Foo"
+                                , value = 0
+                                }
+                        in
+                        radio radioContent model ValueChange Theme.New
+              , codeUsage = """
+let
+    radioContent =
+        { label = text "Foo"
+        , value = 0
+        }
+in
+radio radioContent model ValueChange Theme.New
+"""
+              }
+            , { heading = "radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg"
               , example =
                     whiteBackground <|
                         let
@@ -66,7 +97,7 @@ radio radioContent model ValueChange
                                   }
                                 ]
                         in
-                        radioList radios model ValueChange
+                        radioList radios model ValueChange Theme.Light
               , codeUsage = """
 let
     radios =
@@ -81,7 +112,41 @@ let
             }
         ]
 in
-radioList radios model ValueChange
+radioList radios model ValueChange Theme.Light
+"""
+              }
+            , { heading = "radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg"
+              , example =
+                    darkbackground <|
+                        let
+                            radios =
+                                [ { label = text "Foo"
+                                  , value = 0
+                                  }
+                                , { label = text "Bar"
+                                  , value = 1
+                                  }
+                                , { label = text "Baz"
+                                  , value = 2
+                                  }
+                                ]
+                        in
+                        radioList radios model ValueChange Theme.New
+              , codeUsage = """
+let
+    radios =
+        [ { label = text "Foo"
+            , value = 0
+            }
+        , { label = text "Bar"
+            , value = 1
+            }
+        , { label = text "Baz"
+            , value = 2
+            }
+        ]
+in
+radioList radios model ValueChange Theme.New
 """
               }
             ]
