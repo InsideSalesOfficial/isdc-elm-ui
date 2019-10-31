@@ -8,6 +8,7 @@ import Html.Styled.Events exposing (onClick)
 import Isdc.Ui.Button as Button
 import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.DropdownDots exposing (..)
+import Isdc.Ui.Theme as Theme exposing (Theme)
 
 
 initModel : Model
@@ -38,6 +39,48 @@ view model =
               , example =
                     div
                         [ css
+                            [ backgroundColor Color.primary01
+                            , height <| px 300
+                            , displayFlex
+                            , justifyContent flexEnd
+                            , alignItems center
+                            ]
+                        ]
+                        [ dropdownDots
+                            { fields =
+                                [ { label = "Foo"
+                                  , value = "Bar"
+                                  }
+                                ]
+                            , choose = Choose
+                            , close = Close
+                            , open = Open
+                            , isOpen = model.open
+                            , direction = model.direction
+                            , theme = Theme.New
+                            }
+                        , Button.green [ onClick ToggleDirection ] [ text "Toggle Direction" ]
+                        ]
+              , codeUsage = """
+dropdownDots
+            { fields =
+                [ { label = "Foo"
+                    , value = "Bar"
+                    }
+                ]
+            , choose = Choose
+            , close = Close
+            , open = Open
+            , isOpen = model.open
+            , direction = model.direction
+            , theme = Theme.Bew
+            }
+"""
+              }
+            , { heading = "DEPRECATED: Light Theme"
+              , example =
+                    div
+                        [ css
                             [ backgroundColor Color.darkBlueC
                             , height <| px 300
                             , displayFlex
@@ -56,6 +99,7 @@ view model =
                             , open = Open
                             , isOpen = model.open
                             , direction = model.direction
+                            , theme = Theme.Light
                             }
                         , Button.green [ onClick ToggleDirection ] [ text "Toggle Direction" ]
                         ]
@@ -71,6 +115,7 @@ dropdownDots
             , open = Open
             , isOpen = model.open
             , direction = model.direction
+            , theme = Theme.Light
             }
 """
               }
