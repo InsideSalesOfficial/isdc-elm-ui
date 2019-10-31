@@ -1,13 +1,15 @@
 module Isdc.Ui.Modal exposing (modal)
 
-import Html.Styled exposing (div, Html)
 import Css exposing (..)
-import Isdc.Ui.Color.Css as Color
+import Html.Styled exposing (Html, div)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 
 
-modal options close body =
+modal : Maybe { modalPadding : Px, modalWidth : Px } -> msg -> Theme -> List (Html msg) -> Html msg
+modal options close theme body =
     let
         { modalWidth, modalPadding } =
             case options of
@@ -18,42 +20,51 @@ modal options close body =
 
                 Just justOptions ->
                     justOptions
+
+        (modalBackgroundColor, textColor) =
+            case theme of
+                Theme.New ->
+                    (Color.primary01, Color.white90)
+
+                _ ->
+                    (Color.white, Color.black90)
     in
-        div
+    div
+        [ css
+            [ position fixed
+            , top zero
+            , left zero
+            , right zero
+            , bottom zero
+            , displayFlex
+            , alignItems center
+            , justifyContent center
+            ]
+        ]
+        [ div
             [ css
-                [ position fixed
+                [ backgroundColor Color.black40
+                , position absolute
                 , top zero
                 , left zero
                 , right zero
                 , bottom zero
-                , displayFlex
-                , alignItems center
-                , justifyContent center
+                , zIndex <| int 10
+                ]
+            , onClick close
+            ]
+            []
+        , div
+            [ css
+                [ backgroundColor modalBackgroundColor
+                , borderRadius (px 3)
+                , boxSizing borderBox
+                , width modalWidth
+                , padding modalPadding
+                , boxShadow5 zero (px 19) (px 38) zero Color.black40
+                , zIndex <| int 20
+                , color textColor
                 ]
             ]
-            [ div
-                [ css
-                    [ backgroundColor Color.black40
-                    , position absolute
-                    , top zero
-                    , left zero
-                    , right zero
-                    , bottom zero
-                    , zIndex <| int 10
-                    ]
-                , onClick close
-                ]
-                []
-            , div
-                [ css
-                    [ backgroundColor Color.white
-                    , borderRadius (px 3)
-                    , boxSizing borderBox
-                    , width modalWidth
-                    , padding modalPadding
-                    , boxShadow5 zero (px 19) (px 38) zero Color.black40
-                    , zIndex <| int 20
-                    ]
-                ]
-                body
-            ]
+            body
+        ]
