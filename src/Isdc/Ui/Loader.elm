@@ -11,12 +11,9 @@ module Isdc.Ui.Loader exposing (..)
 
 import Css exposing (..)
 import Css.Animations as Animations
-import Css.Transitions as Transitions
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, src, placeholder, value)
-import Html.Styled.Events exposing (onInput, onFocus, onBlur)
-import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Typography as Typography exposing (subhead1, caption)
+import Html.Styled.Attributes exposing (css)
+import Isdc.Ui.Color.Css as Color
 
 
 {-| LoaderSize is small medium or large
@@ -34,7 +31,7 @@ transformTo val =
 loaderBubbleCss delay size =
     [ width <| px size
     , height <| px size
-    , backgroundColor green
+    , backgroundColor Color.green
     , borderRadius <| pct 50
     , display inlineBlock
     , property "animation-duration" "1.4s"

@@ -4,7 +4,7 @@ import Css exposing (..)
 import DocsLayout exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
-import Isdc.Ui.Colors.Css as Colors
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Scrollbar exposing (..)
 import Isdc.Ui.Theme as Theme
 
@@ -37,8 +37,8 @@ view _ =
               , example =
                     div
                         [ css
-                            [ backgroundColor Colors.primary01
-                            , color Colors.white
+                            [ backgroundColor Color.primary01
+                            , color Color.white
                             ]
                         ]
                         [ scrollingElement <| styles Theme.New ]
@@ -47,8 +47,8 @@ div
     [ css
         [ overflow scroll
         , height <| px 200
-        , backgroundColor Colors.darkBlueC
-        , color Colors.white
+        , backgroundColor Color.darkBlueC
+        , color Color.white
         , scrollbarStyles Theme.New
         , padding <| px 10
         ]
@@ -66,8 +66,8 @@ div
               , example =
                     div
                         [ css
-                            [ backgroundColor Colors.darkBlueC
-                            , color Colors.white
+                            [ backgroundColor Color.darkBlueC
+                            , color Color.white
                             ]
                         ]
                         [ scrollingElement <| styles Theme.Light ]
@@ -76,8 +76,8 @@ div
     [ css
         [ overflow scroll
         , height <| px 200
-        , backgroundColor Colors.darkBlueC
-        , color Colors.white
+        , backgroundColor Color.darkBlueC
+        , color Color.white
         , scrollbarStyles Theme.Light
         , padding <| px 10
         ]

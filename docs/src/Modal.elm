@@ -1,13 +1,11 @@
 module Modal exposing (Model, Msg(..), update, view)
 
-import Css exposing (..)
 import DocsLayout exposing (..)
-import Html
 import Html.Styled exposing (..)
-import Html.Styled.Events exposing (onClick)
 import Html.Styled.Attributes exposing (..)
+import Html.Styled.Events exposing (onClick)
+import Isdc.Ui.Button as Button
 import Isdc.Ui.Modal exposing (..)
-import Isdc.Ui.Buttons exposing (..)
 
 
 type alias Model =
@@ -26,18 +24,10 @@ view open =
             [ { heading = "modal : Maybe a -> msg -> List (Html msg) -> Html msg"
               , example =
                     div []
-                        [ button [ css [ greenButtonStyles ], onClick Open ] [ text "Open" ]
+                        [ Button.green [ onClick Open ] [ text "Open" ]
                         , if open then
-                            modal Nothing
-                                Close
-                                [ button
-                                    [ css
-                                        [ greenButtonStyles
-                                        ]
-                                    , onClick Close
-                                    ]
-                                    [ text "Close" ]
-                                ]
+                            modal Nothing Close [ Button.green [ onClick Close ] [ text "Close" ] ]
+
                           else
                             text ""
                         ]

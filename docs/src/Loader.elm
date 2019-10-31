@@ -1,9 +1,7 @@
 module Loader exposing (view)
 
 import DocsLayout exposing (..)
-import Html
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
 import Isdc.Ui.Loader exposing (..)
 
 

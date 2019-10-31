@@ -11,12 +11,12 @@ module Isdc.Ui.Dropdown exposing (multiCheckDropdown, DropDownProperties, multiC
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, placeholder, src, value)
+import Html.Styled.Attributes exposing (css, placeholder, value)
 import Html.Styled.Events exposing (onClick, onInput)
-import Isdc.Ui.Buttons exposing (..)
+import Isdc.Ui.Button as Button
 import Isdc.Ui.Checkbox exposing (..)
-import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Colors.Hex as Hex exposing (grayC)
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Color.Hex as Hex
 import Isdc.Ui.Icons exposing (..)
 import Isdc.Ui.Typography exposing (..)
 
@@ -97,10 +97,10 @@ multiCheckDropdown dropDownArgs =
         [ label [ css [ Isdc.Ui.Typography.caption ] ] [ text labelText ]
         , button
             [ css
-                [ color black60
+                [ color Color.black60
                 , fontSize (px 16)
                 , border zero
-                , borderBottom3 (px 1) solid black60
+                , borderBottom3 (px 1) solid Color.black60
                 , width (pct 100)
                 , textAlign left
                 , outline zero
@@ -116,7 +116,7 @@ multiCheckDropdown dropDownArgs =
                     , height zero
                     , borderLeft3 (px 5) solid transparent
                     , borderRight3 (px 5) solid transparent
-                    , borderTop3 (px 5) solid black60
+                    , borderTop3 (px 5) solid Color.black60
                     , position absolute
                     , top (pct 50)
                     , right (px 10)
@@ -143,7 +143,7 @@ multiCheckDropdown dropDownArgs =
                     [ css
                         [ position absolute
                         , top zero
-                        , boxShadow4 (px 2) (px 4) (px 10) black40
+                        , boxShadow4 (px 2) (px 4) (px 10) Color.black40
                         , backgroundColor (rgb 255 255 255)
                         , padding (px 15)
                         , zIndex (int 101)
@@ -154,7 +154,7 @@ multiCheckDropdown dropDownArgs =
                     ]
                     [ div
                         [ css
-                            [ border3 (px 1) solid black40
+                            [ border3 (px 1) solid Color.black40
                             , borderRadius (px 3)
                             , alignItems center
                             , displayFlex
@@ -174,7 +174,7 @@ multiCheckDropdown dropDownArgs =
                                 , body1
                                 , outline zero
                                 , height (px 36)
-                                , color black40
+                                , color Color.black40
                                 ]
                             , onInput searchMessage
                             , value search
@@ -200,8 +200,8 @@ multiCheckDropdown dropDownArgs =
                                 , justifyContent flexEnd
                                 ]
                             ]
-                            [ button [ css [ whiteButtonStyles, minWidth (px 88) ], onClick cancelMessage ] [ text "Cancel" ]
-                            , button [ css [ greenButtonStyles, minWidth (px 88) ], onClick saveMessage ] [ text "Save" ]
+                            [ Button.white [ css [ minWidth (px 88) ], onClick cancelMessage ] [ text "Cancel" ]
+                            , Button.green [ css [ minWidth (px 88) ], onClick saveMessage ] [ text "Save" ]
                             ]
                         ]
                     ]

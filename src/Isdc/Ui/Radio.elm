@@ -4,7 +4,7 @@ import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onClick)
-import Isdc.Ui.Colors.Css as Colors
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography as Typography
 
@@ -27,57 +27,57 @@ radio radioContent currentValue select theme =
         focusColor =
             case ( selected, theme ) of
                 ( True, Theme.New ) ->
-                    Colors.brand01Transparent10
+                    Color.brand01Transparent10
 
                 ( False, Theme.New ) ->
-                    Colors.primary04
+                    Color.primary04
 
                 ( True, _ ) ->
-                    Colors.green40
+                    Color.green40
 
                 ( False, _ ) ->
-                    Colors.green10
+                    Color.green10
 
         radioBackground =
             case ( selected, theme ) of
                 ( True, Theme.New ) ->
-                    Colors.brand01Transparent10
+                    Color.brand01Transparent10
 
                 ( False, Theme.New ) ->
-                    Colors.primary03
+                    Color.primary03
 
                 ( True, _ ) ->
-                    Colors.green40
+                    Color.green40
 
                 ( False, _ ) ->
-                    Colors.grayA
+                    Color.grayA
 
         selectedColor =
             case theme of
                 Theme.New ->
-                    Colors.brand01
+                    Color.brand01
 
                 _ ->
-                    Colors.green
+                    Color.green
 
         borderCircleColor =
             case ( selected, theme ) of
                 ( False, Theme.New ) ->
-                    Colors.white60
+                    Color.white60
 
                 ( True, Theme.New ) ->
-                    Colors.brand01
+                    Color.brand01
 
                 _ ->
-                    Colors.black
+                    Color.black
 
         textColor =
             case theme of
                 Theme.New ->
-                    Colors.white60
+                    Color.white60
 
                 _ ->
-                    Colors.black60
+                    Color.black60
     in
     button
         [ css

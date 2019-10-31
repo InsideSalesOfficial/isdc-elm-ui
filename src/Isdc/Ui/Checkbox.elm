@@ -2,13 +2,9 @@ module Isdc.Ui.Checkbox exposing (CheckboxOptions, baseCheckboxStyles, checkBox)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (class, css, href, placeholder, src, value)
-import Html.Styled.Events exposing (onClick, onInput)
-import Isdc.Ui.Buttons exposing (..)
-import Isdc.Ui.Colors.Css exposing (..)
-import Isdc.Ui.Colors.Hex as Hex exposing (grayC)
-import Isdc.Ui.Icons exposing (..)
-import Isdc.Ui.Typography exposing (..)
+import Html.Styled.Attributes exposing (class, css)
+import Html.Styled.Events exposing (onClick)
+import Isdc.Ui.Color.Css as Color
 
 
 baseCheckboxStyles : Css.Style
@@ -40,14 +36,14 @@ checkBox options =
         [ button
             [ css
                 (if options.checked then
-                    [ backgroundColor green
+                    [ backgroundColor Color.green
                     , baseCheckboxStyles
-                    , borderColor green
+                    , borderColor Color.green
                     ]
 
                  else
                     [ baseCheckboxStyles
-                    , borderColor black40
+                    , borderColor Color.black40
                     ]
                 )
             , onClick options.onValueChange
@@ -56,8 +52,8 @@ checkBox options =
             (if options.checked then
                 [ span
                     [ css
-                        [ borderBottom3 (px 2) solid white
-                        , borderLeft3 (px 2) solid white
+                        [ borderBottom3 (px 2) solid Color.white
+                        , borderLeft3 (px 2) solid Color.white
                         , width (px 10)
                         , height (px 5)
                         , transforms [ translate2 (pct -50) (pct -65), rotate (deg -45) ]

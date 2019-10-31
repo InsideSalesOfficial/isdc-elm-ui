@@ -6,7 +6,7 @@ import Css.Transitions as Transitions
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onBlur, onClick, onFocus)
-import Isdc.Ui.Colors.Css as Color
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Scrollbar as Scrollbar
 import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography as Typography exposing (subhead1)

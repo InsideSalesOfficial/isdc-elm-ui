@@ -4,7 +4,7 @@ import Css exposing (..)
 import Html as Html
 import Html.Styled as Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
-import Isdc.Ui.Colors.Css exposing (..)
+import Isdc.Ui.Color.Css as Color
 import SyntaxHighlight as Syntax
 
 
@@ -58,7 +58,7 @@ pre {
                     div
                         [ css
                             [ padding2 (px 30) zero
-                            , borderTop3 (px 1) solid grayB
+                            , borderTop3 (px 1) solid Color.grayB
                             ]
                         ]
                         [ h3
@@ -69,9 +69,9 @@ pre {
                         , div
                             [ css
                                 [ margin2 (px 10) zero
-                                , border3 (px 1) solid grayB
+                                , border3 (px 1) solid Color.grayB
                                 , borderRadius <| px 3
-                                , color grayF
+                                , color Color.grayF
                                 , marginBottom <| px 10
                                 , whiteSpace preWrap
                                 , overflow auto

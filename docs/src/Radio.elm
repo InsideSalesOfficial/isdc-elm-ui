@@ -4,7 +4,7 @@ import Css exposing (backgroundColor, padding, px)
 import DocsLayout exposing (..)
 import Html.Styled exposing (div, text)
 import Html.Styled.Attributes exposing (css)
-import Isdc.Ui.Colors.Css as Colors
+import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Radio exposing (radio, radioList)
 import Isdc.Ui.Theme as Theme
 
@@ -20,7 +20,7 @@ type Msg
 whiteBackground html =
     div
         [ css
-            [ backgroundColor Colors.white
+            [ backgroundColor Color.white
             , padding <| px 10
             ]
         ]
@@ -30,7 +30,7 @@ whiteBackground html =
 darkbackground html =
     div
         [ css
-            [ backgroundColor Colors.primary01
+            [ backgroundColor Color.primary01
             , padding <| px 10
             ]
         ]

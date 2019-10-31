@@ -1,8 +1,7 @@
 module Typography exposing (..)
 
 import Isdc.Ui.Typography exposing (..)
-import Html
-import Html.Styled exposing (p, text, toUnstyled)
+import Html.Styled exposing (p, text)
 import Html.Styled.Attributes exposing (css)
 import DocsLayout exposing (..)
 
