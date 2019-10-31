@@ -1,8 +1,12 @@
 module Checkbox exposing (Model, Msg(..), checkboxModel, update, view)
 
+import Css
 import DocsLayout exposing (..)
 import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (css)
 import Isdc.Ui.Checkbox exposing (..)
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme
 
 
 checkboxModel : Model
@@ -30,8 +34,8 @@ view model =
         , chapters =
             [ { heading = "checkBox : CheckboxOptions msg -> Html msg"
               , example =
-                    div []
-                        [ checkBox
+                    div [ css [ Css.backgroundColor Color.primary01, Css.padding (Css.px 10) ] ]
+                        [ checkBox Theme.New
                             { checked = model.checked
                             , disabled = model.disabled
                             , onValueChange = ValueChange
@@ -39,13 +43,32 @@ view model =
                             }
                         ]
               , codeUsage = """
-checkBox
+checkBox Theme.New
     { checked = model.checked
-    , disabled = False
+    , disabled = model.disabled
     , onValueChange = ValueChange
-    , label = "Hello"
+    , label = model.label
     }
 """
+              }
+            , { heading = "checkBox : CheckboxOptions msg -> Html msg"
+              , example =
+                    div []
+                        [ checkBox Theme.Dark
+                            { checked = model.checked
+                            , disabled = model.disabled
+                            , onValueChange = ValueChange
+                            , label = model.label
+                            }
+                        ]
+              , codeUsage = """
+ checkBox Theme.Dark
+     { checked = model.checked
+     , disabled = False
+     , onValueChange = ValueChange
+     , label = "Hello"
+     }
+ """
               }
             ]
         }

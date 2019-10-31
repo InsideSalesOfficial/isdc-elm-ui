@@ -18,6 +18,7 @@ import Isdc.Ui.Checkbox exposing (..)
 import Isdc.Ui.Color.Css as Color
 import Isdc.Ui.Color.Hex as Hex
 import Isdc.Ui.Icons exposing (..)
+import Isdc.Ui.Theme as Theme
 import Isdc.Ui.Typography exposing (..)
 
 
@@ -227,7 +228,7 @@ multiCheckDropdownItem option toggleMessage =
     div
         [ css [ margin2 (px 10) (px 0) ]
         ]
-        [ checkBox
+        [ checkBox Theme.New
             { checked = option.checked
             , disabled = False
             , onValueChange = toggleMessage option.value
