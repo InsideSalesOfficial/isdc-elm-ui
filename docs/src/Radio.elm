@@ -43,26 +43,6 @@ view model =
         , chapters =
             [ { heading = "radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg"
               , example =
-                    whiteBackground <|
-                        let
-                            radioContent =
-                                { label = text "Foo"
-                                , value = 0
-                                }
-                        in
-                        radio radioContent model ValueChange Theme.Light
-              , codeUsage = """
-let
-    radioContent =
-        { label = text "Foo"
-        , value = 0
-        }
-in
-radio radioContent model ValueChange Theme.Light
-"""
-              }
-            , { heading = "radio : Radio a msg -> a -> (a -> msg) -> Theme -> Html msg"
-              , example =
                     darkbackground <|
                         let
                             radioContent =
@@ -81,38 +61,24 @@ in
 radio radioContent model ValueChange Theme.New
 """
               }
-            , { heading = "radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg"
+            , { heading = "DEPRECATED: Light Theme"
               , example =
                     whiteBackground <|
                         let
-                            radios =
-                                [ { label = text "Foo"
-                                  , value = 0
-                                  }
-                                , { label = text "Bar"
-                                  , value = 1
-                                  }
-                                , { label = text "Baz"
-                                  , value = 2
-                                  }
-                                ]
+                            radioContent =
+                                { label = text "Foo"
+                                , value = 0
+                                }
                         in
-                        radioList radios model ValueChange Theme.Light
+                        radio radioContent model ValueChange Theme.Light
               , codeUsage = """
 let
-    radios =
-        [ { label = text "Foo"
-            , value = 0
-            }
-        , { label = text "Bar"
-            , value = 1
-            }
-        , { label = text "Baz"
-            , value = 2
-            }
-        ]
+    radioContent =
+        { label = text "Foo"
+        , value = 0
+        }
 in
-radioList radios model ValueChange Theme.Light
+radio radioContent model ValueChange Theme.Light
 """
               }
             , { heading = "radioList : List (Radio a msg) -> (a -> msg) -> Theme -> Html msg"
@@ -147,6 +113,40 @@ let
         ]
 in
 radioList radios model ValueChange Theme.New
+"""
+              }
+            , { heading = "DEPRECATED: Light Theme"
+              , example =
+                    whiteBackground <|
+                        let
+                            radios =
+                                [ { label = text "Foo"
+                                  , value = 0
+                                  }
+                                , { label = text "Bar"
+                                  , value = 1
+                                  }
+                                , { label = text "Baz"
+                                  , value = 2
+                                  }
+                                ]
+                        in
+                        radioList radios model ValueChange Theme.Light
+              , codeUsage = """
+let
+    radios =
+        [ { label = text "Foo"
+            , value = 0
+            }
+        , { label = text "Bar"
+            , value = 1
+            }
+        , { label = text "Baz"
+            , value = 2
+            }
+        ]
+in
+radioList radios model ValueChange Theme.Light
 """
               }
             ]

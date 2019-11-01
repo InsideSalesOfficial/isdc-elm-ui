@@ -5,6 +5,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css)
 import Html.Styled.Events exposing (onBlur, onClick)
 import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Theme as Theme exposing (Theme)
 import Isdc.Ui.Typography exposing (..)
 
 
@@ -26,6 +27,7 @@ type alias DropdownOptions valType msg =
     , open : msg
     , isOpen : Bool
     , direction : Direction
+    , theme : Theme
     }
 
 
@@ -44,11 +46,21 @@ dot =
         []
 
 
-dropdownBoxCss direction =
+dropdownBoxCss direction theme =
+    let
+        ( textColor, dropdownColor ) =
+            case theme of
+                Theme.New ->
+                    ( Color.white90, Color.primary03 )
+
+                _ ->
+                    ( Color.black90, Color.white )
+    in
     Css.batch
-        [ backgroundColor Color.white
+        [ backgroundColor dropdownColor
         , borderRadius <| px 3
         , position absolute
+        , color textColor
         , (case direction of
             Up ->
                 bottom
@@ -71,13 +83,13 @@ dropdownBoxCss direction =
             , case direction of
                 Up ->
                     Css.batch
-                        [ borderTop3 (px 4) solid Color.white
+                        [ borderTop3 (px 4) solid dropdownColor
                         , top <| pct 100
                         ]
 
                 Down ->
                     Css.batch
-                        [ borderBottom3 (px 4) solid Color.white
+                        [ borderBottom3 (px 4) solid dropdownColor
                         , bottom <| pct 100
                         ]
             , right <| px 14
@@ -86,11 +98,11 @@ dropdownBoxCss direction =
         ]
 
 
-dropDown : List (Field valType) -> (valType -> msg) -> Direction -> msg -> Html msg
-dropDown fields choose direction close =
+dropDown : List (Field valType) -> (valType -> msg) -> Direction -> msg -> Theme -> Html msg
+dropDown fields choose direction close theme =
     div
         [ css
-            [ dropdownBoxCss direction ]
+            [ dropdownBoxCss direction theme ]
         ]
     <|
         List.map
@@ -106,10 +118,16 @@ dropDown fields choose direction close =
                         , whiteSpace noWrap
                         , padding4 (px 6) (px 24) (px 6) (px 10)
                         , textAlign left
-                        , color Color.black90
                         , boxSizing borderBox
                         , hover
-                            [ backgroundColor Color.grayB
+                            [ backgroundColor
+                                (case theme of
+                                    Theme.New ->
+                                        Color.white10
+
+                                    _ ->
+                                        Color.grayB
+                                )
                             ]
                         ]
                     ]
@@ -122,7 +140,7 @@ dropDown fields choose direction close =
 dropdownDots : DropdownOptions a msg -> Html msg
 dropdownDots dropdownOptions =
     let
-        { fields, choose, close, open, isOpen, direction } =
+        { fields, choose, close, open, isOpen, direction, theme } =
             dropdownOptions
     in
     div
@@ -152,7 +170,7 @@ dropdownDots dropdownOptions =
             , dot
             , dot
             , if isOpen then
-                dropDown fields choose direction close
+                dropDown fields choose direction close theme
 
               else
                 text ""
