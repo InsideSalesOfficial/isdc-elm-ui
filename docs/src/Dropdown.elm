@@ -1,11 +1,13 @@
 module Dropdown exposing (..)
 
-import Html.Styled exposing (..)
-import Isdc.Ui.Dropdown exposing (..)
-import DocsLayout exposing (..)
 import Css exposing (..)
-import Html.Styled.Attributes exposing (..)
 import Dict as Dict exposing (Dict)
+import DocsLayout exposing (..)
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (..)
+import Isdc.Ui.Color.Css as Color
+import Isdc.Ui.Dropdown exposing (..)
+import Isdc.Ui.Theme as Theme
 import Maybe as Maybe
 
 
@@ -52,7 +54,7 @@ update msg model =
                         (\val -> Maybe.withDefault False val |> not |> Just)
                         model.optionsChecked
             in
-                { model | optionsChecked = updated }
+            { model | optionsChecked = updated }
 
         Search search ->
             { model | search = search }
@@ -79,6 +81,7 @@ dropdownProps model =
     , saveMessage = Save
     , cancelMessage = Cancel
     , search = model.search
+    , theme = Theme.Dark
     }
 
 
@@ -87,12 +90,12 @@ view model =
         props =
             dropdownProps model
     in
-        story
-            { title = "Isdc.Ui.Dropdown exposing (..)"
-            , chapters =
-                [ { heading = "multiCheckDropdown : DropDownProperties msg -> Html msg"
-                  , example = div [ css [ marginBottom (px 200) ] ] [ multiCheckDropdown props ]
-                  , codeUsage = """
+    story
+        { title = "Isdc.Ui.Dropdown exposing (..)"
+        , chapters =
+            [ { heading = "multiCheckDropdown : DropDownProperties msg -> Html msg"
+              , example = div [ css [ marginBottom (px 200) ] ] [ multiCheckDropdown props ]
+              , codeUsage = """
 let model =
     { labelText = "Hello world"
     , dropDownValue = "Some value you determine"
@@ -113,9 +116,38 @@ let model =
     , saveMessage = Save
     , cancelMessage = Cancel
     , search = ""
+    , Theme.Dark
     }
 
 in multiCheckDropdown model"""
-                  }
-                ]
-            }
+              }
+            , { heading = "multiCheckDropdown : DropDownProperties msg -> Html msg"
+              , example = div [ css [ backgroundColor Color.primary01, padding (px 24), Css.height (px 200), marginBottom (px 200) ] ] [ multiCheckDropdown { props | theme = Theme.New } ]
+              , codeUsage = """
+let model =
+  { labelText = "Hello world"
+  , dropDownValue = "Some value you determine"
+  , options =
+      [ { label = "Foo"
+        , value = "foo"
+        , checked = False
+        }
+      , { label = "Bar"
+        , value = "bar"
+        , checked = False
+        }
+      ]
+  , open = False
+  , openMessage = Open
+  , toggleMessage = Toggle
+  , searchMessage = Search
+  , saveMessage = Save
+  , cancelMessage = Cancel
+  , search = ""
+  , Theme.New
+  }
+
+in multiCheckDropdown model"""
+              }
+            ]
+        }
