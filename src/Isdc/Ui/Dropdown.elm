@@ -122,7 +122,7 @@ multiCheckDropdown dropDownArgs =
         modalBackgroundColor =
             case theme of
                 Theme.New ->
-                    Color.primary05
+                    Color.primary03
 
                 _ ->
                     Color.white
