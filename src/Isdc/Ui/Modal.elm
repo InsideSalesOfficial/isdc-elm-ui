@@ -21,13 +21,13 @@ modal options close theme body =
                 Just justOptions ->
                     justOptions
 
-        (modalBackgroundColor, textColor) =
+        ( modalBackgroundColor, textColor ) =
             case theme of
                 Theme.New ->
-                    (Color.primary01, Color.white90)
+                    ( Color.primary03, Color.white90 )
 
                 _ ->
-                    (Color.white, Color.black90)
+                    ( Color.white, Color.black90 )
     in
     div
         [ css
