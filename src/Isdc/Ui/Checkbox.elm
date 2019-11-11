@@ -104,6 +104,7 @@ checkBox theme options =
                 [ baseCheckboxStyles
                 , backgroundColor backgroundColor_
                 , borderColor borderColor_
+                , hover [ borderColor Color.brand01 ]
                 ]
             , onClick options.onValueChange
             , class "pb-test__checkbox"
